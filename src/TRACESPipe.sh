@@ -309,6 +309,7 @@ PROGRAM_EXISTS () {
 #
 #
 CHECK_PROGRAMS () {
+    [ "$INSTALL" -eq 1 ] && return 0;
   PROGRAM_EXISTS "trimmomatic";
   PROGRAM_EXISTS "cryfa";
   PROGRAM_EXISTS "MAGNET";
