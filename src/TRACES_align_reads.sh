@@ -7,6 +7,8 @@
 set -o pipefail
 
 FullCall="$0 $*"
+ScriptName="$(basename "$0")"
+
 function Log {
     msg=$1; shift
     lvl=$2; shift
@@ -16,9 +18,9 @@ function Log {
 }
 
 function Usage {
-    >&2 echo -e "Usage: $(basename "$0") refType refFasta refLabel smplID nThread bRmDup bSensitive\n" \
-                "\trefType {mt, cy, specific,viral}\tThe type of reference to which reads are to be mapped\n" \
-                "\trefFasta PATH\tFasta file containing the reference genome\n" \
+    >&2 echo -e "Usage: $ScriptName refType refFasta refLabel smplID nThread bRmDup bSensitive\n" \
+                "\trefType {mt, cy, specific, viral}\tThe type of reference to which reads are to be mapped\n" \
+                "\trefFasta PATH\tFasta file containing the reference genome; optionally gzipped\n" \
                 "\trefLabel STR\tA label for the specific reference being used\n" \
                 "\t\tViral abbreviation for viral, pattern for specific, mt for mt, and cy for cy\n" \
                 "\tsmplID STR\tAn identifier for the reads\n" \
@@ -36,7 +38,7 @@ function main {
     refType=$1; shift
     refFasta=$1; shift
     refLabel=$1; shift
-    smplId=$1; shift
+    smplID=$1; shift
     nThread=$1; shift
     bRmDup=$1; shift
     bSensitive=$1; shift
@@ -48,7 +50,7 @@ function main {
     #Build the Index
     indexPrefix="$(BuildIndex "$refFasta" "$refLabel" "$smplID")" || return 1;
     #Map the Reads
-    samFile="$(Align "$indexPrefix" "$refFasta" "$refLabel" "$smplID" "$nThread" "$bSensitive")" || return 1;
+    samFile="$(Align "$indexPrefix" "$refLabel" "$smplID" "$nThread" "$bSensitive")" || return 1;
     #Count the number of molecules which actually mapped
     #Note: the samFile contains entries only for reads where at least one mate mapped (or unpaired and mapped)
     #      for paired reads that means both read1 and read2 have entries, one may be unmapped,
@@ -66,7 +68,7 @@ function main {
             Log "Failure to calculate nDeduped" "WARNING"
     else
         samtools sort -@ "$nThread" -o "$bamFile" --write-index "$samFile" ||
-            { Log "Failure to sort aligned output"; rm -f "$bamFile" "$bamFile.bai"; return 1; }
+            { Log "Failure to sort aligned output"; rm -f "$bamFile" "$bamFile.bai" "$bamFile.csi"; return 1; }
     fi
     #Clean up the intermediary sam file
     rm -f "$samFile"
@@ -78,30 +80,24 @@ function main {
 ###FUNCTIONS
 
 function Align {
-    index=$1; shift
-    refFasta=$1; shift
-    refLabel=$1; shift
-    smplId=$1; shift
-    nThread=$1; shift
-    bSensitive=$1; shift
+    local index=$1; shift
+    local refLabel=$1; shift
+    local smplID=$1; shift
+    local nThread=$1; shift
+    local bSensitive=$1; shift
 
-    sensitivityArg=""
+    local sensitivityArg=""
     if [[ "$bSensitive" != "0" ]]; then
         sensitivityArg="--very-sensitive"
     fi
 
     local samFile="aligned-$smplID-$refLabel.sam"
-    local code=0;
     #Map End-2-End with Bowtie and filter out molecules which did not map at all
     bowtie2 -a --threads "$nThread" "$sensitivityArg" -x "$index" \
         -1 o_fw_pr.fq -2 o_rv_pr.fq -U o_fw_unpr.fq,o_rv_unpr.fq |
         samtools view -h -e '(flag.paired && (!flag.unmap || !flag.munmap)) || (!flag.paired && !flag.unmap)' \
-        >| "$samFile"; code="$?"
-    if [ "$code" != "0" ]; then
-        Log "Failure in Bowtie2 mapping or filtering out umapped molecules"
-        rm -f "$samFile"
-        return 0;
-    fi
+        >| "$samFile" ||
+        { Log "Failure in Bowtie2 mapping or filtering out umapped molecules"; rm -f "$samFile" return 1; }
 
     echo "$samFile"
 }
@@ -134,37 +130,38 @@ function Deduplicate {
         samtools fixmate --threads "$nThread" -m - - |
         samtools sort --threads "$nThread" - |
         samtools markdup --threads "$nThread" -r -S --write-index - "$bamFile" ||
-        { Log "Failure to deduplicate aligned reads"; rm -f "$bamFile" "$bamFile.bai"; return 1; }
+        { Log "Failure to deduplicate aligned reads"; rm -f "$bamFile" "$bamFile.bai" "$bamFile.csi"; return 1; }
 }
 
-
 function OutputStats {
-	refType=$1; shift
-	refLabel=$1; shift
-    labelSuffix=$1; shift
-	smplID=$1; shift
-	bamFile=$1; shift
-	libSize=$1; shift
-	nMapped=$1; shift
-	nDeduped=$1; shift
+	local refType=$1; shift
+	local refLabel=$1; shift
+    local labelSuffix=$1; shift
+	local smplID=$1; shift
+	local bamFile=$1; shift
+	local libSize=$1; shift
+	local nMapped=$1; shift
+	local nDeduped=$1; shift
 
     declare -A statsDirInfix=(["cy"]="cy" ["mt"]="mtdna" ["specific"]="specific" ["viral"]="viral")
-    statsDir="../output_data/TRACES_${statsDirInfix["$refType"]}_statistics"
+    local statsDir="../output_data/TRACES_${statsDirInfix["$refType"]}_statistics"
     mkdir -p "$statsDir" ||
         { Log "Failure to create statistics directory" "WARNING"; return 0; }
     #Output the flagstats
-    label=$refType-${smplID}${labelSuffix};
-    flagStatFile="$statsDir/Alignment-$label.txt"
+    local label=$refType-${smplID}${labelSuffix};
+    local flagStatFile="$statsDir/Alignment-$label.txt"
     samtools flagstat "$bamFile" >| "$flagStatFile" ||
         { Log "Failure to calculate flagstats" "WARNING"; rm -f "$flagStatFile"; }
 
     #Calculate and Output the mapping statistics
-    mapStatFile="$statsDir/Mapping-$label.txt"
+    local mapStatFile="$statsDir/Mapping-$label.txt"
+    local acc="NA";
     acc=$(samtools view -H "$bamFile" | awk -F '\\t|:' '/^@SQ/ {print $3; exit 0}') ||
         Log "Failure to determine reference accession for mapping stats"
+    local mapPerc="NA";
     mapPerc="$(bc <<< "scale=4;100*$nMapped/$libSize")" ||
         Log "Failure to calculate mapping percentage for mapping stats"
-    dupRate="NA"
+    local dupRate="NA"
     if [ "$nDeduped" != "NA" ]; then 
         dupRate="$(printf "%0.3f%%" "$(bc <<< "scale=3;100*(1-$nDeduped/$nMapped)")")" ||
             Log "Failure to calculate duplication rate for mapping stats";
@@ -184,17 +181,18 @@ function ValidateFQ {
 }
 
 function ValidateInput {
-    [ "$#" -lt 7 ] && return 1;
+    [ "$#" -lt 7 ] && 
+        { Log "Insufficient Command Line Arguments";  return 1; }
     local refType=$1; shift
     local refFasta=$1; shift
     local refLabel=$1; shift
-    local smplId=$1; shift
+    local smplID=$1; shift
     local nThread=$1; shift
     local bRmDup=$1; shift
     local bSensitive=$1; shift
     #Ensure all variables are non-empty
     declare -A varDict=(["refType"]="$refType" ["refFasta"]="$refFasta" \
-                        ["refLabel"]="$refLabel" ["smplId"]="$smplId" \
+                        ["refLabel"]="$refLabel" ["smplID"]="$smplID" \
                         ["nThread"]="$nThread" ["bRmDup"]="$bRmDup" \
                         ["bSensitive"]="$bSensitive");
     for var in "${!varDict[@]}"; do
@@ -205,17 +203,13 @@ function ValidateInput {
     done
     #Ensure the ref Type is valid
     declare -A validTypeSet=(["cy"]=1 ["mt"]=1 ["specific"]=1 ["viral"]=1);
-    if [[ -v validTypeSet["$refType"] ]]; then
+    if ! [[ -v validTypeSet["$refType"] ]]; then
         Log "Unrecognized refType ($refType)"
         return 1;
     fi
-    #Ensure the ref fasta, exists, is non-empty and is not compressed
-    if [ -s "$refFasta" ]; then
+    #Ensure the ref fasta, exists, is non-empty
+    if ! [ -s "$refFasta" ]; then
         Log "Empty or non-existent fasta reference ($refFasta)"
-        return 1;
-    fi
-    if file -L "$refFasta" | grep -q gzip; then
-        Log "Gzipped reference ($refFasta) not valid"
         return 1;
     fi
     #Ensure that the refLabel is correct if a particular label is required
