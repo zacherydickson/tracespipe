@@ -57,6 +57,8 @@ function main {
     #      only one needs to be counted
     nMapped="$(samtools view -c -F 0xF00 -e '!flag.read2' "$samFile")" ||
         Log "Failure to calculate nMapped" "WARNING"
+    #Clean up the, now uneccessary bowtie index
+    rm -f "$indexPrefix"*.bt2
     #Either just sort or deduplicate the reads as necessary, either path also creates the index file
     declare -A labelSuffixDict=(["cy"]="" ["mt"]="" ["specific"]="-$refLabel" ["viral"]="-$refLabel");
     labelSuffix="${labelSuffixDict["$refType"]}"
