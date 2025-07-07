@@ -164,14 +164,14 @@ function OutputStats {
     acc=$(samtools view -H "$bamFile" | awk -F '\\t|:' '/^@SQ/ {print $3; exit 0}') ||
         Log "Failure to determine reference accession for mapping stats"
     local mapPerc="NA";
-    mapPerc="$(bc <<< "scale=4;100*$nMapped/$libSize")" ||
+    mapPerc="$(printf "%0.3f%%" "$(bc <<< "scale=4;100*$nMapped/$libSize")")" ||
         Log "Failure to calculate mapping percentage for mapping stats"
     local dupRate="NA"
     if [ "$nDeduped" != "NA" ]; then 
-        dupRate="$(printf "%0.3f%%" "$(bc <<< "scale=3;100*(1-$nDeduped/$nMapped)")")" ||
+        dupRate="$(printf "%0.2f%%" "$(bc <<< "scale=3;100*(1-$nDeduped/$nMapped)")")" ||
             Log "Failure to calculate duplication rate for mapping stats";
     fi
-    printf "%s\t%s\t%d\t%d\t%0.3f\t%s\t%s\n" \
+    printf "%s\t%s\t%d\t%d\t%s\t%s\t%s\n" \
         "$acc" "$smplID" "$libSize" "$nMapped" "$mapPerc" "$nDeduped" "$dupRate" >| \
         "$mapStatFile" ||
         { Log "Failure to output mapping stats"; rm -f "$mapStatFile"; }
