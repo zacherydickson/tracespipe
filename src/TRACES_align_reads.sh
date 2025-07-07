@@ -171,7 +171,7 @@ function OutputStats {
         dupRate="$(printf "%0.3f%%" "$(bc <<< "scale=3;100*(1-$nDeduped/$nMapped)")")" ||
             Log "Failure to calculate duplication rate for mapping stats";
     fi
-    printf "%s\t%s\t%d\t%d\t%0.3f\t%s\t%s" \
+    printf "%s\t%s\t%d\t%d\t%0.3f\t%s\t%s\n" \
         "$acc" "$smplID" "$libSize" "$nMapped" "$mapPerc" "$nDeduped" "$dupRate" >| \
         "$mapStatFile" ||
         { Log "Failure to output mapping stats"; rm -f "$mapStatFile"; }
