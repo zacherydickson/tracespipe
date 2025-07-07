@@ -69,9 +69,12 @@ function main {
         nDeduped="$(samtools view -c -F 0xF00 -e '!flag.read2' "$bamFile")" ||
             Log "Failure to calculate nDeduped" "WARNING"
     else
-        samtools sort -@ "$nThread" -o "$bamFile" --write-index "$samFile" ||
-            { Log "Failure to sort aligned output"; rm -f "$bamFile" "$bamFile.bai" "$bamFile.csi"; return 1; }
+        samtools sort -@ "$nThread" -o "$bamFile" "$samFile" ||
+            { Log "Failure to sort aligned output"; rm -f "$bamFile"; return 1; }
     fi
+    #Index the bam file
+    samtools index -b "$bamFile" ||
+        { Log "Failure to index Bam File" "WARNING"; rm -f "$bamFile.bai"; }
     #Clean up the intermediary sam file
     rm -f "$samFile"
     #Output Alignment flagstats and mapping stats
@@ -131,8 +134,8 @@ function Deduplicate {
     samtools sort --threads "$nThread" -n "$samFile" |
         samtools fixmate --threads "$nThread" -m - - |
         samtools sort --threads "$nThread" - |
-        samtools markdup --threads "$nThread" -r -S --write-index - "$bamFile" ||
-        { Log "Failure to deduplicate aligned reads"; rm -f "$bamFile" "$bamFile.bai" "$bamFile.csi"; return 1; }
+        samtools markdup --threads "$nThread" -r -S - "$bamFile" ||
+        { Log "Failure to deduplicate aligned reads"; rm -f "$bamFile"; return 1; }
 }
 
 function OutputStats {
