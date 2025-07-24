@@ -118,6 +118,8 @@ B_ALT_VIRAL_DB=0;
 VIRAL_DATABASE_METADATA="";
 VIRAL_DATABASE_FILE="VDB.fa"
 #
+RUN_PREPROCESS=0;
+#
 # ==============================================================================
 #
 # DEFAULT VALUES:
@@ -128,6 +130,7 @@ TSIZE=2;
 TOP_SIZE=0;
 TOP_SIZE_VIR=0;
 CACHE=70;
+PREPROC_DIR="../TRACES_preprocessed_reads"
 #
 # ==============================================================================
 # THESE ARE THE CURRENT FLAGGED VIRUSES OR VIRUSES GROUPS FOR ENHANCED ASSEMBLY:
@@ -356,6 +359,25 @@ CHECK_E_FILE () {
     fi
   }
 #
+#
+CHECK_AND_EXTRACT_PREPROCESS () {
+    prefix=$1; shift
+    if [ ! -f "$PREPROC_DIR/${prefix}_1P.fq.gz" ] || 
+        [ ! -f "$PREPROC_DIR/${prefix}_2P.fq.gz" ] ||
+        [ ! -f "$PREPROC_DIR/${prefix}_1U.fq.gz" ] ||
+        [ ! -f "$PREPROC_DIR/${prefix}_2U.fq.gz" ];
+    then
+        echo -e "\e[31mERROR: Preprocessed reads for $prefix not found!\e[0m"
+        echo "TIP: before this, run: ./TRACESPipe.sh --run-preprocess"
+        echo "For addition information, see the instructions at the web page."
+        return 1;
+    fi
+    zcat "$PREPROC_DIR/${prefix}_1P.fq.gz" o_fw_pr.fq
+    zcat "$PREPROC_DIR/${prefix}_2P.fq.gz" o_rv_pr.fq
+    zcat "$PREPROC_DIR/${prefix}_1U.fq.gz" o_fw_unpr.fq
+    zcat "$PREPROC_DIR/${prefix}_2U.fq.gz" o_rv_unpr.fq
+}
+#
 # ==============================================================================
 #
 ALIGN_AND_CONSENSUS () {
@@ -456,6 +478,7 @@ if [ "$#" -eq 0 ];
 #
 POSITIONAL=();
 #
+#TODO: RUN-PREPROCESS OPTION
 while [[ $# -gt 0 ]]
   do
   i="$1";
@@ -910,6 +933,8 @@ while [[ $# -gt 0 ]]
   done
 #
 set -- "${POSITIONAL[@]}" # restore positional parameters
+
+#TODO: RUN-PREPROCESS OPTION
 #
 # ==============================================================================
 # HELP
@@ -1785,6 +1810,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
     CHECK_ADAPTERS;
     touch o_fw_pr.fq o_fw_unpr.fq o_rv_pr.fq o_rv_unpr.fq;
     #
+    #TODO: SWITCH TO FASTP and decompress the output
     echo -e "\e[34m[TRACESPipe]\e[32m Trimming and filtering with Trimmomatic ...\e[0m";
     ./TRACES_trim_filter_reads.sh $THREADS 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
     echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
