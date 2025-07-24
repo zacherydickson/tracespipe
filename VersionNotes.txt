@@ -15,7 +15,7 @@ Version 1.3.0
         Added Minimum Similarity Length threshold	
 Version 1.3.1
 	Calling --install can no longer be thwarted by dependencies not being installed
-Version 1.4.0dev
+Version 1.4.0
         Major changes to Alignments
             Output bam files now only contain entries for molecules which had at least one mapped read
             Deduplication now removes supplementary and secondary alignments for duplicates
