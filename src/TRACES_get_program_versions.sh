@@ -25,6 +25,7 @@ echo "bwa            : `bwa 2> VX.tmp; grep Version VX.tmp | awk '{ print $2;}'`
 echo "art_illumina   : `art_illumina | grep Version | awk '{ print $3;}'`";
 echo "blastn         : `blastn -version | head -n 1 | awk '{print $2;}'`";
 echo "dnadiff        : `dnadiff --version 2> VX.tmp; grep version VX.tmp | awk '{ print $3; }'`";
+echo "fastp          : `fastp --version`";
 #
 rm -f VX.tmp;
 #
