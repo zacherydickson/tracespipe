@@ -60,6 +60,7 @@ if [[ "$INSTALL_PIPELINE" -eq "1" ]];
   conda install -c bioconda art --yes
   conda install -c bioconda blast --yes
   conda install -c bioconda mummer4 --yes
+  conda install -c bioconda fastp --yes
 #  conda install -c bioconda ivar --yes
   #
   Program_installed "trimmomatic";

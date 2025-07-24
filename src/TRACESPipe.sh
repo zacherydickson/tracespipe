@@ -331,6 +331,7 @@ CHECK_PROGRAMS () {
   PROGRAM_EXISTS "art_illumina";
   PROGRAM_EXISTS "blastn";
   PROGRAM_EXISTS "dnadiff";
+  PROGRAM_EXISTS "fastp"
   }
 #
 #

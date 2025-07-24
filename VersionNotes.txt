@@ -22,3 +22,8 @@ Version 1.4.0
             New Statistics report to show the composition of the QC'd library made up by a reference
                 and the duplication rate
             Refactoring code to reduce redundancy
+Version 1.4.0+PreProc
+        Major Changes to Read Preprocessing
+            Switch to FastP as the preprocessor
+            PolyG tail removal is now a default part of the pipeline
+            Preprocessed Reads are now retained in an output directory TRACES_preprocessed_reads
