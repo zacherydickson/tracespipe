@@ -1826,7 +1826,10 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
         echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
     fi
     #
+    
+    echo -e "\e[34m[TRACESPipe]\e[32m Extracting Preprocessed reads ...\e[0m";
     CHECK_AND_EXTRACT_PREPROCESSED $ORGAN_T
+    echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
     #
     # THE OUTPUT OF EXTRACTION IS:
     # o_fw_pr.fq  o_fw_unpr.fq  o_rv_pr.fq  o_rv_unpr.fq
