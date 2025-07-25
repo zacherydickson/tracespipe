@@ -24,3 +24,5 @@ Version 1.4.0
             Refactoring code to reduce redundancy
 Version 1.4.1
 	Minor code reorganization for maintainability
+Version 1.4.2
+	Removed un-necessary copy of input data step
