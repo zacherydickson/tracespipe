@@ -1819,10 +1819,13 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
     CHECK_ADAPTERS;
     rm -f o_fw_pr.fq o_fw_unpr.fq o_rv_pr.fq o_rv_unpr.fq;
     if [[ "$RUN_PREPROCESS" -eq 1 ]]; then
+
+        echo -e "\e[34m[TRACESPipe]\e[32m Preprocessing reads with FastP ...\e[0m";
         ./TRACES_preprocess.sh "$THREADS" "$PREPROC_DIR" adapters.fa "$ORGAN_T" FW_READS.fq.gz RV_READS.fq.gz 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
+        echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
     fi
     #
-    CHECK_AND_EXTRACT_PREPROCESSED
+    CHECK_AND_EXTRACT_PREPROCESSED $ORGAN_T
     #
     # THE OUTPUT OF EXTRACTION IS:
     # o_fw_pr.fq  o_fw_unpr.fq  o_rv_pr.fq  o_rv_unpr.fq
