@@ -360,7 +360,7 @@ CHECK_E_FILE () {
   }
 #
 #
-CHECK_AND_EXTRACT_PREPROCESS () {
+CHECK_AND_EXTRACT_PREPROCESSED () {
     prefix=$1; shift
     if [ ! -f "$PREPROC_DIR/${prefix}_1P.fq.gz" ] || 
         [ ! -f "$PREPROC_DIR/${prefix}_2P.fq.gz" ] ||
@@ -370,12 +370,12 @@ CHECK_AND_EXTRACT_PREPROCESS () {
         echo -e "\e[31mERROR: Preprocessed reads for $prefix not found!\e[0m"
         echo "TIP: before this, run: ./TRACESPipe.sh --run-preprocess"
         echo "For addition information, see the instructions at the web page."
-        return 1;
+        exit 1;
     fi
-    zcat "$PREPROC_DIR/${prefix}_1P.fq.gz" o_fw_pr.fq
-    zcat "$PREPROC_DIR/${prefix}_2P.fq.gz" o_rv_pr.fq
-    zcat "$PREPROC_DIR/${prefix}_1U.fq.gz" o_fw_unpr.fq
-    zcat "$PREPROC_DIR/${prefix}_2U.fq.gz" o_rv_unpr.fq
+    zcat "$PREPROC_DIR/${prefix}_1P.fq.gz" > o_fw_pr.fq
+    zcat "$PREPROC_DIR/${prefix}_2P.fq.gz" > o_rv_pr.fq
+    zcat "$PREPROC_DIR/${prefix}_1U.fq.gz" > o_fw_unpr.fq
+    zcat "$PREPROC_DIR/${prefix}_2U.fq.gz" > o_rv_unpr.fq
 }
 #
 # ==============================================================================
@@ -478,7 +478,6 @@ if [ "$#" -eq 0 ];
 #
 POSITIONAL=();
 #
-#TODO: RUN-PREPROCESS OPTION
 while [[ $# -gt 0 ]]
   do
   i="$1";
@@ -504,7 +503,7 @@ while [[ $# -gt 0 ]]
       GET_MITO=1;
       GET_CY=1;
       RUN_ANALYSIS=1;
-      #
+      RUN_PREPROCESS=1;
       RUN_META_ON=1;
       RUN_PROFILES_ON=1;
       RUN_META_NON_VIRAL_ON=1;
@@ -635,7 +634,6 @@ while [[ $# -gt 0 ]]
       SHOW_HELP=0;
       shift
     ;;
-
     -f|-F|--force)
       FORCE=1;
       shift
@@ -714,8 +712,14 @@ while [[ $# -gt 0 ]]
         SHOW_HELP=0;
         shift 2
     ;;
+    -proc|--run-preprocess)
+        RUN_ANALYSIS=1;
+        RUN_PREPROCESS=1;
+        shift
+    ;;
     -ra|--run-analysis)
       RUN_ANALYSIS=1;
+      RUN_PREPROCESS=1;
       RUN_META_ON=1;
       RUN_PROFILES_ON=1;
       RUN_META_NON_VIRAL_ON=1;
@@ -935,7 +939,6 @@ while [[ $# -gt 0 ]]
 #
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-#TODO: RUN-PREPROCESS OPTION
 #
 # ==============================================================================
 # HELP
@@ -1021,6 +1024,11 @@ if [ "$SHOW_HELP" -eq "1" ];
   echo "                                                                       "
   echo "    -ra,    --run-analysis    Run data analysis (core),                      "
   echo "    -all,   --run-all         Run all the options (excluding the specific).  "
+  echo "    -proc,  --run-preprocess  Run adapter removal, quality trimming,   "
+  echo "                              length filtering, base correction,       "
+  echo "                              and poly-g tail removal with fastp       "
+  echo "                              Must be run before or with most other    "
+  echo "                              analysis                                 "
   echo "                                                                       "
   echo "    -sfs <FASTA>, --search-blast-db <FASTA>                            "
   echo "                              It blasts the nucleotide (nt) blast DB,  "
@@ -1806,17 +1814,17 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
     echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
     #
     # ========================================================================
-    # TRIM AND FILTER READS TRIMMOMATIC
+    # PRE-PROCESS READS WITH FASTP
     #
     CHECK_ADAPTERS;
-    touch o_fw_pr.fq o_fw_unpr.fq o_rv_pr.fq o_rv_unpr.fq;
+    rm -f o_fw_pr.fq o_fw_unpr.fq o_rv_pr.fq o_rv_unpr.fq;
+    if [[ "$RUN_PREPROCESS" -eq 1 ]]; then
+        ./TRACES_preprocess.sh "$THREADS" "$PREPROC_DIR" adapters.fa "$ORGAN_T" FW_READS.fq.gz RV_READS.fq.gz 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
+    fi
     #
-    #TODO: SWITCH TO FASTP and decompress the output
-    echo -e "\e[34m[TRACESPipe]\e[32m Trimming and filtering with Trimmomatic ...\e[0m";
-    ./TRACES_trim_filter_reads.sh $THREADS 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
-    echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
+    CHECK_AND_EXTRACT_PREPROCESSED
     #
-    # THE OUTPUT OF TRIMMING IS:
+    # THE OUTPUT OF EXTRACTION IS:
     # o_fw_pr.fq  o_fw_unpr.fq  o_rv_pr.fq  o_rv_unpr.fq
     #
     # ========================================================================== 
