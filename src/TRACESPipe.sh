@@ -117,6 +117,7 @@ RUN_BLAST_RECONSTRUCTED=0;
 B_ALT_VIRAL_DB=0;
 VIRAL_DATABASE_METADATA="";
 VIRAL_DATABASE_FILE="VDB.fa"
+ADAPTERS_FILE="adapters.fa"
 #
 RUN_PREPROCESS=0;
 #
@@ -242,9 +243,9 @@ CHECK_PHIX () {
 #
 #
 CHECK_ADAPTERS () {
-  if [ ! -f adapters.fa ];
+  if [ ! -f "$ADAPTERS_FILE" ];
     then
-    echo -e "\e[31mERROR: adapter sequences (adapters.fa) not found!\e[0m"
+    echo -e "\e[31mERROR: adapter sequences ($ADAPTERS_FILE) not found!\e[0m"
     echo "TIP: before this, run: ./TRACESPipe.sh --gen-adapters"
     echo "For addition information, see the instructions at the web page."
     exit 1;
@@ -1808,9 +1809,9 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
     echo -e "\e[34m[TRACESPipe]\e[93m Organ=$ORGAN_T Forward=$SPL_Forward Reverse=$SPL_Reverse\e[0m";
     #
     rm -f FW_READS.fq.gz RV_READS.fq.gz
-    echo -e "\e[34m[TRACESPipe]\e[32m Copying an instance of the files ...\e[0m";
-    cp ../input_data/$SPL_Forward FW_READS.fq.gz;
-    cp ../input_data/$SPL_Reverse RV_READS.fq.gz;
+    echo -e "\e[34m[TRACESPipe]\e[32m Linking the files ...\e[0m";
+    ln -s $(readlink -f ../input_data/$SPL_Forward) FW_READS.fq.gz;
+    ln -s $(readlink -f ../input_data/$SPL_Reverse) RV_READS.fq.gz;
     echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
     #
     # ========================================================================
@@ -2562,6 +2563,8 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
   # ==============================================================================
   # CLEAN DATA:
   rm -f FW_READS.fq.gz RV_READS.fq.gz
+  rm -f o_fw_pr.fq o_fw_unpr.fq o_rv_pr.fq o_rv_unpr.fq;
+  rm -f NP-o_fw_pr.fq NP-o_fw_unpr.fq NP-o_rv_pr.fq NP-o_rv_unpr.fq;
   #
   # ============================================================================
   fi
