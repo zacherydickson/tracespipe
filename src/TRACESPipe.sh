@@ -131,7 +131,7 @@ TSIZE=2;
 TOP_SIZE=0;
 TOP_SIZE_VIR=0;
 CACHE=70;
-PREPROC_DIR="../TRACES_preprocessed_reads"
+PREPROC_DIR="../output_data/TRACES_preprocessed_reads"
 #
 # ==============================================================================
 # THESE ARE THE CURRENT FLAGGED VIRUSES OR VIRUSES GROUPS FOR ENHANCED ASSEMBLY:
