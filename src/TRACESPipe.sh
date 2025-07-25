@@ -459,210 +459,9 @@ while [[ $# -gt 0 ]]
   do
   i="$1";
   case $i in
-    -h|--help|?)
-      SHOW_HELP=1;
-      shift
-    ;;
-    -v|-V|--version)
-      SHOW_VERSION=1;
-      shift
-    ;;
-    -f|-F|--force)
-      FORCE=1;
-      shift
-    ;;
-    -avdb|--alt-viral-db)
-        B_ALT_VIRAL_DB=1;
-        VIRAL_DATABASE_FILE="$2" 
-        shift 2;
-    ;;
-    -flog|--flush-logs)
-      FLUSH_LOGS=1;
-      shift
-    ;;
-    -fout|--flush-output)
-      FLUSH_OUTPUT=1;
-      shift
-    ;;
-    -gmt|--get-max-threads)
-      GET_THREADS=1;
-      shift
-    ;;
-    -t|--threads)
-      THREADS=$2;
-      shift 2;
-    ;;
-    -i|--install)
-      INSTALL=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -up|--update)
-      UPDATE=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -spv|--show-prog-ver)
-      SHOW_PROG_VER=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -st|--sample)
-      SAMPLE_TEST=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -vdb|--build-viral)
-      BUILD_VDB_ALL=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -vdbm|--viral-db-metadata)
-        VIRAL_DATABASE_METADATA="$2";
-        shift 2
-    ;;
-    -vdbr|--build-viral-r)
-      BUILD_VDB_REF=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -udb|--build-unviral)
-      BUILD_UDB=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -gad|--gen-adapters)
-      GEN_ADAPTERS=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -top|--view-top)
-      VIEW_TOP=1;
-      VTOP_SIZE="$2";
-      SHOW_HELP=0;
-      shift 2
-    ;;
-    -gp|--get-phix)
-      GET_PHIX=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -cbn|--create-blast-db)
-      CREATE_BLAST_DB=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -ubn|--update-blast-db)
-      UPDATE_BLAST_DB=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -sfs|--search-blast-db)
-      SEARCH_BLAST_DB=1;
-      BLAST_QUERY="$2";
-      SHOW_HELP=0;
-      shift 2
-    ;;
-    -sfrs|--search-blast-remote-db)
-      SEARCH_BLAST_REMOTE_DB=1;
-      BLAST_QUERY="$2";
-      SHOW_HELP=0;
-      shift 2
-    ;;
-    -rdup|--remove-dup)
-      REMOVE_DUPLICATIONS=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -gbb|--best-of-bests)
-      RUN_BEST_OF_BESTS=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -vhs|--very-sensitive)
-      HIGH_SENSITIVITY=1;
-      RUN_SPECIFIC_SENSITIVE=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -gm|--get-mito)
-      GET_MITO=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -mis|--min-similarity)
-      MINIMAL_SIMILARITY_VALUE="$2";
-      SHOW_HELP=0;
-      shift 2
-    ;;
-    -misl|--min-similarity-len)
-        MINIMAL_SIMILARITY_LENGTH="$2";
-        SHOW_HELP=0;
-        shift 2
-    ;;
-    -dwms|--download-mito-species)
-      DOWNLOAD_MITO_SPECIES=1;
-      SHOW_HELP=0;
-      shift; 
-    ;;
-    -dwmp|--download-mito-population)
-      DOWNLOAD_MITO_POPULATION=1;
-      SHOW_HELP=0;
-      shift;
-    ;;
-    -aums|--auth-mito-species)
-      RUN_MITO_SPECIES=1;
-      SHOW_HELP=0;
-      shift;
-    ;;
-    -aump|--auth-mito-population)
-      RUN_MITO_POPULATION=1;
-      SHOW_HELP=0;
-      shift;
-    ;;
-    -cmt|--change-mito)
-      RUN_CHANGE_MT=1;
-      NEW_MT="$2";
-      SHOW_HELP=0;
-      shift 2
-    ;;
-    -gy|--get-y-chromo)
-      GET_CY=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -gax|--get-all-aux)
-      GEN_ADAPTERS=1;
-      GET_PHIX=1;
-      GET_MITO=1;
-      GET_CY=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -gx|--get-extra-vir)
-      GET_EXTRA=1;
-      SHOW_HELP=0;
-      shift
-    ;;
     -aes|--add-extra-seq)
       ADD_EXTRA_SEQ=1;
       NEW_SEQ_ID="$2";
-      SHOW_HELP=0;
-      shift 2
-    ;;
-    -rpgi|--run-gid-complexity-profile)
-      RUN_GID_COMPLEXITY_PROFILE=1;
-      GID_COMPLEXITY_PROFILE="$2";
-      SHOW_HELP=0;
-      shift 2
-    ;;
-    -cpwi|--complexity-profile-window)
-      COMPLEXITY_PROFILE_WINDOW="$2";
-      SHOW_HELP=0;
-      shift 2
-    ;;
-    -cple|--complexity-profile-level)
-      COMPLEXITY_PROFILE_LEVEL="$2";
       SHOW_HELP=0;
       shift 2
     ;;
@@ -671,194 +470,6 @@ while [[ $# -gt 0 ]]
       NEW_FASTA="$2";
       SHOW_HELP=0;
       shift 2
-    ;;
-    -ra|--run-analysis)
-      RUN_ANALYSIS=1;
-      RUN_META_ON=1;
-      RUN_PROFILES_ON=1;
-      RUN_META_NON_VIRAL_ON=1;
-      RUN_HERV_ON=1;
-      RUN_ALL_VIRAL=1;
-      RUN_CY_ON=1;
-      RUN_CY_QUANT_ON=1;
-      RUN_MITO_ON=1;
-      RUN_DE_NOVO_ASSEMBLY=1;
-      RUN_HYBRID=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -iss|--inter-sim-size)
-      TSIZE="$2";
-      SHOW_HELP=0;
-      shift 2;
-    ;;
-    -rsr|--run-specific)
-      RUN_ANALYSIS=1;
-      RUN_SPECIFIC=1;
-      SPECIFIC_ID="$2";
-      SHOW_HELP=0;
-      shift 2;
-    ;;
-    -rsd|--run-de-novo-specific)
-      RUN_ANALYSIS=1;
-      RUN_DENOVO_SPECIFIC=1;
-      SPECIFIC_DENOVO_ID="$2";
-      SHOW_HELP=0;
-      shift 2;
-    ;;
-    -cmax|--max-coverage)
-      MAX_COVERAGE_PROFILE=1;
-      COVERAGE_MAX="$2";
-      SHOW_HELP=0;
-      shift 2;
-    ;;
-    -covp|--coverage-profile)
-      RUN_COVERAGE_PROFILE=1;
-      COVERAGE_NAME="$2";
-      SHOW_HELP=0;
-      shift 2;
-    ;;
-    -clog|--coverage-log-scale)
-      COVERAGE_LOG_SCALE="$2";
-      SHOW_HELP=0;
-      shift 2;
-    ;;
-    -cwis|--coverage-window-size)
-      COVERAGE_WINDOW_SIZE="$2";
-      SHOW_HELP=0;
-      shift 2;
-    ;;
-    -cdro|--coverage-drop)
-      COVERAGE_DROP="$2";
-      SHOW_HELP=0;
-      shift 2;
-    ;;
-    -covm|--coverage-min-x)
-      COVERAGE_MIN_X="$2";
-      SHOW_HELP=0;
-      shift 2;
-    ;;
-    -rsx|--run-extreme)
-      RUN_ANALYSIS=1;
-      RUN_SPECIFIC=1;
-      RUN_SPECIFIC_SENSITIVE=1;
-      SPECIFIC_ID="$2";
-      SHOW_HELP=0;
-      shift 2;
-    ;;
-    -rm|--run-meta)
-      RUN_ANALYSIS=1;
-      RUN_META_ON=1;
-      SHOW_HELP=0;
-      shift
-    ;;      
-    -ro|--run-meta-nv)
-      RUN_ANALYSIS=1;
-      RUN_META_NON_VIRAL_ON=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -rmt|--run-mito)
-      RUN_ANALYSIS=1;
-      RUN_MITO_ON=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -rmtd|--run-mito-dam)
-      RUN_ANALYSIS=1;
-      RUN_MITO_DAMAGE_ON=1;
-      SHOW_HELP=0;
-      shift
-    ;;      
-    -rgid|--run-gid-damage)
-      RUN_GID_DAMAGE_ANALYSIS=1;
-      GID_DAMAGE="$2";
-      SHOW_HELP=0;
-      shift 2;
-    ;;
-    -rava|--run-all-v-alig)
-      RUN_ANALYSIS=1;
-      RUN_ALL_VIRAL=1;
-      shift
-    ;;
-    -rya|--run-cy-align)
-      RUN_ANALYSIS=1;
-      RUN_CY_ON=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -ryq|--run-cy-quant)
-      RUN_ANALYSIS=1;
-      RUN_CY_QUANT_ON=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -vis|--visual-align)
-      RUN_VISUAL_ALIGN=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -covl|--coverage-latex)
-      RUN_COVERAGE_TABLE=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -covc|--coverage-csv)
-      RUN_COVERAGE_TABLE_CSV=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -rpro|--run-profiles)
-      RUN_PROFILES_ON=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -rda|--run-de-novo)
-      RUN_ANALYSIS=1;
-      RUN_DE_NOVO_ASSEMBLY=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -rhyb|--run-hybrid)
-      RUN_ANALYSIS=1;
-      RUN_HYBRID=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -rmhc|--run-multiorgan-consensus)
-      RUN_ANALYSIS=1;
-      RUN_MULTIORGAN_CONSENSUS=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -diff|--run-diff)
-      RUN_DIFF=1;
-      RUN_ANALYSIS=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -sdiff|--run-specific-diff)
-      RUN_SPECIFIC_DIFF=1;
-      RUN_DIFF_VIRUS="$2";
-      RUN_DIFF_ID="$3";
-      SHOW_HELP=0;
-      shift 3
-    ;;
-    -brec|--blast-reconstructed)
-      RUN_BLAST_RECONSTRUCTED=1;
-      RUN_ANALYSIS=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -enc|--encrypt)
-      RUN_ENCRYPT=1;
-      SHOW_HELP=0;
-      shift
-    ;;
-    -dec|--decrypt)
-      RUN_DECRYPT=1;
-      SHOW_HELP=0;
-      shift
     ;;
     -all|--run-all)
       INSTALL=1;
@@ -885,10 +496,356 @@ while [[ $# -gt 0 ]]
       SHOW_HELP=0;
       shift
     ;;
+    -aump|--auth-mito-population)
+      RUN_MITO_POPULATION=1;
+      SHOW_HELP=0;
+      shift;
+    ;;
+    -aums|--auth-mito-species)
+      RUN_MITO_SPECIES=1;
+      SHOW_HELP=0;
+      shift;
+    ;;
+    -avdb|--alt-viral-db)
+        B_ALT_VIRAL_DB=1;
+        VIRAL_DATABASE_FILE="$2" 
+        shift 2;
+    ;;
+    -brec|--blast-reconstructed)
+      RUN_BLAST_RECONSTRUCTED=1;
+      RUN_ANALYSIS=1;
+      SHOW_HELP=0;
+      shift
+    ;;
     -c|--cache)
       CACHE="$2";
       SHOW_HELP=0;
       shift 2;
+    ;;
+    -cbn|--create-blast-db)
+      CREATE_BLAST_DB=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -cdro|--coverage-drop)
+      COVERAGE_DROP="$2";
+      SHOW_HELP=0;
+      shift 2;
+    ;;
+    -clog|--coverage-log-scale)
+      COVERAGE_LOG_SCALE="$2";
+      SHOW_HELP=0;
+      shift 2;
+    ;;
+    -cmax|--max-coverage)
+      MAX_COVERAGE_PROFILE=1;
+      COVERAGE_MAX="$2";
+      SHOW_HELP=0;
+      shift 2;
+    ;;
+    -cmt|--change-mito)
+      RUN_CHANGE_MT=1;
+      NEW_MT="$2";
+      SHOW_HELP=0;
+      shift 2
+    ;;
+    -covc|--coverage-csv)
+      RUN_COVERAGE_TABLE_CSV=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -covl|--coverage-latex)
+      RUN_COVERAGE_TABLE=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -covm|--coverage-min-x)
+      COVERAGE_MIN_X="$2";
+      SHOW_HELP=0;
+      shift 2;
+    ;;
+    -covp|--coverage-profile)
+      RUN_COVERAGE_PROFILE=1;
+      COVERAGE_NAME="$2";
+      SHOW_HELP=0;
+      shift 2;
+    ;;
+    -cpwi|--complexity-profile-window)
+      COMPLEXITY_PROFILE_WINDOW="$2";
+      SHOW_HELP=0;
+      shift 2
+    ;;
+    -cple|--complexity-profile-level)
+      COMPLEXITY_PROFILE_LEVEL="$2";
+      SHOW_HELP=0;
+      shift 2
+    ;;
+    -cwis|--coverage-window-size)
+      COVERAGE_WINDOW_SIZE="$2";
+      SHOW_HELP=0;
+      shift 2;
+    ;;
+    -dec|--decrypt)
+      RUN_DECRYPT=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -diff|--run-diff)
+      RUN_DIFF=1;
+      RUN_ANALYSIS=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -dwmp|--download-mito-population)
+      DOWNLOAD_MITO_POPULATION=1;
+      SHOW_HELP=0;
+      shift;
+    ;;
+    -dwms|--download-mito-species)
+      DOWNLOAD_MITO_SPECIES=1;
+      SHOW_HELP=0;
+      shift; 
+    ;;
+    -enc|--encrypt)
+      RUN_ENCRYPT=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+
+    -f|-F|--force)
+      FORCE=1;
+      shift
+    ;;
+    -flog|--flush-logs)
+      FLUSH_LOGS=1;
+      shift
+    ;;
+    -fout|--flush-output)
+      FLUSH_OUTPUT=1;
+      shift
+    ;;
+    -gax|--get-all-aux)
+      GEN_ADAPTERS=1;
+      GET_PHIX=1;
+      GET_MITO=1;
+      GET_CY=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -gm|--get-mito)
+      GET_MITO=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -gmt|--get-max-threads)
+      GET_THREADS=1;
+      shift
+    ;;
+    -gx|--get-extra-vir)
+      GET_EXTRA=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -gad|--gen-adapters)
+      GEN_ADAPTERS=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -gbb|--best-of-bests)
+      RUN_BEST_OF_BESTS=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -gp|--get-phix)
+      GET_PHIX=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -gy|--get-y-chromo)
+      GET_CY=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -h|--help|?)
+      SHOW_HELP=1;
+      shift
+    ;;
+    -i|--install)
+      INSTALL=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -iss|--inter-sim-size)
+      TSIZE="$2";
+      SHOW_HELP=0;
+      shift 2;
+    ;;
+    -mis|--min-similarity)
+      MINIMAL_SIMILARITY_VALUE="$2";
+      SHOW_HELP=0;
+      shift 2
+    ;;
+    -misl|--min-similarity-len)
+        MINIMAL_SIMILARITY_LENGTH="$2";
+        SHOW_HELP=0;
+        shift 2
+    ;;
+    -ra|--run-analysis)
+      RUN_ANALYSIS=1;
+      RUN_META_ON=1;
+      RUN_PROFILES_ON=1;
+      RUN_META_NON_VIRAL_ON=1;
+      RUN_HERV_ON=1;
+      RUN_ALL_VIRAL=1;
+      RUN_CY_ON=1;
+      RUN_CY_QUANT_ON=1;
+      RUN_MITO_ON=1;
+      RUN_DE_NOVO_ASSEMBLY=1;
+      RUN_HYBRID=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -rava|--run-all-v-alig)
+      RUN_ANALYSIS=1;
+      RUN_ALL_VIRAL=1;
+      shift
+    ;;
+    -rda|--run-de-novo)
+      RUN_ANALYSIS=1;
+      RUN_DE_NOVO_ASSEMBLY=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -rdup|--remove-dup)
+      REMOVE_DUPLICATIONS=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -rgid|--run-gid-damage)
+      RUN_GID_DAMAGE_ANALYSIS=1;
+      GID_DAMAGE="$2";
+      SHOW_HELP=0;
+      shift 2;
+    ;;
+    -rhyb|--run-hybrid)
+      RUN_ANALYSIS=1;
+      RUN_HYBRID=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -rm|--run-meta)
+      RUN_ANALYSIS=1;
+      RUN_META_ON=1;
+      SHOW_HELP=0;
+      shift
+    ;;      
+    -rmhc|--run-multiorgan-consensus)
+      RUN_ANALYSIS=1;
+      RUN_MULTIORGAN_CONSENSUS=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -rmt|--run-mito)
+      RUN_ANALYSIS=1;
+      RUN_MITO_ON=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -rmtd|--run-mito-dam)
+      RUN_ANALYSIS=1;
+      RUN_MITO_DAMAGE_ON=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -ro|--run-meta-nv)
+      RUN_ANALYSIS=1;
+      RUN_META_NON_VIRAL_ON=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -rpgi|--run-gid-complexity-profile)
+      RUN_GID_COMPLEXITY_PROFILE=1;
+      GID_COMPLEXITY_PROFILE="$2";
+      SHOW_HELP=0;
+      shift 2
+    ;;
+    -rpro|--run-profiles)
+      RUN_PROFILES_ON=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -rsd|--run-de-novo-specific)
+      RUN_ANALYSIS=1;
+      RUN_DENOVO_SPECIFIC=1;
+      SPECIFIC_DENOVO_ID="$2";
+      SHOW_HELP=0;
+      shift 2;
+    ;;
+    -rsr|--run-specific)
+      RUN_ANALYSIS=1;
+      RUN_SPECIFIC=1;
+      SPECIFIC_ID="$2";
+      SHOW_HELP=0;
+      shift 2;
+    ;;
+    -rsx|--run-extreme)
+      RUN_ANALYSIS=1;
+      RUN_SPECIFIC=1;
+      RUN_SPECIFIC_SENSITIVE=1;
+      SPECIFIC_ID="$2";
+      SHOW_HELP=0;
+      shift 2;
+    ;;
+    -rya|--run-cy-align)
+      RUN_ANALYSIS=1;
+      RUN_CY_ON=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -ryq|--run-cy-quant)
+      RUN_ANALYSIS=1;
+      RUN_CY_QUANT_ON=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -sdiff|--run-specific-diff)
+      RUN_SPECIFIC_DIFF=1;
+      RUN_DIFF_VIRUS="$2";
+      RUN_DIFF_ID="$3";
+      SHOW_HELP=0;
+      shift 3
+    ;;
+    -spv|--show-prog-ver)
+      SHOW_PROG_VER=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -st|--sample)
+      SAMPLE_TEST=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -sfs|--search-blast-db)
+      SEARCH_BLAST_DB=1;
+      BLAST_QUERY="$2";
+      SHOW_HELP=0;
+      shift 2
+    ;;
+    -sfrs|--search-blast-remote-db)
+      SEARCH_BLAST_REMOTE_DB=1;
+      BLAST_QUERY="$2";
+      SHOW_HELP=0;
+      shift 2
+    ;;
+    -t|--threads)
+      THREADS=$2;
+      shift 2;
+    ;;
+    -top|--view-top)
+      VIEW_TOP=1;
+      VTOP_SIZE="$2";
+      SHOW_HELP=0;
+      shift 2
     ;;
     -ts|--top-size)
       TOP_SIZE="$2";
@@ -900,10 +857,54 @@ while [[ $# -gt 0 ]]
       SHOW_HELP=0;
       shift 2;
     ;;
+    -ubn|--update-blast-db)
+      UPDATE_BLAST_DB=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -udb|--build-unviral)
+      BUILD_UDB=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -up|--update)
+      UPDATE=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -v|-V|--version)
+      SHOW_VERSION=1;
+      shift
+    ;;
+    -vdb|--build-viral)
+      BUILD_VDB_ALL=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -vdbr|--build-viral-r)
+      BUILD_VDB_REF=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -vdbm|--viral-db-metadata)
+        VIRAL_DATABASE_METADATA="$2";
+        shift 2
+    ;;
+    -vhs|--very-sensitive)
+      HIGH_SENSITIVITY=1;
+      RUN_SPECIFIC_SENSITIVE=1;
+      SHOW_HELP=0;
+      shift
+    ;;
+    -vis|--visual-align)
+      RUN_VISUAL_ALIGN=1;
+      SHOW_HELP=0;
+      shift
+    ;;
     -*) # unknown option with small
-    echo "Invalid arg ($1)!";
-    echo "For help, try: ./TRACESPipe.sh -h"
-    exit 1;
+        echo "Invalid arg ($1)!";
+        echo "For help, try: ./TRACESPipe.sh -h"
+        exit 1;
     ;;
   esac
   done
