@@ -117,6 +117,7 @@ RUN_BLAST_RECONSTRUCTED=0;
 B_ALT_VIRAL_DB=0;
 VIRAL_DATABASE_METADATA="";
 VIRAL_DATABASE_FILE="VDB.fa"
+ADAPTERS_FILE="adapters.fa"
 #
 # ==============================================================================
 #
@@ -239,9 +240,9 @@ CHECK_PHIX () {
 #
 #
 CHECK_ADAPTERS () {
-  if [ ! -f adapters.fa ];
+  if [ ! -f "$ADAPTERS_FILE" ];
     then
-    echo -e "\e[31mERROR: adapter sequences (adapters.fa) not found!\e[0m"
+    echo -e "\e[31mERROR: adapter sequences ($ADAPTERS_FILE) not found!\e[0m"
     echo "TIP: before this, run: ./TRACESPipe.sh --gen-adapters"
     echo "For addition information, see the instructions at the web page."
     exit 1;
