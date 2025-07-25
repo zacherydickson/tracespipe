@@ -2524,6 +2524,8 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
   # ==============================================================================
   # CLEAN DATA:
   rm -f FW_READS.fq.gz RV_READS.fq.gz
+  rm -f o_fw_pr.fq o_fw_unpr.fq o_rv_pr.fq o_rv_unpr.fq;
+  rm -f NP-o_fw_pr.fq NP-o_fw_unpr.fq NP-o_rv_pr.fq NP-o_rv_unpr.fq;
   #
   # ============================================================================
   fi

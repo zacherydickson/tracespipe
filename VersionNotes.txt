@@ -26,3 +26,5 @@ Version 1.4.1
 	Minor code reorganization for maintainability
 Version 1.4.2
 	Removed un-necessary copy of input data step
+Version 1.4.3
+	Added cleanup for trimmed copies of input data
