@@ -1840,14 +1840,16 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
       CHECK_PHIX;
       [ $TOP_SIZE_VIR -eq 0 ] && TOP_SIZE_VIR=$(grep -c '^>' "$VIRAL_DATABASE_FILE");
       #
-      echo -e "\e[34m[TRACESPipe]\e[32m Removing PhiX from the samples with MAGNET ...\e[0m";
+      #echo -e "\e[34m[TRACESPipe]\e[32m Removing PhiX from the samples with MAGNET ...\e[0m";
       #./TRACES_remove_phix.sh $THREADS 
       # XXX: REMOVE FROM THE DB PHIX OR CHANGE MAGNET FOR PAIRED-END READS 
       # XXX: ALTERNATIVE - USE BWA OR OTHER ALIGNER TO EXTRACT THOSE READS 
-      cp o_fw_pr.fq NP-o_fw_pr.fq;
-      cp o_fw_unpr.fq NP-o_fw_unpr.fq;
-      cp o_rv_pr.fq NP-o_rv_pr.fq;
-      cp o_rv_unpr.fq NP-o_rv_unpr.fq;      
+      # With the phiX removal disabled, the NP files required by TRACES_metagenomics_viral.sh
+      # need to exist, we'll link them from the baseline fq files
+      ln -s o_fw_pr.fq NP-o_fw_pr.fq;
+      ln -s o_fw_unpr.fq NP-o_fw_unpr.fq;
+      ln -s o_rv_pr.fq NP-o_rv_pr.fq;
+      ln -s o_rv_unpr.fq NP-o_rv_unpr.fq;      
       # IT IS USED ONLY FOR FALCON
       #
       # fastq_pair test_R1.fastq test_R2.fastq: [needs adaptation]

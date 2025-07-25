@@ -30,7 +30,9 @@ Version 1.4.3
 	Added cleanup for trimmed copies of input data
 Version 1.4.4
 	Minor code maintainability changes
-Version 1.4.4+PreProc
+Version 1.4.5
+	Removed unneccesary copy step
+Version 1.4.5+PreProc
         Major Changes to Read Preprocessing
             Switch to FastP as the preprocessor
             PolyG tail removal is now a default part of the pipeline
