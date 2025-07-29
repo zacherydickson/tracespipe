@@ -39,3 +39,5 @@ Version 1.5.0
             Preprocessed Reads are now retained in an output directory TRACES_preprocessed_reads
 Version 1.5.1
 	Updates to help for clarity
+Version 1.5.2
+	Fix Bug where specific alignments were not moved correctly
