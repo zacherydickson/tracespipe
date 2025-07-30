@@ -22,9 +22,9 @@ function main {
     for statType in "$@"; do
         for validType in "${ValidTypes[@]}"; do
             if [ "$statType" == "all" ]; then
-                typeSet["$statType"]=1;
+                typeSet["$validType"]=1;
             elif [ "$statType" == "$validType" ]; then
-                typeSet["$statType"]=1;
+                typeSet["$validType"]=1;
                 continue;
             fi
         done
