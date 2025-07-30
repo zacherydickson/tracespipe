@@ -45,3 +45,5 @@ Version 1.6.0
 	Added compilation of alignment stats into a report which can be run after the fact if required --compile-aln-stats
 Version 1.6.1
 	Fixed Bug where TRACES_compile_stats.sh all did nothing
+Version 1.6.2
+	Fixed bug where mito and cy stats compiling missed some files

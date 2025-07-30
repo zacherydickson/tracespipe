@@ -72,11 +72,15 @@ function CompileStats {
         if [ -z "$refLabel" ]; then
             continue;
         fi
+        local suffix="-$refLabel"
+        if [ "$statType" == "mtdna" ] || [ "$statType" == "cy" ];then
+            suffix=""
+        fi
         while IFS=":" read -r sID fq1 fq2; do
             #Acquire the mapping stats
             local v="-"; local s="-";
             local gid="-"; local lS="-"; local nM="-"; local pM="-"; local nD="-"; local pD="-";
-            local targetFile="../output_data/TRACES_${statType}_statistics/Mapping-$refType-$sID-$refLabel.txt"
+            local targetFile="../output_data/TRACES_${statType}_statistics/Mapping-$refType-$sID$suffix.txt"
             if [ -f "$targetFile" ]; then
                 read -r v gid s lS nM pM nD pD < "$targetFile";
             fi

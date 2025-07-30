@@ -1912,7 +1912,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
       # fastq_pair test_R1.fastq test_R2.fastq: [needs adaptation]
       # IF you want to remove Phix also before assembly
       #
-      echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
+      #echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       #
       echo -e "\e[34m[TRACESPipe]\e[32m Running viral metagenomic analysis with FALCON-meta ...\e[0m";
       mkdir -p ../output_data/TRACES_results
