@@ -45,7 +45,7 @@ function main {
         case "$statType" in 
             viral)
                 readarray -t virusList < "$ViralNamesFile" 
-                CompileStats "$statType" "viral" 1 "${virusList[@]}"
+                CompileStats "$statType" "viral" "${virusList[@]}"
             ;;
             specific)
                 #Find the specific references used then strip and pass only the labes to Complle

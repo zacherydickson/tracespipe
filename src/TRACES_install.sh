@@ -84,6 +84,7 @@ if [[ "$INSTALL_PIPELINE" -eq "1" ]];
   Program_installed "art_illumina";
   Program_installed "blastn";
   Program_installed "dnadiff";
+  Program_installed "fastp";
 #  Program_installed "ivar";
   fi
 #

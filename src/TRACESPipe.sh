@@ -132,6 +132,7 @@ TOP_SIZE=0;
 TOP_SIZE_VIR=0;
 CACHE=70;
 PREPROC_DIR="../output_data/TRACES_preprocessed_reads"
+COMPILE_STAT_TYPES=();
 #
 # ==============================================================================
 # THESE ARE THE CURRENT FLAGGED VIRUSES OR VIRUSES GROUPS FOR ENHANCED ASSEMBLY:
@@ -517,6 +518,7 @@ while [[ $# -gt 0 ]]
       RUN_HYBRID=1;
       RUN_MULTIORGAN_CONSENSUS=1;
       RUN_DIFF=1;
+      COMPILE_STAT_TYPES=("all");
       SHOW_HELP=0;
       shift
     ;;
@@ -543,6 +545,11 @@ while [[ $# -gt 0 ]]
     ;;
     -c|--cache)
       CACHE="$2";
+      SHOW_HELP=0;
+      shift 2;
+    ;;
+    -cast|--compile-aln-stats)
+      COMPILE_STAT_TYPES+=($2);
       SHOW_HELP=0;
       shift 2;
     ;;
@@ -731,12 +738,14 @@ while [[ $# -gt 0 ]]
       RUN_MITO_ON=1;
       RUN_DE_NOVO_ASSEMBLY=1;
       RUN_HYBRID=1;
+      COMPILE_STAT_TYPES=("all");
       SHOW_HELP=0;
       shift
     ;;
     -rava|--run-all-v-alig)
       RUN_ANALYSIS=1;
       RUN_ALL_VIRAL=1;
+      COMPILE_STAT_TYPES+=("viral");
       shift
     ;;
     -rda|--run-de-novo)
@@ -777,6 +786,7 @@ while [[ $# -gt 0 ]]
     -rmt|--run-mito)
       RUN_ANALYSIS=1;
       RUN_MITO_ON=1;
+      COMPILE_STAT_TYPES+=("mtdna");
       SHOW_HELP=0;
       shift
     ;;
@@ -814,6 +824,7 @@ while [[ $# -gt 0 ]]
       RUN_ANALYSIS=1;
       RUN_SPECIFIC=1;
       SPECIFIC_ID="$2";
+      COMPILE_STAT_TYPES+=("specific");
       SHOW_HELP=0;
       shift 2;
     ;;
@@ -822,12 +833,14 @@ while [[ $# -gt 0 ]]
       RUN_SPECIFIC=1;
       RUN_SPECIFIC_SENSITIVE=1;
       SPECIFIC_ID="$2";
+      COMPILE_STAT_TYPES+=("specific");
       SHOW_HELP=0;
       shift 2;
     ;;
     -rya|--run-cy-align)
       RUN_ANALYSIS=1;
       RUN_CY_ON=1;
+      COMPILE_STAT_TYPES+=("cy");
       SHOW_HELP=0;
       shift
     ;;
@@ -1076,6 +1089,12 @@ if [ "$SHOW_HELP" -eq "1" ];
   echo "                              Run specific alignments of the de-novo   "
   echo "                              to the reference genome,                 "
   echo "                                                                       "
+  echo "    -cast,  --compile-aln-stats <TYPE>                                 "
+  echo "                              Combine breadth, depth, similarity,      "
+  echo "                              and selected mapping statistics into a   "
+  echo "                              report. Valid types are: viral, mtdna    "
+  echo "                              cy, specific, and all. Auto-enabled      "
+  echo "                              with any alignment command.              "
   echo "    -rmhc,  --run-multiorgan-consensus                                 "
   echo "                              Run alignments/consensus between all the "
   echo "                              reconstructed organ sequences,           "
@@ -1103,12 +1122,16 @@ if [ "$SHOW_HELP" -eq "1" ];
   echo "    ├───run-meta                                                       "
   echo "    │   ├───run-profiles                                               "
   echo "    │   └───run-all-v-alig                                             "
+  echo "    │       ├───compile-aln-stats viral                                "
   echo "    │       ├───coverage-latex                                         "
   echo "    │       ├───coverage-csv                                           "
   echo "    │       └───run-diff                                               "
   echo "    ├───run-specific                                                   "
+  echo "    │   └───compile-aln-stats specific                                 "
   echo "    ├───run-mito                                                       "
+  echo "    │   └───compile-aln-stats mtdna                                    "
   echo "    ├───run-cy-align                                                   "
+  echo "    │   └───compile-aln-stats cy                                       "
   echo "    ├───run-cy-quant                                                   "
   echo "    └───run-de-novo                                                    "
   echo "        ├───run-hybrid                                                 "
@@ -2603,6 +2626,10 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
   rm -f NP-o_fw_pr.fq NP-o_fw_unpr.fq NP-o_rv_pr.fq NP-o_rv_unpr.fq;
   #
   # ============================================================================
+  fi
+  ##AFTER ANALYSIS, Compile alignment statstics reports
+  if [[ "${#COMPILE_STAT_TYPES[@]}" -gt 0 ]]; then
+      ./TRACES_compile_stats.sh "${COMPILE_STAT_TYPES[@]}"
   fi
 #
 # ==============================================================================
