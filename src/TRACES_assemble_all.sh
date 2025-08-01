@@ -7,13 +7,13 @@
 # o_fw_pr.fq o_rv_pr.fq o_fw_unpr.fq o_rv_unpr.fq
 #
 # ASSEMBLE
-if [ -s o_fw_unpr.fq ] && [ -s o_rv_unpr.fq ]; then
-  spades.py --meta --threads $2 -o ../output_data/TRACES_denovo_$1 -1 o_fw_pr.fq -2 o_rv_pr.fq -s o_fw_unpr.fq -s o_rv_unpr.fq
-elif [ -s o_fw_unpr.fq ]; then
-  spades.py --meta --threads $2 -o ../output_data/TRACES_denovo_$1 -1 o_fw_pr.fq -2 o_rv_pr.fq -s o_fw_unpr.fq
-elif [ -s o_rv_unpr.fq ]; then
-  spades.py --meta --threads $2 -o ../output_data/TRACES_denovo_$1 -1 o_fw_pr.fq -2 o_rv_pr.fq -s o_rv_unpr.fq
-else
-  spades.py --meta --threads $2 -o ../output_data/TRACES_denovo_$1 -1 o_fw_pr.fq -2 o_rv_pr.fq
-fi
-#
+Organ=$1; shift
+nThread=$1; shift
+fq1p="o_fw_pr.fq"
+fq2p="o_rv_pr.fq"
+fq1u="o_fw_unpr.fq"
+fq2u="o_rv_unpr.fq"
+UnPairArg=""
+[ -s "$fq1u" ] && UnPairArg="-s $fq1u"
+[ -s "$fq2u" ] && UnPairArg="$UnPairArg -s $fq2u"
+spades.py --meta --threads "$nThread" --only-assembler -o "../output_data/TRACES_denovo_$Organ" -1 "$fq1p" -2 "$fq2p" "$UnPairArg" 

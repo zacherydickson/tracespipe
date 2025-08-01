@@ -51,3 +51,5 @@ Version 1.6.3
 	Bug fix for calculating depths on specific alignments
 Version 1.6.4
 	Fixed bug leading to extraneous error message
+Version 1.6.5
+	Disabled error correction for spades, to save on time and memory usage
