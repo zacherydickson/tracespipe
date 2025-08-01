@@ -1903,10 +1903,11 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
       # XXX: ALTERNATIVE - USE BWA OR OTHER ALIGNER TO EXTRACT THOSE READS 
       # With the phiX removal disabled, the NP files required by TRACES_metagenomics_viral.sh
       # need to exist, we'll link them from the baseline fq files
+      rm -f NP-o_fw_pr.fq NP-o_fw_unpr.fq NP-o_rv_pr.fq NP-o_rv_unpr.fq;
       ln -s o_fw_pr.fq NP-o_fw_pr.fq;
       ln -s o_fw_unpr.fq NP-o_fw_unpr.fq;
       ln -s o_rv_pr.fq NP-o_rv_pr.fq;
-      ln -s o_rv_unpr.fq NP-o_rv_unpr.fq;      
+      ln -s o_rv_unpr.fq NP-o_rv_unpr.fq;
       # IT IS USED ONLY FOR FALCON
       #
       # fastq_pair test_R1.fastq test_R2.fastq: [needs adaptation]

@@ -49,3 +49,5 @@ Version 1.6.2
 	Fixed bug where mito and cy stats compiling missed some files
 Version 1.6.3
 	Bug fix for calculating depths on specific alignments
+Version 1.6.4
+	Fixed bug leading to extraneous error message
