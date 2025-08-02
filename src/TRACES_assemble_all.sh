@@ -16,4 +16,5 @@ fq2u="o_rv_unpr.fq"
 UnPairArg=""
 [ -s "$fq1u" ] && UnPairArg="-s $fq1u"
 [ -s "$fq2u" ] && UnPairArg="$UnPairArg -s $fq2u"
-spades.py --meta --threads "$nThread" --only-assembler -o "../output_data/TRACES_denovo_$Organ" -1 "$fq1p" -2 "$fq2p" "$UnPairArg" 
+#Note the lack of quatation marks on the UnPair Arg is required
+spades.py --meta --threads "$nThread" --only-assembler -o "../output_data/TRACES_denovo_$Organ" -1 "$fq1p" -2 "$fq2p" $UnPairArg 
