@@ -53,3 +53,8 @@ Version 1.6.4
 	Fixed bug leading to extraneous error message
 Version 1.6.5
 	Disabled error correction for spades, to save on time and memory usage
+Version 1.6.5+AltLimit
+        New option to specify the maximum number of alignments to report for any read
+         The goal is to reduce file size and memory consumption for viruses with high abundance repeats
+         Specifically HHV-7 and its telomeric repeats
+        Default value set to 10 alignments
