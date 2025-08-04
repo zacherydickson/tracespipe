@@ -18,7 +18,7 @@ function Log {
 }
 
 function Usage {
-    >&2 echo -e "Usage: $ScriptName refType refFasta refLabel smplID nThread bRmDup bSensitive\n" \
+    >&2 echo -e "Usage: $ScriptName refType refFasta refLabel smplID nThread bRmDup bSensitive maxAln\n" \
                 "\trefType {mt, cy, specific, viral}\tThe type of reference to which reads are to be mapped\n" \
                 "\trefFasta PATH\tFasta file containing the reference genome; optionally gzipped\n" \
                 "\trefLabel STR\tA label for the specific reference being used\n" \
@@ -27,6 +27,7 @@ function Usage {
                 "\tnThread [1,∞)\tThe number of threads to use\n" \
                 "\tbRmDup {0,!0}\tBoolean indicator of whether mapping based deduplication should be performed\n" \
                 "\tbSensitive {0,!0}\tBoolean indicator of whether highly sensitive mapping should be performed\n" \
+                "\tmaxAlt {0,[1,∞)εZ}\tThe maximum number of alignments to report for any read (zero for no limit)\n" \
         ;
     return 0;
 }
@@ -42,6 +43,7 @@ function main {
     nThread=$1; shift
     bRmDup=$1; shift
     bSensitive=$1; shift
+    maxAln=$1; maxAln=$((maxAln+0)); shift #The plus zero helps to gaurantee that maxAln is a number
     ValidateFQ || return 1;
 
     #Count the number of molecules to be mapped
@@ -50,7 +52,7 @@ function main {
     #Build the Index
     indexPrefix="$(BuildIndex "$refFasta" "$refLabel" "$smplID")" || return 1;
     #Map the Reads
-    samFile="$(Align "$indexPrefix" "$refLabel" "$smplID" "$nThread" "$bSensitive")" || return 1;
+    samFile="$(Align "$indexPrefix" "$refLabel" "$smplID" "$nThread" "$bSensitive" "$maxAln")" || return 1;
     #Count the number of molecules which actually mapped
     #Note: the samFile contains entries only for reads where at least one mate mapped (or unpaired and mapped)
     #      for paired reads that means both read1 and read2 have entries, one may be unmapped,
@@ -90,15 +92,20 @@ function Align {
     local smplID=$1; shift
     local nThread=$1; shift
     local bSensitive=$1; shift
+    local maxAln=$1; shift
 
     local sensitivityArg=""
     if [[ "$bSensitive" != "0" ]]; then
         sensitivityArg="--very-sensitive"
     fi
 
+    numAlnArg="-k $maxAln"
+    [ "$maxAln" -eq 0 ] && numAlnArg="-a"
+
     local samFile="aligned-$smplID-$refLabel.sam"
     #Map End-2-End with Bowtie and filter out molecules which did not map at all
-    bowtie2 -a --threads "$nThread" "$sensitivityArg" -x "$index" \
+    #Note the lack of quotes on numAlnArg, this is intentional and required
+    bowtie2 $numAlnArg --threads "$nThread" "$sensitivityArg" -x "$index" \
         -1 o_fw_pr.fq -2 o_rv_pr.fq -U o_fw_unpr.fq,o_rv_unpr.fq |
         samtools view -h -e '(flag.paired && (!flag.unmap || !flag.munmap)) || (!flag.paired && !flag.unmap)' \
         >| "$samFile" ||
@@ -195,11 +202,12 @@ function ValidateInput {
     local nThread=$1; shift
     local bRmDup=$1; shift
     local bSensitive=$1; shift
+    local maxAln=$1; shift
     #Ensure all variables are non-empty
     declare -A varDict=(["refType"]="$refType" ["refFasta"]="$refFasta" \
                         ["refLabel"]="$refLabel" ["smplID"]="$smplID" \
                         ["nThread"]="$nThread" ["bRmDup"]="$bRmDup" \
-                        ["bSensitive"]="$bSensitive");
+                        ["bSensitive"]="$bSensitive" ["maxAln"]="$maxAln");
     for var in "${!varDict[@]}"; do
         if [ -z "${varDict[$var]}" ]; then
             Log "Empty $var provided"
@@ -221,6 +229,12 @@ function ValidateInput {
     declare -A reqLabelSet=(["cy"]="cy" ["mt"]="mt")
     if [[ -v reqLabelSet["$refType"] ]] && [ "$refLabel" != "${reqLabelSet["$refType"]}" ]; then
         Log "refLabel ($refLabel) does not match required label for $refType (${reqLabelSet["$refType"]})"
+        return 1;
+    fi
+    #Ensure that maxAln is interpretable as a non-negative integer
+    re="^([+]?[0-9]+|-0)$"
+    if ! [[ $maxAln =~ $re ]]; then
+        Log "maxAln ($maxAln) is not a non negative integer"
         return 1;
     fi
 }

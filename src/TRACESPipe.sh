@@ -133,6 +133,7 @@ TOP_SIZE_VIR=0;
 CACHE=70;
 PREPROC_DIR="../output_data/TRACES_preprocessed_reads"
 COMPILE_STAT_TYPES=();
+MAX_ALIGNMENTS=10;
 #
 # ==============================================================================
 # THESE ARE THE CURRENT FLAGGED VIRUSES OR VIRUSES GROUPS FOR ENHANCED ASSEMBLY:
@@ -438,7 +439,7 @@ ALIGN_AND_CONSENSUS () {
         return 0;
     fi
     echo -e "\e[34m[TRACESPipe]\e[32m Aligning reads to $V_TAG best reference with bowtie2 ...\e[0m";
-    ./TRACES_align_reads.sh viral $ORGAN-$V_TAG.fa $V_TAG $ORGAN $THREADS $DUPL $HIGH 1>> ../logs/Log-stdout-$ORGAN.txt 2>> ../logs/Log-stderr-$ORGAN.txt;
+    ./TRACES_align_reads.sh viral $ORGAN-$V_TAG.fa $V_TAG $ORGAN $THREADS $DUPL $HIGH $MAX_ALIGNMENTS 1>> ../logs/Log-stdout-$ORGAN.txt 2>> ../logs/Log-stderr-$ORGAN.txt;
     #./TRACES_viral_align_reads.sh $ORGAN-$V_TAG.fa $ORGAN $V_TAG $THREADS $DUPL $HIGH 1>> ../logs/Log-stdout-$ORGAN.txt 2>> ../logs/Log-stderr-$ORGAN.txt;
     echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
     #
@@ -521,6 +522,11 @@ while [[ $# -gt 0 ]]
       COMPILE_STAT_TYPES=("all");
       SHOW_HELP=0;
       shift
+    ;;
+    -amax|--max-alignments)
+        MAX_ALIGNMENTS=$2;
+        SHOW_HELP=0;
+        shift 2;
     ;;
     -aump|--auth-mito-population)
       RUN_MITO_POPULATION=1;
@@ -1193,6 +1199,9 @@ if [ "$SHOW_HELP" -eq "1" ];
   echo "    -top <VALUE>, --view-top <VALUE>                                   "
   echo "                              Display the top <VALUE> with the highest "
   echo "                              similarity (by descending order),        "
+  echo "    -amax <VALUE>, --max-alignments <VALUE>                            "
+  echo "                              The maximum number of alignments to      "
+  echo "                              report for any one read; 0 = no limit,   "
   echo "                                                                       "
   echo "    -c <VALUE>,   --cache <VALUE>                                      "
   echo "                              Cache to be used by FALCON-meta,         "
@@ -1236,7 +1245,7 @@ if [ "$SHOW_HELP" -eq "1" ];
 # VERSION
 #
 if [ "$SHOW_VERSION" -eq "1" ]; then
-    version="1.1.3";
+    version="1.6.5";
     versionFile="$SOURCE_DIR/../Version.txt"
     [ -f "$versionFile" ] && version=$(cat "$versionFile")
   echo "                                                                      ";
@@ -2001,7 +2010,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
       echo -e "\e[34m[TRACESPipe]\e[32m Extracting sequence with pattern \"$SPECIFIC_ID\" from "$VIRAL_DATABASE_FILE" ...\e[0m";
       gto_fasta_extract_read_by_pattern -p "$SPECIFIC_ID" < "$VIRAL_DATABASE_FILE" | awk "/^>/ {n++} n>1 {exit} 1" > SPECIFIC-$SPECIFIC_ID.fa
       echo -e "\e[34m[TRACESPipe]\e[32m Aligning ... \e[0m";
-      ./TRACES_align_reads.sh specific SPECIFIC-$SPECIFIC_ID.fa $SPECIFIC_ID $ORGAN_T $THREADS $REMOVE_DUPLICATIONS $RUN_SPECIFIC_SENSITIVE 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
+      ./TRACES_align_reads.sh specific SPECIFIC-$SPECIFIC_ID.fa $SPECIFIC_ID $ORGAN_T $THREADS $REMOVE_DUPLICATIONS $RUN_SPECIFIC_SENSITIVE $MAX_ALIGNMENTS 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
       #./TRACES_viral_align_reads.sh SPECIFIC-$SPECIFIC_ID.fa $ORGAN_T $SPECIFIC_ID $THREADS $REMOVE_DUPLICATIONS $RUN_SPECIFIC_SENSITIVE 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       #
@@ -2052,7 +2061,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
       CHECK_MT_DNA;
       #
       echo -e "\e[34m[TRACESPipe]\e[32m Aligning reads to mitochondrial ref with bowtie2 ...\e[0m";
-      ./TRACES_align_reads.sh mt mtDNA.fa mt $ORGAN_T $THREADS $REMOVE_DUPLICATIONS $HIGH_SENSITIVITY 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
+      ./TRACES_align_reads.sh mt mtDNA.fa mt $ORGAN_T $THREADS $REMOVE_DUPLICATIONS $HIGH_SENSITIVITY $MAX_ALIGNMENTS 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
 #      ./TRACES_mt_align_reads.sh mtDNA.fa $ORGAN_T $THREADS $REMOVE_DUPLICATIONS $HIGH_SENSITIVITY 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       #
@@ -2120,7 +2129,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]];
       CHECK_CY_DNA;
       #
       echo -e "\e[34m[TRACESPipe]\e[32m Aligning reads to Y-chromosome ref with bowtie2 ...\e[0m";
-      ./TRACES_align_reads.sh cy cy.fa cy $ORGAN_T $THREADS $REMOVE_DUPLICATIONS $HIGH_SENSITIVITY 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
+      ./TRACES_align_reads.sh cy cy.fa cy $ORGAN_T $THREADS $REMOVE_DUPLICATIONS $HIGH_SENSITIVITY $MAX_ALIGNMENTS 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
       #./TRACES_cy_align_reads.sh cy.fa $ORGAN_T $THREADS $HIGH_SENSITIVITY 1>> ../logs/Log-stdout-$ORGAN_T.txt 2>> ../logs/Log-stderr-$ORGAN_T.txt;
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       #
