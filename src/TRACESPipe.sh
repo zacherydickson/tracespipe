@@ -1786,7 +1786,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
         #
         echo -e "\e[34m[TRACESPipe]\e[32m Finding the best references ...\e[0m";
         #
-        cp "top-$ORGAN_T.csv" "../output_data/TRACES_results/"
+        cp "top-$ORGAN_T.csv" "$RESULTS_DIR/"
         #
         rm -f "$RESULTS_DIR/REPORT_META_VIRAL_$ORGAN_T.txt";
         topFile="$RESULTS_DIR/top-$ORGAN.csv"
@@ -2480,7 +2480,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
         #
         if [[ "$V_GID" != "-" ]] && [[ "$V_VAL" -gt 0 ]]; then
           if [[ "$RUN_BEST_OF_BESTS" -eq "1" ]]; then
-            V_GID=$(sed "${IDX_V}q;d" "../output_data/TRACES_results/REPORT_META_VIRAL_BESTS_$ORGAN.txt" | awk '{ print $2; }');
+            V_GID=$(sed "${IDX_V}q;d" "$RESULTS_DIR/REPORT_META_VIRAL_BESTS_$ORGAN.txt" | awk '{ print $2; }');
           else
             V_GID=$IDBLAST;
           fi
