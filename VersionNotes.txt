@@ -53,5 +53,7 @@ Version 1.6.4
 	Fixed bug leading to extraneous error message
 Version 1.6.5
 	Disabled error correction for spades, to save on time and memory usage
-1.6.5+GetBestFromResults
+Version 1.6.6
+	Refactor for coding standards and brevity
+1.6.6+GetBestFromResults
         Refactor of get best scripts to allow running run-all-v-alig without meta if meta was run previously
