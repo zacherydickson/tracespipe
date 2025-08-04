@@ -2,6 +2,7 @@
 ORGAN=$1; shift
 Virus=$1; shift
 MetaFile=$1; shift
+TopFile=$1; shift
 #
 awk -v Virus="$Virus" -F '\\t' '
     BEGIN{OFS="\t";bestSim="-";bestAcc="-";bestLen="-"}
@@ -16,4 +17,4 @@ awk -v Virus="$Virus" -F '\\t' '
     }
     (InSet[acc] && sim > bestSim+0){ bestSim=sim; bestAcc=acc; bestLen=len;}
     END {print bestSim,bestAcc,bestLen}
-' "$MetaFile" "top-$ORGAN.csv"
+' "$MetaFile" "$TopFile"

@@ -1,7 +1,8 @@
 #!/bin/bash
-ORGAN=$1;
+ORGAN=$1; shift
+TopFile=$1; shift
 #
-RESULT=`cat top-$ORGAN.csv \
+RESULT=`cat $TopFile \
 | grep -a -e "cutavirus" -e "Cutavirus" \
 | grep -a -e "complete" \
 | awk '{ if($3 > 0 && $2 > 3000 && $2 < 6000) print $3"\t"$4; }' \
