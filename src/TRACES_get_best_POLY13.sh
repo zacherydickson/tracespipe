@@ -1,7 +1,8 @@
 #!/bin/bash
-ORGAN=$1;
+ORGAN=$1; shift
+TopFile=$1; shift
 #
-RESULT=`cat top-$ORGAN.csv \
+RESULT=`cat $TopFile \
 | grep -a -e "Polyomavirus_13" -e "polyomavirus_13" -e "Polyomavirus 13" -e "polyomavirus 13" -e "Polyoma_13" -e "polyoma_13" -e "Polyoma 13" -e "polyoma 13" -e "NJPyV" -e "NC_024118" \
 | grep -a -e "complete genome" -e "complete_genome" \
 | awk '{ if($3 > 0 && $2 > 2800 && $2 < 7000) print $3"\t"$4; }' \

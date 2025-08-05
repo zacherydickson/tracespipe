@@ -1,7 +1,8 @@
 #!/bin/bash
-ORGAN=$1;
+ORGAN=$1; shift
+TopFile=$1; shift
 #
-RESULT=`cat top-$ORGAN.csv \
+RESULT=`cat $TopFile \
 | grep -a -e "Epstein" -e "epstein" -e "erpesvirus_4" -e "erpesvirus 4" \
 | grep -a -e "human" -e "Human" -e "omo sapiens" -e "omo_sapiens" \
 | grep -a -e "omplete genome" -e "omplete_genome" \
