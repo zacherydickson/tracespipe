@@ -134,6 +134,7 @@ PREPROC_DIR="../output_data/TRACES_preprocessed_reads"
 RESULTS_DIR="../output_data/TRACES_results"
 COMPILE_STAT_TYPES=();
 MAX_ALIGNMENTS=10;
+ATTEMPT_DENOVO_RESTART=0;
 #
 # ==============================================================================
 # THESE ARE THE CURRENT FLAGGED VIRUSES OR VIRUSES GROUPS FOR ENHANCED ASSEMBLY:
@@ -494,6 +495,11 @@ while [[ $# -gt 0 ]]
       NEW_SEQ_ID="$2";
       SHOW_HELP=0;
       shift 2
+    ;;
+    -adr|--attempt-denovo-restart)
+        ATTEMPT_DENOVO_RESTART=1;
+        SHOW_HELP=0;
+        shift;
     ;;
     -afs|--add-fasta)
       ADD_FASTA=1;
@@ -1180,6 +1186,14 @@ if [ "$SHOW_HELP" -eq "1" ];
   echo "                                                                       "
   echo "    -rdup,  --remove-dup      Remove duplications (e.g. PCR dup),      "
   echo "    -vhs,   --very-sensitive  Aligns with very high sensitivity (slower),  "
+  echo "                                                                       "
+  echo "    -adr,   --attempt-denovo-restart                                   "
+  echo "                              TRACESPipe will attempt to run previous  "
+  echo "                              de-novo assemblies from their last       "
+  echo "                              checkpoint, useful if an external fault  "
+  echo "                              halted assembly                          "
+  echo "                              Warning: If resuming initiates but later "
+  echo "                              fails, assembly will restart from scratch"
   echo "                                                                       "
   echo "    -iss <SIZE>, --inter-sim-size <SIZE>                               "
   echo "                              Inter-genome similarity top size (control), "
@@ -2154,7 +2168,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
     if [[ "$RUN_DE_NOVO_ASSEMBLY" -eq "1" ]];
       then
       echo -e "\e[34m[TRACESPipe]\e[32m Running do-novo DNA assembly with metaSPAdes ...\e[0m";
-      ./TRACES_assemble_all.sh "$ORGAN_T" "$THREADS" 0 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
+      ./TRACES_assemble_all.sh "$ORGAN_T" "$THREADS" "$ATTEMPT_DENOVO_RESTART" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       fi
     #

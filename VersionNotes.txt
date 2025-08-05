@@ -66,5 +66,5 @@ Version 1.8.0
         Default value set to 10 alignments
 Version 1.8.0+ResumeDenovo
         New flag, --attempt-resume-denovo, which signals that a partial denovo assembly run may be present
-         TRACESPipe will have meta-spades attempt to resume from a checkpoint, and if this fails 
-         meata-spades will restart from scratch
+         TRACESPipe will have meta-spades attempt to resume from a checkpoint, and if this fails
+         meta-spades will restart from scratch
