@@ -285,7 +285,7 @@ CHECK_CY_DNA () {
 CHECK_TOP () {
     local dir=$1; shift
     local label=$1; shift
-    if [ ! -f "$dir/top-$1.csv" ]; then
+    if [ ! -f "$dir/top-$label.csv" ]; then
         echo -e "\e[31mERROR: "$dir/top-$1.csv" not found!\e[0m"
         echo "Viral alignments are only possible after metagenomic analysis".
         echo "(Unless is a specific viral alignment by ID/PATTERN)."
@@ -1789,8 +1789,8 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
         cp "top-$ORGAN_T.csv" "$RESULTS_DIR/"
         #
         rm -f "$RESULTS_DIR/REPORT_META_VIRAL_$ORGAN_T.txt";
-        topFile="$RESULTS_DIR/top-$ORGAN.csv"
-        CHECK_TOP "$RESULTS_DIR" "$ORGAN"
+        topFile="$RESULTS_DIR/top-$ORGAN_T.csv"
+        CHECK_TOP "$RESULTS_DIR" "$ORGAN_T"
         for VIRUS in "${VIRUSES[@]}"
           do
             if [ -n "$VIRAL_DATABASE_METADATA" ]; then
