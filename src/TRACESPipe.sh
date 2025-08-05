@@ -455,11 +455,13 @@ ALIGN_AND_CONSENSUS () {
     mv "viral_aligned_sorted-$ORGAN-$V_TAG.bam.bai" "../output_data/TRACES_viral_alignments/"
     mkdir -p "../output_data/TRACES_viral_consensus";
     mv "$V_TAG-consensus-$ORGAN.fa" "../output_data/TRACES_viral_consensus/"
-    mkdir -p "../output_data/TRACES_viral_bed";
-    mv "$V_TAG-calls-$ORGAN.bed" "../output_data/TRACES_viral_bed/"
-    mv "$V_TAG-coverage-$ORGAN.bed" "../output_data/TRACES_viral_bed/"
-    mv "$V_TAG-zero-coverage-$ORGAN.bed" "../output_data/TRACES_viral_bed/"
-    mv "$V_TAG-$ORGAN-calls.vcf.gz" "../output_data/TRACES_viral_bed/"
+    bedDir="../output_data/TRACES_viral_bed";
+    mkdir -p "$bedDir"
+    mv "$V_TAG-calls-$ORGAN.bed" "$bedDir/"
+    mv "$V_TAG-coverage-$ORGAN.bed" "$bedDir/"
+    mv "$V_TAG-zero-coverage-$ORGAN.bed" "$bedDir/"
+    mv "$V_TAG-$ORGAN-calls.vcf.gz" "$bedDir/"
+    mv "$V_TAG-$ORGAN-calls.vcf.gz.tbi" "$bedDir/"
     mkdir -p "../output_data/TRACES_viral_statistics";
     echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
     echo -e "\e[34m[TRACESPipe]\e[32m Calculating coverage ...\e[0m";

@@ -55,5 +55,7 @@ Version 1.6.5
 	Disabled error correction for spades, to save on time and memory usage
 Version 1.6.6
 	Refactor for coding standards and brevity
-1.6.6+GetBestFromResults
+Version 1.7.0
         Refactor of get best scripts to allow running run-all-v-alig without meta if meta was run previously
+Version 1.7.1
+        Cleanup and storage of vcf index files after consensus calling
