@@ -2154,7 +2154,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
     if [[ "$RUN_DE_NOVO_ASSEMBLY" -eq "1" ]];
       then
       echo -e "\e[34m[TRACESPipe]\e[32m Running do-novo DNA assembly with metaSPAdes ...\e[0m";
-      ./TRACES_assemble_all.sh "$ORGAN_T" "$THREADS" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
+      ./TRACES_assemble_all.sh "$ORGAN_T" "$THREADS" 0 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       fi
     #
