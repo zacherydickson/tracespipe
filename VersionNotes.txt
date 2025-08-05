@@ -64,3 +64,7 @@ Version 1.8.0
          The goal is to reduce file size and memory consumption for viruses with high abundance repeats
          Specifically HHV-7 and its telomeric repeats
         Default value set to 10 alignments
+Version 1.8.0+ResumeDenovo
+        New flag, --attempt-resume-denovo, which signals that a partial denovo assembly run may be present
+         TRACESPipe will have meta-spades attempt to resume from a checkpoint, and if this fails 
+         meata-spades will restart from scratch
