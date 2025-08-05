@@ -1906,7 +1906,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       echo -e "\e[34m[TRACESPipe]\e[32m Finding the best references ...\e[0m";
       #
       topFile="$RESULTS_DIR/top-$ORGAN_T.csv"
-      CHECK_TOP "$RESULTS_DIR" "$ORGAN"
+      CHECK_TOP "$RESULTS_DIR" "$ORGAN_T"
       cp "top-$ORGAN_T.csv" "$RESULTS_DIR/"
       #
       rm -f "$RESULTS_DIR/REPORT_META_VIRAL_$ORGAN_T.txt";
