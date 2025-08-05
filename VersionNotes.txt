@@ -59,7 +59,7 @@ Version 1.7.0
         Refactor of get best scripts to allow running run-all-v-alig without meta if meta was run previously
 Version 1.7.1
         Cleanup and storage of vcf index files after consensus calling
-Version 1.7.1+AltLimit
+Version 1.8.0
         New option to specify the maximum number of alignments to report for any read
          The goal is to reduce file size and memory consumption for viruses with high abundance repeats
          Specifically HHV-7 and its telomeric repeats
