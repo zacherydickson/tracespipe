@@ -131,6 +131,7 @@ TOP_SIZE=0;
 TOP_SIZE_VIR=0;
 CACHE=70;
 PREPROC_DIR="../output_data/TRACES_preprocessed_reads"
+RESULTS_DIR="../output_data/TRACES_results"
 COMPILE_STAT_TYPES=();
 MAX_ALIGNMENTS=10;
 #
@@ -283,16 +284,17 @@ CHECK_CY_DNA () {
 #
 #
 CHECK_TOP () {
-  if [ ! -f "top-$1.csv" ];
-    then
-    echo -e "\e[31mERROR: top-$1.csv not found!\e[0m"
-    echo "Viral alignments are only possible after metagenomic analysis".
-    echo "(Unless is a specific viral alignment by ID/PATTERN)."
-    echo "TIP: before this, run: ./TRACESPipe.sh --run-meta"
-    echo "For addition information, see the instructions at the web page."
-    exit 1;
+    local dir=$1; shift
+    local label=$1; shift
+    if [ ! -f "$dir/top-$label.csv" ]; then
+        echo -e "\e[31mERROR: "$dir/top-$1.csv" not found!\e[0m"
+        echo "Viral alignments are only possible after metagenomic analysis".
+        echo "(Unless is a specific viral alignment by ID/PATTERN)."
+        echo "TIP: before this, run: ./TRACESPipe.sh --run-meta"
+        echo "For addition information, see the instructions at the web page."
+        exit 1;
     fi
-  }
+}
 #
 #
 PROGRAM_EXISTS () {
@@ -397,15 +399,16 @@ ALIGN_AND_CONSENSUS () {
   MIN_SIM_LEN="$9";
   #
   V_GID="-";
+  local topFile="$RESULTS_DIR/top-$ORGAN.csv"
   #
   echo -e "\e[34m[TRACESPipe]\e[32m Assessing $V_TAG best reference ...\e[0m";
   #
-  CHECK_TOP "$ORGAN";
+  CHECK_TOP "$RESULTS_DIR" "$ORGAN";
   #
   if [ -n "$VIRAL_DATABASE_METADATA" ]; then
-      V_INFO=$(./TRACES_get_best_by_meta.sh "$ORGAN" "$V_TAG" "$VIRAL_DATABASE_METADATA");
+      V_INFO=$(./TRACES_get_best_by_meta.sh "$ORGAN" "$V_TAG" "$VIRAL_DATABASE_METADATA" "$topFile");
   else
-      V_INFO=$("./TRACES_get_best_$V_TAG.sh" "$ORGAN");
+      V_INFO=$("./TRACES_get_best_$V_TAG.sh" "$ORGAN" "$topFile");
   fi
   read -r V_VAL V_GID V_LEN <<< "$V_INFO"; 
   [ -z "$V_LEN" ] && V_LEN=1;
@@ -420,7 +423,7 @@ ALIGN_AND_CONSENSUS () {
     if [[ "$B_O_B" -eq "1" ]]
       then	    
       echo -e "\e[34m[TRACESPipe]\e[96m Best reference: $V_GID\e[0m";
-      V_GID=$(sed "${IDX_TAG}q;d" "../output_data/TRACES_results/REPORT_META_VIRAL_BESTS_$ORGAN.txt" | awk '{ print $2; }');
+      V_GID=$(sed "${IDX_TAG}q;d" "$RESULTS_DIR/REPORT_META_VIRAL_BESTS_$ORGAN.txt" | awk '{ print $2; }');
       echo -e "\e[34m[TRACESPipe]\e[96m Using best of bests reference: $V_GID\e[0m";
       fi
     #
@@ -454,11 +457,13 @@ ALIGN_AND_CONSENSUS () {
     mv "viral_aligned_sorted-$ORGAN-$V_TAG.bam.bai" "../output_data/TRACES_viral_alignments/"
     mkdir -p "../output_data/TRACES_viral_consensus";
     mv "$V_TAG-consensus-$ORGAN.fa" "../output_data/TRACES_viral_consensus/"
-    mkdir -p "../output_data/TRACES_viral_bed";
-    mv "$V_TAG-calls-$ORGAN.bed" "../output_data/TRACES_viral_bed/"
-    mv "$V_TAG-coverage-$ORGAN.bed" "../output_data/TRACES_viral_bed/"
-    mv "$V_TAG-zero-coverage-$ORGAN.bed" "../output_data/TRACES_viral_bed/"
-    mv "$V_TAG-$ORGAN-calls.vcf.gz" "../output_data/TRACES_viral_bed/"
+    bedDir="../output_data/TRACES_viral_bed";
+    mkdir -p "$bedDir"
+    mv "$V_TAG-calls-$ORGAN.bed" "$bedDir/"
+    mv "$V_TAG-coverage-$ORGAN.bed" "$bedDir/"
+    mv "$V_TAG-zero-coverage-$ORGAN.bed" "$bedDir/"
+    mv "$V_TAG-$ORGAN-calls.vcf.gz" "$bedDir/"
+    mv "$V_TAG-$ORGAN-calls.vcf.gz.tbi" "$bedDir/"
     mkdir -p "../output_data/TRACES_viral_statistics";
     echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
     echo -e "\e[34m[TRACESPipe]\e[32m Calculating coverage ...\e[0m";
@@ -1242,7 +1247,7 @@ if [ "$SHOW_HELP" -eq "1" ];
 # VERSION
 #
 if [ "$SHOW_VERSION" -eq "1" ]; then
-    version="1.6.5";
+    version="1.7.1+ : missing Version.txt";
     versionFile="$SOURCE_DIR/../Version.txt"
     [ -f "$versionFile" ] && version=$(cat "$versionFile")
   echo "                                                                      ";
@@ -1438,8 +1443,8 @@ if [[ "$RUN_GID_COMPLEXITY_PROFILE" -eq "1" ]];
   #
   echo -e "\e[34m[TRACESPipe]\e[32m Building complexity profiles for $GID_COMPLEXITY_PROFILE ...\e[0m";
   ./TRACES_complexity_profile.sh "$GID_COMPLEXITY_PROFILE.fa" "$COMPLEXITY_PROFILE_LEVEL" "$COMPLEXITY_PROFILE_WINDOW" 1>> "../logs/Log-stdout.txt" 2>> "../logs/Log-stderr.txt";
-  mkdir -p "../output_data/TRACES_results/profiles/"
-  cp "complexity-profile-$GID_COMPLEXITY_PROFILE.fa.pdf" "../output_data/TRACES_results/profiles/"
+  mkdir -p "$RESULTS_DIR/profiles/"
+  cp "complexity-profile-$GID_COMPLEXITY_PROFILE.fa.pdf" "$RESULTS_DIR/profiles/"
   echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
   #
   fi
@@ -1787,22 +1792,24 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
         mv o_rv_unpr.fq NP-o_rv_unpr.fq;
         #
         echo -e "\e[34m[TRACESPipe]\e[32m Running viral metagenomic analysis with FALCON-meta ...\e[0m";
-        mkdir -p ../output_data/TRACES_results
+        mkdir -p "$RESULTS_DIR"
         ./TRACES_metagenomics_viral.sh "$ORGAN_T" "$VIRAL_DATABASE_FILE" "$TOP_SIZE_VIR" "$THREADS" "$TSIZE" "$CACHE" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
         echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
         #
         echo -e "\e[34m[TRACESPipe]\e[32m Finding the best references ...\e[0m";
         #
-        cp "top-$ORGAN_T.csv" "../output_data/TRACES_results/"
+        cp "top-$ORGAN_T.csv" "$RESULTS_DIR/"
         #
-        rm -f "../output_data/TRACES_results/REPORT_META_VIRAL_$ORGAN_T.txt";
+        rm -f "$RESULTS_DIR/REPORT_META_VIRAL_$ORGAN_T.txt";
+        topFile="$RESULTS_DIR/top-$ORGAN_T.csv"
+        CHECK_TOP "$RESULTS_DIR" "$ORGAN_T"
         for VIRUS in "${VIRUSES[@]}"
           do
             if [ -n "$VIRAL_DATABASE_METADATA" ]; then
-                ./TRACES_get_best_by_meta.sh "$ORGAN_T" "$VIRUS" "$VIRAL_DATABASE_METADATA"
+                ./TRACES_get_best_by_meta.sh "$ORGAN_T" "$VIRUS" "$VIRAL_DATABASE_METADATA" "$topFile"
             else
-                "./TRACES_get_best_$VIRUS.sh" "$ORGAN_T"
-            fi >> "../output_data/TRACES_results/REPORT_META_VIRAL_$ORGAN_T.txt"
+                "./TRACES_get_best_$VIRUS.sh" "$ORGAN_T" "$topFile"
+            fi >> "$RESULTS_DIR/REPORT_META_VIRAL_$ORGAN_T.txt"
           done
         echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
         #
@@ -1817,8 +1824,8 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       #
       rm -f "V_F_STRINGS";
       for read in "${READS[@]}"; do
-        ORGAN_T=$(echo "$read" | awk -F ':' '{ print $1 }');
-        sed "${IDX}q;d" "../output_data/TRACES_results/REPORT_META_VIRAL_$ORGAN_T.txt" |
+        ORGAN_T=$(awk -F ':' '{ print $1 }' <<< "$read");
+        sed "${IDX}q;d" "$RESULTS_DIR/REPORT_META_VIRAL_$ORGAN_T.txt" |
             awk '{ print $2;}' >> "V_F_STRINGS";
         done
       ((++IDX));
@@ -1834,8 +1841,8 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       done
     #
     for read in "${READS[@]}"; do
-        ORGAN_T=$(echo "$read" | awk -F ':' '{ print $1 }');
-        cp "TMP_VIRAL_GENERAL.txt" "../output_data/TRACES_results/REPORT_META_VIRAL_BESTS_$ORGAN_T.txt"
+        ORGAN_T=$(awk -F ':' '{ print $1 }' <<< "$read");
+        cp "TMP_VIRAL_GENERAL.txt" "$RESULTS_DIR/REPORT_META_VIRAL_BESTS_$ORGAN_T.txt"
     done
     #
   fi
@@ -1904,22 +1911,24 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       #echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       #
       echo -e "\e[34m[TRACESPipe]\e[32m Running viral metagenomic analysis with FALCON-meta ...\e[0m";
-      mkdir -p "../output_data/TRACES_results"
+      mkdir -p "$RESULTS_DIR"
       ./TRACES_metagenomics_viral.sh "$ORGAN_T" "$VIRAL_DATABASE_FILE" "$TOP_SIZE_VIR" "$THREADS" "$TSIZE" "$CACHE" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       #
       echo -e "\e[34m[TRACESPipe]\e[32m Finding the best references ...\e[0m";
       #
-      cp "top-$ORGAN_T.csv" "../output_data/TRACES_results/"
+      topFile="$RESULTS_DIR/top-$ORGAN_T.csv"
+      CHECK_TOP "$RESULTS_DIR" "$ORGAN_T"
+      cp "top-$ORGAN_T.csv" "$RESULTS_DIR/"
       #
-      rm -f "../output_data/TRACES_results/REPORT_META_VIRAL_$ORGAN_T.txt";
+      rm -f "$RESULTS_DIR/REPORT_META_VIRAL_$ORGAN_T.txt";
       for VIRUS in "${VIRUSES[@]}"
         do
         if [ -n "$VIRAL_DATABASE_METADATA" ]; then
-                ./TRACES_get_best_by_meta.sh "$ORGAN_T" "$VIRUS" "$VIRAL_DATABASE_METADATA"
+                ./TRACES_get_best_by_meta.sh "$ORGAN_T" "$VIRUS" "$VIRAL_DATABASE_METADATA" "$topFile"
             else
-                "./TRACES_get_best_$VIRUS.sh" "$ORGAN_T"
-            fi >> "../output_data/TRACES_results/REPORT_META_VIRAL_$ORGAN_T.txt"
+                "./TRACES_get_best_$VIRUS.sh" "$ORGAN_T" "$topFile"
+            fi >> "$RESULTS_DIR/REPORT_META_VIRAL_$ORGAN_T.txt"
         done
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       #
@@ -1933,8 +1942,8 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       #	      
       CHECK_VDB;
       #
-      mkdir -p "../output_data/TRACES_results"
-      mkdir -p "../output_data/TRACES_results/profiles/"
+      mkdir -p "$RESULTS_DIR"
+      mkdir -p "$RESULTS_DIR/profiles/"
       #
       echo -e "\e[34m[TRACESPipe]\e[32m Building complexity profiles with gto ...\e[0m";
       cat NP-o_fw_pr.fq NP-o_fw_unpr.fq NP-o_rv_pr.fq NP-o_rv_unpr.fq > "P_TRACES_sample_reads.fq"
@@ -1953,27 +1962,25 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       #	
       echo -e "\e[34m[TRACESPipe]\e[32m Running NON viral metagenomic analysis with FALCON ...\e[0m";
       ./TRACES_metagenomics.sh "$ORGAN_T" "DB.fa" "$TOP_SIZE" "$THREADS" "$TSIZE" "$CACHE" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
-      mkdir -p "../output_data/TRACES_results";
-      #rm -f ../output_data/TRACES_results/*
-      mv "NV-$ORGAN_T.svg" "../output_data/TRACES_results/"
-      mv "NV-$ORGAN_T-HEAT.svg" "../output_data/TRACES_results/"
-      mv "REPORT_META_NON_VIRAL_$ORGAN_T.txt" "../output_data/TRACES_results/"
-      cp "top-non-viral-$ORGAN_T.csv"  "../output_data/TRACES_results/"
+      mkdir -p "$RESULTS_DIR";
+      mv "NV-$ORGAN_T.svg" "$RESULTS_DIR/"
+      mv "NV-$ORGAN_T-HEAT.svg" "$RESULTS_DIR/"
+      mv "REPORT_META_NON_VIRAL_$ORGAN_T.txt" "$RESULTS_DIR/"
+      cp "top-non-viral-$ORGAN_T.csv" "$RESULTS_DIR/"
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       fi
     #
     # ==============================================================================
     #
-    if [[ "$VIEW_TOP" -eq "1" ]];
-      then
-      CHECK_E_FILE "../output_data/TRACES_results/top-$ORGAN_T.csv";
-      F_TOP_SIZE=$(wc -l "../output_data/TRACES_results/top-$ORGAN_T.csv" | awk '{ print $1; }');
-      if [[ "$F_TOP_SIZE" -eq "0" ]];
-        then
-	echo -e "\e[34m[TRACESPipe]\e[31m Empty top-$ORGAN_T.csv results!\e[0m";
-	echo -e "\e[34m[TRACESPipe]\e[32m Possibly computer ran out of RAM!\e[0m";
-	else
-        head -n "$VTOP_SIZE" "../output_data/TRACES_results/top-$ORGAN_T.csv"
+    if [[ "$VIEW_TOP" -eq "1" ]]; then
+      topFile="$RESULTS_DIR/top-$ORGAN_T.csv";
+      CHECK_TOP "$RESULTS_DIR" "$ORGAN_T";
+      F_TOP_SIZE=$(wc -l < "$RESULTS_DIR/top-$ORGAN_T.csv");
+      if [[ "$F_TOP_SIZE" -eq "0" ]]; then
+	    echo -e "\e[34m[TRACESPipe]\e[31m Empty top-$ORGAN_T.csv results!\e[0m";
+	    echo -e "\e[34m[TRACESPipe]\e[32m Possibly computer ran out of RAM!\e[0m";
+	  else
+        head -n "$VTOP_SIZE" "$RESULTS_DIR/top-$ORGAN_T.csv"
         fi
       fi
     #
@@ -2136,7 +2143,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       #
       echo -e "\e[34m[TRACESPipe]\e[32m Estimating the quantity of Y-chromosome ...\e[0m";
       ./TRACES_estimate_cy_quantity.sh "$ORGAN_T" "$THREADS" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
-      CY_EST_CALUE=$(grep "Dissimilarity" "../output_data/TRACES_results/REP_CY_$ORGAN_T.txt" | awk '{ print "BPS: "$6" ; NRC: "$16" "; }');
+      CY_EST_CALUE=$(grep "Dissimilarity" "$RESULTS_DIR/REP_CY_$ORGAN_T.txt" | awk '{ print "BPS: "$6" ; NRC: "$16" "; }');
       echo -e "\e[34m[TRACESPipe]\e[36m Estimation: $CY_EST_CALUE \e[0m"; 
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       fi
@@ -2294,17 +2301,19 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
             read -r IDEN ALBA SNPS < <(awk '/AvgIdentity / {a=$2;} /AlignedBases / {b=$2} /TotalSNPS/ {c=$2} END{print a,b,c}' "out.report")
             XBREADTH=$(awk '{ print $3;}' "../output_data/TRACES_viral_statistics/$VIRUS-total-horizontal-coverage-$ORGAN_T.txt");
             XDEPTH=$(awk '{ print $3;}' "../output_data/TRACES_viral_statistics/$VIRUS-total-depth-coverage-$ORGAN_T.txt");
+            topFile="$RESULTS_DIR/top-$ORGAN_T.csv"
+            CHECK_TOP "$RESULTS_DIR" "$ORGAN_T"
             if [ -n "$VIRAL_DATABASE_METADATA" ]; then
-                V_INFO=$(./TRACES_get_best_by_meta.sh "$ORGAN" "$VIRUS" "$VIRAL_DATABASE_METADATA");
+                V_INFO=$(./TRACES_get_best_by_meta.sh "$ORGAN_T" "$VIRUS" "$VIRAL_DATABASE_METADATA" "$topFile");
             else
-                V_INFO=$("./TRACES_get_best_$VIRUS.sh" "$ORGAN");
+                V_INFO=$("./TRACES_get_best_$VIRUS.sh" "$ORGAN_T" "$topFile");
             fi
             V_GID=$(echo "$V_INFO" | awk '{ print $2; }');
             V_VAL=$(echo "$V_INFO" | awk '{ print $1; }');
             #
             if [[ "$V_GID" != "-" ]] && [[ "$V_VAL" -gt 0 ]]; then
               if [[ "$RUN_BEST_OF_BESTS" -eq "1" ]]; then
-                V_GID=$(sed "${IDX_V}q;d" "../output_data/TRACES_results/REPORT_META_VIRAL_BESTS_$ORGAN_T.txt" | awk '{ print $2; }');
+                V_GID=$(sed "${IDX_V}q;d" "$RESULTS_DIR/REPORT_META_VIRAL_BESTS_$ORGAN_T.txt" | awk '{ print $2; }');
               fi
             fi
 	        printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" "$ORGAN_T" "$VIRUS" "$V_GID" "$V_VAL" "$ALBA" "$IDEN" "$SNPS" "$XBREADTH" "$XDEPTH" 1>> "../output_data/TRACES_diff/Viral_Diff.txt"
@@ -2370,7 +2379,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
     #
     # ==========================================================================
     #
-    done
+  done
     #
   ###
   #
@@ -2418,7 +2427,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       #We are done if the multiorgans file doesn't exist
       [ -f "$VIRUS-multiorgans.fa" ] || continue;
       #Run the consensus and shuffle the files around
-      ./TRACES_multiorgan_consensus.sh "$VIRUS" "$VIRUS.fa" "$VIRUS-multiorgans.fa" "$THREADS" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
+      ./TRACES_multiorgan_consensus.sh "$VIRUS" "$VIRUS.fa" "$VIRUS-multiorgans.fa" "$THREADS" 1>> "../logs/Log-stdout-$MAX_RF.txt" 2>> "../logs/Log-stderr-$MAX_RF.txt";
       cp "$VIRUS.fa" "../output_data/TRACES_multiorgan_alignments/$VIRUS.fa"
       cp "$VIRUS-data_aligned_sorted.bam.bai" "../output_data/TRACES_multiorgan_alignments/"
       cp "$VIRUS-data_aligned_sorted.bam" "../output_data/TRACES_multiorgan_alignments/"
@@ -2473,17 +2482,19 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
         read -r IDEN ALBA SNPS < <(awk '/AvgIdentity / {a=$2;} /AlignedBases / {b=$2} /TotalSNPS/ {c=$2} END{print a,b,c}' "out.report")
         XBREADTH=$(awk '{ print $3;}' "../output_data/TRACES_viral_statistics/$VIRUS-total-horizontal-coverage-$ORGAN.txt");
         XDEPTH=$(awk '{ print $3;}' "../output_data/TRACES_viral_statistics/$VIRUS-total-depth-coverage-$ORGAN.txt");
+        topFile="$RESULTS_DIR/top-$ORGAN.csv"
+        CHECK_TOP "$RESULTS_DIR" "$ORGAN"
         if [ -n "$VIRAL_DATABASE_METADATA" ]; then
-            V_INFO=$(./TRACES_get_best_by_meta.sh "$ORGAN" "$VIRUS" "$VIRAL_DATABASE_METADATA");
+            V_INFO=$(./TRACES_get_best_by_meta.sh "$ORGAN" "$VIRUS" "$VIRAL_DATABASE_METADATA" "$topFile");
         else
-            V_INFO=$("./TRACES_get_best_$VIRUS.sh" "$ORGAN");
+            V_INFO=$("./TRACES_get_best_$VIRUS.sh" "$ORGAN" "$topFile");
         fi
         V_GID=$(echo "$V_INFO" | awk '{ print $2; }');
         V_VAL=$(echo "$V_INFO" | awk '{ print $1; }');
         #
         if [[ "$V_GID" != "-" ]] && [[ "$V_VAL" -gt 0 ]]; then
           if [[ "$RUN_BEST_OF_BESTS" -eq "1" ]]; then
-            V_GID=$(sed "${IDX_V}q;d" "../output_data/TRACES_results/REPORT_META_VIRAL_BESTS_$ORGAN.txt" | awk '{ print $2; }');
+            V_GID=$(sed "${IDX_V}q;d" "$RESULTS_DIR/REPORT_META_VIRAL_BESTS_$ORGAN.txt" | awk '{ print $2; }');
           else
             V_GID=$IDBLAST;
           fi
