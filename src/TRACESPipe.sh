@@ -1279,7 +1279,7 @@ if [ "$SHOW_HELP" -eq "1" ];
 # VERSION
 #
 if [ "$SHOW_VERSION" -eq "1" ]; then
-    version="1.7.1+ : missing Version.txt";
+    version="1.10.0+ : missing Version.txt";
     versionFile="$SOURCE_DIR/../Version.txt"
     [ -f "$versionFile" ] && version=$(cat "$versionFile")
   echo "                                                                      ";
