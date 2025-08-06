@@ -1226,8 +1226,9 @@ if [ "$SHOW_HELP" -eq "1" ];
   echo "                              best hit sequence length for             "
   echo "                              alignment-consensus (filter),            "
   echo "    -misv <PATH>, --min-similarity-virus <PATH>                        "
-  echo "                              Path to a tab sep file with columns      "
-  echo "                              Virus and Ma                             "
+  echo "                              Path to a tab sep file with tow columns  "
+  echo "                              containing the virus and min sim values  "
+  echo "                              Any values lower than --misl are ignored "
   echo "                                                                       "
   echo "    -top <VALUE>, --view-top <VALUE>                                   "
   echo "                              Display the top <VALUE> with the highest "
@@ -2065,7 +2066,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       for VIRUS in "${VIRUSES[@]}"
         do
             minSim="$MINIMAL_SIMILARITY_VALUE";
-            if [[ -v VIRAL_MIN_SIM["$VIRUS"] ]] && [ "${VIRAL_MIN_SIM["$VIRUS"]}" -gt "$minSim" ]; then
+            if [[ -v VIRAL_MIN_SIM["$VIRUS"] ]] && [ "$(bc <<< "${VIRAL_MIN_SIM["$VIRUS"]} > $minSim")" -eq 1 ]; then
                 minSim="${VIRAL_MIN_SIM["$VIRUS"]}"
             fi
         ALIGN_AND_CONSENSUS "$VIRUS" "$minSim" "$RUN_BEST_OF_BESTS" "$IDX" "$THREADS" "$REMOVE_DUPLICATIONS" "$HIGH_SENSITIVITY" "$ORGAN_T" "$MINIMAL_SIMILARITY_LENGTH"
