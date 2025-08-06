@@ -68,3 +68,5 @@ Version 1.9.0
         New flag, --attempt-resume-denovo, which signals that a partial denovo assembly run may be present
          TRACESPipe will have meta-spades attempt to resume from a checkpoint, and if this fails
          meta-spades will restart from scratch
+Version 1.9.1
+	Fixed Bug where top files in the results were checked before being made present

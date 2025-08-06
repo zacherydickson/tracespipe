@@ -9,6 +9,7 @@
 # ASSEMBLE
 
 if [ "$#" -lt 3 ]; then
+    >&2 echo "YourCall: $0 $*"
     >&2 echo -e "Usage: $(basename "$0") Organ nThread bResume\n" \
                 "\to_(fw|rv)_(un)?pr.fq must exists in the pwd\n";
     exit 1;

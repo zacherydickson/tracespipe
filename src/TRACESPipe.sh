@@ -1808,11 +1808,11 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
         echo -e "\e[34m[TRACESPipe]\e[32m Running viral metagenomic analysis with FALCON-meta ...\e[0m";
         mkdir -p "$RESULTS_DIR"
         ./TRACES_metagenomics_viral.sh "$ORGAN_T" "$VIRAL_DATABASE_FILE" "$TOP_SIZE_VIR" "$THREADS" "$TSIZE" "$CACHE" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
+        cp "top-$ORGAN_T.csv" "$RESULTS_DIR/"
         echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
         #
         echo -e "\e[34m[TRACESPipe]\e[32m Finding the best references ...\e[0m";
         #
-        cp "top-$ORGAN_T.csv" "$RESULTS_DIR/"
         #
         rm -f "$RESULTS_DIR/REPORT_META_VIRAL_$ORGAN_T.txt";
         topFile="$RESULTS_DIR/top-$ORGAN_T.csv"
@@ -1927,13 +1927,13 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       echo -e "\e[34m[TRACESPipe]\e[32m Running viral metagenomic analysis with FALCON-meta ...\e[0m";
       mkdir -p "$RESULTS_DIR"
       ./TRACES_metagenomics_viral.sh "$ORGAN_T" "$VIRAL_DATABASE_FILE" "$TOP_SIZE_VIR" "$THREADS" "$TSIZE" "$CACHE" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
+      cp "top-$ORGAN_T.csv" "$RESULTS_DIR/"
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       #
       echo -e "\e[34m[TRACESPipe]\e[32m Finding the best references ...\e[0m";
       #
       topFile="$RESULTS_DIR/top-$ORGAN_T.csv"
       CHECK_TOP "$RESULTS_DIR" "$ORGAN_T"
-      cp "top-$ORGAN_T.csv" "$RESULTS_DIR/"
       #
       rm -f "$RESULTS_DIR/REPORT_META_VIRAL_$ORGAN_T.txt";
       for VIRUS in "${VIRUSES[@]}"
@@ -2539,6 +2539,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
   rm -f FW_READS.fq.gz RV_READS.fq.gz
   rm -f o_fw_pr.fq o_fw_unpr.fq o_rv_pr.fq o_rv_unpr.fq;
   rm -f NP-o_fw_pr.fq NP-o_fw_unpr.fq NP-o_rv_pr.fq NP-o_rv_unpr.fq;
+  rm -f top*.csv
   #
   # ============================================================================
 fi
