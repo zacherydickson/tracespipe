@@ -135,6 +135,7 @@ RESULTS_DIR="../output_data/TRACES_results"
 COMPILE_STAT_TYPES=();
 MAX_ALIGNMENTS=10;
 ATTEMPT_DENOVO_RESTART=0;
+declare -A VIRAL_MIN_SIM;
 #
 # ==============================================================================
 # THESE ARE THE CURRENT FLAGGED VIRUSES OR VIRUSES GROUPS FOR ENHANCED ASSEMBLY:
@@ -389,14 +390,14 @@ CHECK_VALUE_IN_ARRAY () {
 #
 ALIGN_AND_CONSENSUS () {
   #
-  B_O_B="$3";
-  ORGAN="$8";
-  HIGH="$7";
-  DUPL="$6";
-  THREADS="$5";
   V_TAG="$1";
-  IDX_TAG="$4";
   MIN_SIM="$2"
+  B_O_B="$3";
+  IDX_TAG="$4";
+  THREADS="$5";
+  DUPL="$6";
+  HIGH="$7";
+  ORGAN="$8";
   MIN_SIM_LEN="$9";
   #
   V_GID="-";
@@ -476,6 +477,14 @@ ALIGN_AND_CONSENSUS () {
     echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
     fi
   }
+#
+#
+function PARSE_VIRAL_MIN_SIM {
+    viralMinSimFile=$1; shift
+    while read -r virus val; do
+        VIRAL_MIN_SIM["$virus"]="$val"
+    done < "$viralMinSimFile"
+}
 #
 # ==============================================================================
 #
@@ -734,6 +743,11 @@ while [[ $# -gt 0 ]]
         MINIMAL_SIMILARITY_LENGTH="$2";
         SHOW_HELP=0;
         shift 2
+    ;;
+    -misv|--min-similarity-virus)
+        PARSE_VIRAL_MIN_SIM "$2";
+        SHOW_HELP=0;
+        shift 2;
     ;;
     -proc|--run-preprocess)
         RUN_ANALYSIS=1;
@@ -1211,6 +1225,9 @@ if [ "$SHOW_HELP" -eq "1" ];
   echo "                              Minimum product of similarity value and  "
   echo "                              best hit sequence length for             "
   echo "                              alignment-consensus (filter),            "
+  echo "    -misv <PATH>, --min-similarity-virus <PATH>                        "
+  echo "                              Path to a tab sep file with columns      "
+  echo "                              Virus and Ma                             "
   echo "                                                                       "
   echo "    -top <VALUE>, --view-top <VALUE>                                   "
   echo "                              Display the top <VALUE> with the highest "
@@ -2047,7 +2064,11 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       IDX=1;
       for VIRUS in "${VIRUSES[@]}"
         do
-        ALIGN_AND_CONSENSUS "$VIRUS" "$MINIMAL_SIMILARITY_VALUE" "$RUN_BEST_OF_BESTS" "$IDX" "$THREADS" "$REMOVE_DUPLICATIONS" "$HIGH_SENSITIVITY" "$ORGAN_T" "$MINIMAL_SIMILARITY_LENGTH"
+            minSim="$MINIMAL_SIMILARITY_VALUE";
+            if [[ -v VIRAL_MIN_SIM["$VIRUS"] ]] && [ "${VIRAL_MIN_SIM["$VIRUS"]}" -gt "$minSim" ]; then
+                minSim="${VIRAL_MIN_SIM["$VIRUS"]}"
+            fi
+        ALIGN_AND_CONSENSUS "$VIRUS" "$minSim" "$RUN_BEST_OF_BESTS" "$IDX" "$THREADS" "$REMOVE_DUPLICATIONS" "$HIGH_SENSITIVITY" "$ORGAN_T" "$MINIMAL_SIMILARITY_LENGTH"
 	((++IDX));
 	done
       fi
