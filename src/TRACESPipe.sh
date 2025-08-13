@@ -290,7 +290,7 @@ CHECK_TOP () {
     local dir=$1; shift
     local label=$1; shift
     if [ ! -f "$dir/top-$label.csv" ]; then
-        echo -e "\e[31mERROR: "$dir/top-$1.csv" not found!\e[0m"
+        echo -e "\e[31mERROR: $dir/top-$1.csv not found!\e[0m"
         echo "Viral alignments are only possible after metagenomic analysis".
         echo "(Unless is a specific viral alignment by ID/PATTERN)."
         echo "TIP: before this, run: ./TRACESPipe.sh --run-meta"
@@ -1832,7 +1832,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
         CHECK_PHIX;
         [ "$TOP_SIZE_VIR" -eq 0 ] && TOP_SIZE_VIR=$(grep -c '^>' "$VIRAL_DATABASE_FILE");
         #
-        if [ -n "$PATTERN_DEPLETE_FILE"]; then
+        if [ -n "$PATTERN_DEPLETE_FILE" ]; then
           echo -e "\e[34m[TRACESPipe]\e[32m Depleting patterns with grepq ...\e[0m";
           for a in fw rv; do 
               for b in pr unpr; do
@@ -1957,7 +1957,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       # need to exist, we'll link them from the baseline fq files
       rm -f NP-o_fw_pr.fq NP-o_fw_unpr.fq NP-o_rv_pr.fq NP-o_rv_unpr.fq;
       #If there is a pattern deplete file, the patterns therein should be used to filter the FALCON input
-      if [ -n "$PATTERN_DEPLETE_FILE"]; then
+      if [ -n "$PATTERN_DEPLETE_FILE" ]; then
           echo -e "\e[34m[TRACESPipe]\e[32m Depleting patterns with grepq ...\e[0m";
           for a in fw rv; do 
               for b in pr unpr; do
