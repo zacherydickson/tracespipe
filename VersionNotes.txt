@@ -72,3 +72,7 @@ Version 1.9.1
 	Fixed Bug where top files in the results were checked before being made present
 Version 1.10.0
 	New Analysis Option min-sim-viral allows user to provide a tab delim file with virus specific minimum similarity thresholds
+Version 1.10.0
+        New analysis option --pattern-depletion which takes a list file of regular expressions.
+         Reads matching any of these patterns are depleted from the input of FALCON
+         this can help prevent similarity due to viral similarity to background sequences
