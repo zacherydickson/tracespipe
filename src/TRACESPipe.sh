@@ -1962,7 +1962,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
           for a in fw rv; do 
               for b in pr unpr; do
                   f="o_${a}_${b}.fq";
-                  grepq -R "$PATTERN_DEPLETE_FILE" "$f" inverted > "NP_$f";
+                  grepq -R "$PATTERN_DEPLETE_FILE" "$f" inverted > "NP-$f";
               done
           done
           echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
