@@ -1832,10 +1832,21 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
         CHECK_PHIX;
         [ "$TOP_SIZE_VIR" -eq 0 ] && TOP_SIZE_VIR=$(grep -c '^>' "$VIRAL_DATABASE_FILE");
         #
-        mv o_fw_pr.fq NP-o_fw_pr.fq;
-        mv o_fw_unpr.fq NP-o_fw_unpr.fq;
-        mv o_rv_pr.fq NP-o_rv_pr.fq;
-        mv o_rv_unpr.fq NP-o_rv_unpr.fq;
+        if [ -n "$PATTERN_DEPLETE_FILE"]; then
+          echo -e "\e[34m[TRACESPipe]\e[32m Depleting patterns with grepq ...\e[0m";
+          for a in fw rv; do 
+              for b in pr unpr; do
+                  f="o_${a}_${b}.fq";
+                  grepq -R "$PATTERN_DEPLETE_FILE" "$f" inverted > "NP_$f";
+              done
+          done
+          echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
+        else
+            mv o_fw_pr.fq NP-o_fw_pr.fq;
+            mv o_fw_unpr.fq NP-o_fw_unpr.fq;
+            mv o_rv_pr.fq NP-o_rv_pr.fq;
+            mv o_rv_unpr.fq NP-o_rv_unpr.fq;
+        fi
         #
         echo -e "\e[34m[TRACESPipe]\e[32m Running viral metagenomic analysis with FALCON-meta ...\e[0m";
         mkdir -p "$RESULTS_DIR"
@@ -1945,10 +1956,22 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       # With the phiX removal disabled, the NP files required by TRACES_metagenomics_viral.sh
       # need to exist, we'll link them from the baseline fq files
       rm -f NP-o_fw_pr.fq NP-o_fw_unpr.fq NP-o_rv_pr.fq NP-o_rv_unpr.fq;
-      ln -s o_fw_pr.fq NP-o_fw_pr.fq;
-      ln -s o_fw_unpr.fq NP-o_fw_unpr.fq;
-      ln -s o_rv_pr.fq NP-o_rv_pr.fq;
-      ln -s o_rv_unpr.fq NP-o_rv_unpr.fq;
+      #If there is a pattern deplete file, the patterns therein should be used to filter the FALCON input
+      if [ -n "$PATTERN_DEPLETE_FILE"]; then
+          echo -e "\e[34m[TRACESPipe]\e[32m Depleting patterns with grepq ...\e[0m";
+          for a in fw rv; do 
+              for b in pr unpr; do
+                  f="o_${a}_${b}.fq";
+                  grepq -R "$PATTERN_DEPLETE_FILE" "$f" inverted > "NP_$f";
+              done
+          done
+          echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
+      else #The files still need to exists for FALCON
+        ln -s o_fw_pr.fq NP-o_fw_pr.fq;
+        ln -s o_fw_unpr.fq NP-o_fw_unpr.fq;
+        ln -s o_rv_pr.fq NP-o_rv_pr.fq;
+        ln -s o_rv_unpr.fq NP-o_rv_unpr.fq;
+      fi
       # IT IS USED ONLY FOR FALCON
       #
       # fastq_pair test_R1.fastq test_R2.fastq: [needs adaptation]
