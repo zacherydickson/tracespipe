@@ -752,7 +752,7 @@ while [[ $# -gt 0 ]]
         shift 2;
     ;;
     -pdep|--pattern-depletion)
-        PATTERN_DEPLETE_FILE="$1";
+        PATTERN_DEPLETE_FILE="$2";
         CHECK_E_FILE "$PATTERN_DEPLETE_FILE"
         SHOW_HELP=0;
         shift 2;
@@ -1220,7 +1220,7 @@ if [ "$SHOW_HELP" -eq "1" ];
   echo "    -pdep <FILE>, --pattern-depletion <FILE>                           "
   echo "                              A path to a file containing regular      "
   echo "                              expressions. Matches are filtered out    "
-  echo "                              of FALCON input Primary use is to filter "
+  echo "                              of FALCON input. Primary use is to filter"
   echo "                              patterns which exist in both a virus and "
   echo "                              background sequences (eq. telomeres)     "
   echo "    -iss <SIZE>, --inter-sim-size <SIZE>                               "
