@@ -72,3 +72,5 @@ Version 1.9.1
 	Fixed Bug where top files in the results were checked before being made present
 Version 1.10.0
 	New Analysis Option min-sim-viral allows user to provide a tab delim file with virus specific minimum similarity thresholds
+Version 1.10.1
+	Included FastP in TRACESPipe Update
