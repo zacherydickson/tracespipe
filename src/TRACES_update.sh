@@ -27,5 +27,6 @@ conda update -c bioconda art --yes
 conda update -c bioconda blast --yes
 conda update -c bioconda mummer4 --yes
 conda update -c bioconda ivar --yes
+conda update -c bioconda grepq --yes
 #
 # ==============================================================================

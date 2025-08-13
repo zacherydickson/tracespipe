@@ -61,6 +61,7 @@ if [[ "$INSTALL_PIPELINE" -eq "1" ]];
   conda install -c bioconda blast --yes
   conda install -c bioconda mummer4 --yes
   conda install -c bioconda fastp --yes
+  conda install -c bioconda grepq --yes
 #  conda install -c bioconda ivar --yes
   #
   Program_installed "trimmomatic";
@@ -85,6 +86,7 @@ if [[ "$INSTALL_PIPELINE" -eq "1" ]];
   Program_installed "blastn";
   Program_installed "dnadiff";
   Program_installed "fastp";
+  Program_installed "grepq";
 #  Program_installed "ivar";
   fi
 #
