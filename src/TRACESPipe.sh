@@ -136,6 +136,7 @@ COMPILE_STAT_TYPES=();
 MAX_ALIGNMENTS=10;
 ATTEMPT_DENOVO_RESTART=0;
 declare -A VIRAL_MIN_SIM;
+PATTERN_DEPLETE_FILE="";
 #
 # ==============================================================================
 # THESE ARE THE CURRENT FLAGGED VIRUSES OR VIRUSES GROUPS FOR ENHANCED ASSEMBLY:
@@ -335,6 +336,7 @@ CHECK_PROGRAMS () {
   PROGRAM_EXISTS "blastn";
   PROGRAM_EXISTS "dnadiff";
   PROGRAM_EXISTS "fastp"
+  PROGRAM_EXISTS "grepq"
   }
 #
 #
@@ -746,6 +748,12 @@ while [[ $# -gt 0 ]]
     ;;
     -misv|--min-similarity-virus)
         PARSE_VIRAL_MIN_SIM "$2";
+        SHOW_HELP=0;
+        shift 2;
+    ;;
+    -pdep|--pattern-depletion)
+        PATTERN_DEPLETE_FILE="$1";
+        CHECK_E_FILE "$PATTERN_DEPLETE_FILE"
         SHOW_HELP=0;
         shift 2;
     ;;
@@ -1209,6 +1217,12 @@ if [ "$SHOW_HELP" -eq "1" ];
   echo "                              Warning: If resuming initiates but later "
   echo "                              fails, assembly will restart from scratch"
   echo "                                                                       "
+  echo "    -pdep <FILE>, --pattern-depletion <FILE>                           "
+  echo "                              A path to a file containing regular      "
+  echo "                              expressions. Matches are filtered out    "
+  echo "                              of FALCON input Primary use is to filter "
+  echo "                              patterns which exist in both a virus and "
+  echo "                              background sequences (eq. telomeres)     "
   echo "    -iss <SIZE>, --inter-sim-size <SIZE>                               "
   echo "                              Inter-genome similarity top size (control), "
   echo "                                                                       "
