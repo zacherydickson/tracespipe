@@ -194,8 +194,12 @@ CHECK_META_INFO () {
 #
 #
 CHECK_GZIP_FILES () {
-    FILE_GZ1=$(file -L "../input_data/$1" | grep -c gzip);
-    FILE_GZ2=$(file -L "../input_data/$2" | grep -c gzip);
+    f1="../input_data/$1"
+    f2="../input_data/$2"
+    CHECK_E_FILE "$f1"
+    CHECK_E_FILE "$f2"
+    FILE_GZ1=$(file -L "$f1" | grep -c gzip);
+    FILE_GZ2=$(file -L "$f2" | grep -c gzip);
     if [[ "$FILE_GZ1" != "1" ]] || [[ "$FILE_GZ2" != "1" ]];
       then
       echo -e "\e[31mERROR: the input reads are not gzipped!\e[0m"

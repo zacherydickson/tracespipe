@@ -80,3 +80,5 @@ Version 1.12.0
          this can help prevent similarity due to viral similarity to background sequences
 Version 1.11.1
 	Bug Fix - Misalignment of REPORT_META_ALL_SAMPLES due to added ref length in other meta reports
+Version 1.11.2
+	Added Check and logging for existence of input files before checking if they are gzipped
