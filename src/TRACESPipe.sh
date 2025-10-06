@@ -2271,7 +2271,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
             echo -e "\e[34m[TRACESPipe]\e[32m Mode 1\e[0m";
             cp "../output_data/TRACES_viral_alignments/$ORGAN_T-$VIRUS.fa" "$ORGAN_T-$VIRUS.fa	"
             ./TRACES_hybrid.sh "$VIRUS" "$SCAFFOLDS_PATH" "$THREADS" "$ORGAN_T" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
-	      ./ACES_hybrid_consensus.sh "$ORGAN_T-$VIRUS.fa" "$HYBRID_ALI_PATH/scaffolds_aligned_sorted_$VIRUS-$ORGAN_T.bam" "$ORGAN_T" "$VIRUS" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
+	      ./TRACES_hybrid_consensus.sh "$ORGAN_T-$VIRUS.fa" "$HYBRID_ALI_PATH/scaffolds_aligned_sorted_$VIRUS-$ORGAN_T.bam" "$ORGAN_T" "$VIRUS" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
             #
             mv "$VIRUS-consensus-$ORGAN_T.fa" "$HYBRID_CON_PATH"
 	        #

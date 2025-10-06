@@ -82,3 +82,5 @@ Version 1.11.1
 	Bug Fix - Misalignment of REPORT_META_ALL_SAMPLES due to added ref length in other meta reports
 Version 1.11.2
 	Added Check and logging for existence of input files before checking if they are gzipped
+Version 1.11.3
+	Fixed bug (due to type) which prevented hybrid consensus sequences from being generated
