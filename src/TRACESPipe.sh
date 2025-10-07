@@ -2411,8 +2411,8 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
           gto_fasta_to_seq < "../output_data/TRACES_mtdna_consensus/mt-consensus-$ORGAN_T.fa" |
             gto_fasta_from_seq -l 60 -n BtoBeCompared > "$ORGAN_T-MT-G_B.fa";
           #
-	      cp "../output_data/TRACES_mtdna_alignments/mtDNA.fa" "MT-G_A.fa;"
-          cp "../output_data/TRACES_mtdna_consensus/mt-consensus-$ORGAN_T.fa" "$ORGAN_T-MT-G_B.fa;"
+	      cp "../output_data/TRACES_mtdna_alignments/mtDNA.fa" "MT-G_A.fa"
+          cp "../output_data/TRACES_mtdna_consensus/mt-consensus-$ORGAN_T.fa" "$ORGAN_T-MT-G_B.fa"
           dnadiff "MT-G_A.fa" "$ORGAN_T-MT-G_B.fa" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
           read -r IDEN ALBA SNPS < <(awk '/AvgIdentity / {a=$2;} /AlignedBases / {b=$2} /TotalSNPS/ {c=$2} END{print a,b,c}' "out.report")
           XBREADTH=$(awk '{ print $3;}' "../output_data/TRACES_mtdna_statistics/mt-total-horizontal-coverage-$ORGAN_T.txt");

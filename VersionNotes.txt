@@ -88,4 +88,5 @@ Version 1.11.3
 	Fixed bug during run-diff relating to testing floating point inequalities
         Fixed bug in selecting best hybrid leading to only the lengths of the hybrids from the first virus tested being compared
         Fixed bug where run-hybrid without run-meta would fail even if run-meta had been run in a previous call
-        Fixed bug in run-hybrid where alignment based consensus failed to be carried in
+        Fixed bug in run-hybrid where alignment based consensus was copied with an unexpected file name leading to failure
+        Fixed bug in run-diff  mitochondrial sequences were copied with unexpected file name leading to failure
