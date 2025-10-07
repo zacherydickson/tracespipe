@@ -4,9 +4,10 @@ REF="$1";
 SCAFFOLDS="$2";
 THREADS="$3";
 ORGAN="$4";
+viralConsensus="$5";
 #
 #
-if [ ! -f "$ORGAN-$REF.fa" ];
+if [ ! -f "$viralConsensus" ];
   then
   echo -e "\e[38;5;208mWARNING: $ORGAN-$REF.fa reference file not found!\e[0m"
   echo "TIP: before this, run: ./TRACESPipe.sh --run-meta --run-all-v-alig"
