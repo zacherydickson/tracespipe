@@ -38,5 +38,5 @@ echo ">Denovo specific consensus $VIRUS (organ=$ORGAN)" > $VIRUS-consensus-$ORGA
 cat $VIRUS-$ORGAN-TMP2_FILE.xki >> $VIRUS-consensus-$ORGAN.fa
 rm -f $VIRUS-$ORGAN-TMP2_FILE.xki;
 #
-rm -f $VIRUS-$ORGAN-calls.vcf.gz $VIRUS-$ORGAN-calls.vcf.gz.csi $VIRUS-$ORGAN-calls.norm.bcf $VIRUS-$ORGAN-calls.norm.vcf.gz.csi $VIRUS-$ORGAN-calls.norm.vcf.gz;
+rm -f $VIRUS-$ORGAN-calls.vcf.gz $VIRUS-$ORGAN-calls.vcf.gz.csi $VIRUS-$ORGAN-calls.norm.bcf $VIRUS-$ORGAN-calls.norm.vcf.gz.csi $VIRUS-$ORGAN-calls.norm.vcf.gz $VIRUS-$ORGAN-calls.norm.vcf.gz.tbi;
 #

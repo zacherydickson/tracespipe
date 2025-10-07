@@ -429,7 +429,7 @@ ALIGN_AND_CONSENSUS () {
     then
     #
     if [[ "$B_O_B" -eq "1" ]]
-      then	    
+      then
       echo -e "\e[34m[TRACESPipe]\e[96m Best reference: $V_GID\e[0m";
       V_GID=$(sed "${IDX_TAG}q;d" "$RESULTS_DIR/REPORT_META_VIRAL_BESTS_$ORGAN.txt" | awk '{ print $2; }');
       echo -e "\e[34m[TRACESPipe]\e[96m Using best of bests reference: $V_GID\e[0m";
@@ -1831,7 +1831,6 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       #
       if [[ "$RUN_META_ON" -eq "1" ]];
         then
-	#
         CHECK_VDB;
         CHECK_PHIX;
         [ "$TOP_SIZE_VIR" -eq 0 ] && TOP_SIZE_VIR=$(grep -c '^>' "$VIRAL_DATABASE_FILE");
@@ -1875,7 +1874,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
         echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
         #
         fi
-      #	
+      #
       done
     #
     IDX=1;
@@ -2012,7 +2011,6 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
     #
     if [[ "$RUN_PROFILES_ON" -eq "1" ]];
       then
-      #	      
       CHECK_VDB;
       #
       mkdir -p "$RESULTS_DIR"
@@ -2032,7 +2030,6 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       #
       CHECK_DB;
       [ "$TOP_SIZE" -eq 0 ] && TOP_SIZE=$(grep -c '^>' "DB.fa");
-      #	
       echo -e "\e[34m[TRACESPipe]\e[32m Running NON viral metagenomic analysis with FALCON ...\e[0m";
       ./TRACES_metagenomics.sh "$ORGAN_T" "DB.fa" "$TOP_SIZE" "$THREADS" "$TSIZE" "$CACHE" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
       mkdir -p "$RESULTS_DIR";
@@ -2050,8 +2047,8 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       CHECK_TOP "$RESULTS_DIR" "$ORGAN_T";
       F_TOP_SIZE=$(wc -l < "$RESULTS_DIR/top-$ORGAN_T.csv");
       if [[ "$F_TOP_SIZE" -eq "0" ]]; then
-	    echo -e "\e[34m[TRACESPipe]\e[31m Empty top-$ORGAN_T.csv results!\e[0m";
-	    echo -e "\e[34m[TRACESPipe]\e[32m Possibly computer ran out of RAM!\e[0m";
+          echo -e "\e[34m[TRACESPipe]\e[31m Empty top-$ORGAN_T.csv results!\e[0m";
+          echo -e "\e[34m[TRACESPipe]\e[32m Possibly computer ran out of RAM!\e[0m";
 	  else
         head -n "$VTOP_SIZE" "$RESULTS_DIR/top-$ORGAN_T.csv"
         fi
@@ -2269,7 +2266,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
 	    if [ -f "../output_data/TRACES_viral_alignments/$ORGAN_T-$VIRUS.fa" ]; then
             echo -e "\e[34m[TRACESPipe]\e[32m Hybrid $VIRUS\e[0m";
             echo -e "\e[34m[TRACESPipe]\e[32m Mode 1\e[0m";
-            cp "../output_data/TRACES_viral_alignments/$ORGAN_T-$VIRUS.fa" "$ORGAN_T-$VIRUS.fa	"
+            cp "../output_data/TRACES_viral_alignments/$ORGAN_T-$VIRUS.fa" "$ORGAN_T-$VIRUS.fa"
             viralConsensus="../output_data/TRACES_viral_consensus/$VIRUS-consensus-$ORGAN_T.fa"
             ./TRACES_hybrid.sh "$VIRUS" "$SCAFFOLDS_PATH" "$THREADS" "$ORGAN_T" "$viralConsensus" \
                 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";

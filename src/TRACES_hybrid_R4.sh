@@ -52,5 +52,5 @@ mv hybrid_aligned_sorted_$VIRUS-$ORGAN.bam ../output_data/TRACES_hybrid_R4_align
 mv hybrid_aligned_sorted_$VIRUS-$ORGAN.bam.bai ../output_data/TRACES_hybrid_R4_alignments/
 mv $1 ../output_data/TRACES_hybrid_R4_alignments/
 #
-rm -f $VIRUS-$ORGAN-calls.vcf.gz $VIRUS-$ORGAN-calls.vcf.gz.csi $VIRUS-$ORGAN-calls.norm.bcf $VIRUS-$ORGAN-calls.norm.vcf.gz.csi $VIRUS-$ORGAN-calls.norm.vcf.gz;
+rm -f $VIRUS-$ORGAN-calls.vcf.gz $VIRUS-$ORGAN-calls.vcf.gz.csi $VIRUS-$ORGAN-calls.norm.bcf $VIRUS-$ORGAN-calls.norm.vcf.gz.csi $VIRUS-$ORGAN-calls.norm.vcf.gz $VIRUS-$ORGAN-calls.norm.vcf.gz.tbi;
 #

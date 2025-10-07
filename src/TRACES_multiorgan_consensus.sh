@@ -53,4 +53,5 @@ echo ">$FIELD Multiorgan Consensus" > $FIELD-multiorgan-consensus.fa
 cat $FIELD-TMP2_FILE.xki >> $FIELD-multiorgan-consensus.fa
 rm -f $FIELD-TMP2_FILE.xki;
 #
+rm "$finalVCF.tbi"
 # ==============================================================================
