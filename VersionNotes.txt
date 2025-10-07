@@ -83,6 +83,6 @@ Version 1.11.1
 Version 1.11.2
 	Added Check and logging for existence of input files before checking if they are gzipped
 Version 1.11.3
-	Fixed bug (due to type) which prevented hybrid consensus sequences from being generated
-Version 1.11.4
+	Fixed bug (due to typo) which prevented hybrid consensus sequences from being generated
 	Fixed bug during run-diff relating to testing floating point inequalities
+        Fixed bug in selecting best hybrid leading to only the lengths of the hybrids from the first virus tested being compared

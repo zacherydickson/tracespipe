@@ -2322,8 +2322,9 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
             max=-1;
             maxConsensus=""
             i=0;
-            maxPosition=0;
+            maxPosition=-1;
             maxInfix="";
+            unset sizesList;
             declare -a sizesList;
             for infix in viral hybrid hybrid_R2 hybrid_R3 hybrid_R4; do
                 consFile="../output_data/TRACES_${infix}_consensus/$VIRUS-consensus-$ORGAN_T.fa";
@@ -2343,6 +2344,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
 	        OUT_R5_PATH="../output_data/TRACES_hybrid_R5_consensus/"
 	        mkdir -p $OUT_R5_PATH;
             cp "$maxConsensus" "$OUT_R5_PATH"
+
         fi
       done
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
