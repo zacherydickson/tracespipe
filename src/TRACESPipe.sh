@@ -2287,7 +2287,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
             mv "$ORGAN_T-$VIRUS.fa.fai" "$HYBRID_ALI_PATH"
             #
             echo -e "\e[34m[TRACESPipe]\e[32m Mode 2\e[0m";
-            cp "../output_data/TRACES_hybrid_consensus/$VIRUS-consensus-$ORGAN.fa" "R2-$ORGAN_T-$VIRUS.fa"
+            cp "$HYBRID_CON_PATH/$VIRUS-consensus-$ORGAN.fa" "R2-$ORGAN_T-$VIRUS.fa"
             ./TRACES_hybrid_R2.sh "R2-$ORGAN_T-$VIRUS.fa" "$SCAFFOLDS_PATH" "$VIRUS" "$ORGAN_T" "$THREADS" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
             #
             # ROUND 3 and 4
@@ -2606,7 +2606,9 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
   rm -f FW_READS.fq.gz RV_READS.fq.gz
   rm -f o_fw_pr.fq o_fw_unpr.fq o_rv_pr.fq o_rv_unpr.fq;
   rm -f NP-o_fw_pr.fq NP-o_fw_unpr.fq NP-o_rv_pr.fq NP-o_rv_unpr.fq;
-  rm -f top*.csv
+  rm -f top*.csv top*.txt
+  rm -f out.1coords out.1delta out.mcoords out.mdelta out.qdiff \
+      out.rdiff out.report out.snps out.unqry out.unref
   #
   # ============================================================================
 fi

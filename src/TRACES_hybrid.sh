@@ -9,7 +9,7 @@ viralConsensus="$5";
 #
 if [ ! -f "$viralConsensus" ];
   then
-  echo -e "\e[38;5;208mWARNING: $ORGAN-$REF.fa reference file not found!\e[0m"
+  echo -e "\e[38;5;208mWARNING: $viralConsensus reference file not found!\e[0m"
   echo "TIP: before this, run: ./TRACESPipe.sh --run-meta --run-all-v-alig"
   echo -e "\e[38;5;198mDon't panic! This warning may be cause by absence of aligned results\e[0m."
   echo "For addition information, see the instructions at the web page."
