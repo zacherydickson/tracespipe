@@ -2306,7 +2306,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
 	            cp "$VIRUS-$ORGAN_T-SCAFFOLD.fa" "../output_data/TRACES_hybrid_R3_consensus/$VIRUS-consensus-$ORGAN_T.fa"
 	            #
                 echo -e "\e[34m[TRACESPipe]\e[32m Mode 4\e[0m";
-                ./TRACES_hybrid_R4.sh "$VIRUS-$ORGAN_T-SCAFFOLD.fa" "../output_data/TRACES_hybrid_consensus/$VIRUS-consensus-$ORGAN.fa" "$VIRUS" "$ORGAN_T" "$THREADS" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
+                ./TRACES_hybrid_R4.sh "$VIRUS-$ORGAN_T-SCAFFOLD.fa" "../output_data/TRACES_hybrid_consensus/$VIRUS-consensus-$ORGAN_T.fa" "$VIRUS" "$ORGAN_T" "$THREADS" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
             fi
             rm "top-$VIRUS-$ORGAN_T.txt"
             #Carry forward R2 if R3 and R4 are missing
