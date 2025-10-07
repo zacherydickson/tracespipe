@@ -2388,7 +2388,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
             V_GID=$(echo "$V_INFO" | awk '{ print $2; }');
             V_VAL=$(echo "$V_INFO" | awk '{ print $1; }');
             #
-            if [[ "$V_GID" != "-" ]] && [[ "$V_VAL" -gt 0 ]]; then
+            if [[ "$V_GID" != "-" ]] && [[ $(bc <<< "$V_VAL > 0") -eq 1 ]]; then
               if [[ "$RUN_BEST_OF_BESTS" -eq "1" ]]; then
                 V_GID=$(sed "${IDX_V}q;d" "$RESULTS_DIR/REPORT_META_VIRAL_BESTS_$ORGAN_T.txt" | awk '{ print $2; }');
               fi
@@ -2569,7 +2569,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
         V_GID=$(echo "$V_INFO" | awk '{ print $2; }');
         V_VAL=$(echo "$V_INFO" | awk '{ print $1; }');
         #
-        if [[ "$V_GID" != "-" ]] && [[ "$V_VAL" -gt 0 ]]; then
+        if [[ "$V_GID" != "-" ]] && [[ $(bc <<< "$V_VAL > 0") -eq 1 ]]; then
           if [[ "$RUN_BEST_OF_BESTS" -eq "1" ]]; then
             V_GID=$(sed "${IDX_V}q;d" "$RESULTS_DIR/REPORT_META_VIRAL_BESTS_$ORGAN.txt" | awk '{ print $2; }');
           else
