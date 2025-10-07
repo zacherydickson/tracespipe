@@ -2284,7 +2284,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
             mv "$ORGAN_T-$VIRUS.fa.fai" "$HYBRID_ALI_PATH"
             #
             echo -e "\e[34m[TRACESPipe]\e[32m Mode 2\e[0m";
-            cp "$HYBRID_CON_PATH/$VIRUS-consensus-$ORGAN.fa" "R2-$ORGAN_T-$VIRUS.fa"
+            cp "$HYBRID_CON_PATH/$VIRUS-consensus-$ORGAN_T.fa" "R2-$ORGAN_T-$VIRUS.fa"
             ./TRACES_hybrid_R2.sh "R2-$ORGAN_T-$VIRUS.fa" "$SCAFFOLDS_PATH" "$VIRUS" "$ORGAN_T" "$THREADS" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
             #
             # ROUND 3 and 4
@@ -2298,7 +2298,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
             mkdir -p "../output_data/TRACES_hybrid_R4_bed/"
             #
 	        FALCON -F -t 500 -x "top-$VIRUS-$ORGAN_T.txt" "../output_data/TRACES_hybrid_R2_consensus/$VIRUS-consensus-$ORGAN_T.fa" "../output_data/TRACES_denovo_$ORGAN_T/scaffolds.fasta" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
-            BEST_TOP_SIM=$(head -n 1 "top-$VIRUS-$ORGAN_T.txt" | awk '{ print $3;}'); 
+            BEST_TOP_SIM=$(head -n 1 "top-$VIRUS-$ORGAN_T.txt" | awk '{ print $3+0;}'); 
             if [[ $(bc <<< "$BEST_TOP_SIM > 1.0") -eq 1 ]]; then
 	            cp "top-$VIRUS-$ORGAN_T.txt" "../output_data/TRACES_hybrid_R3_consensus/"
                 FIL_NAME=$(awk '(FNR == 1){ print $4; exit 0}' "top-$VIRUS-$ORGAN_T.txt"); 
@@ -2308,6 +2308,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
                 echo -e "\e[34m[TRACESPipe]\e[32m Mode 4\e[0m";
                 ./TRACES_hybrid_R4.sh "$VIRUS-$ORGAN_T-SCAFFOLD.fa" "../output_data/TRACES_hybrid_consensus/$VIRUS-consensus-$ORGAN.fa" "$VIRUS" "$ORGAN_T" "$THREADS" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
             fi
+            rm "top-$VIRUS-$ORGAN_T.txt"
             #Carry forward R2 if R3 and R4 are missing
             if [ ! -f "../output_data/TRACES_hybrid_R3_consensus/$VIRUS-consensus-$ORGAN_T.fa" ]; then
                 echo "R3 not found, using R2 results."
@@ -2603,7 +2604,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
   rm -f FW_READS.fq.gz RV_READS.fq.gz
   rm -f o_fw_pr.fq o_fw_unpr.fq o_rv_pr.fq o_rv_unpr.fq;
   rm -f NP-o_fw_pr.fq NP-o_fw_unpr.fq NP-o_rv_pr.fq NP-o_rv_unpr.fq;
-  rm -f top*.csv top*.txt
+  rm -f top*.csv
   rm -f out.1coords out.1delta out.mcoords out.mdelta out.qdiff \
       out.rdiff out.report out.snps out.unqry out.unref
   #
