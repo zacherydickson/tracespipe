@@ -92,3 +92,5 @@ Version 1.11.3
         Fixed bug in run-diff  mitochondrial sequences were copied with unexpected file name leading to failure
         Fixed bug where R2 reference was copied with an unexpected file name leading to a failure
         Fixed bug where R4_hybrid was passed unexpected file name leading to a failure
+Version 1.11.4
+	Expanded Memory Limit for Spades to 350 GB

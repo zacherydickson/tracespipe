@@ -27,8 +27,10 @@ UnPairArg=""
 [ -s "$fq2u" ] && UnPairArg="$UnPairArg -s $fq2u"
 OutDir="../output_data/TRACES_denovo_$Organ"
 
+MemLimit=350
+
 #If we are not trying to resume, or the attempt to resume fails, run the assembly from scratch
 if [ "$BResume" -eq 0 ] || ! spades.py --restart-from last -o "$OutDir"; then
     #Note the lack of quotation marks on the UnPair Arg is required
-    spades.py --meta --threads "$nThread" --only-assembler -o "$OutDir" -1 "$fq1p" -2 "$fq2p" $UnPairArg 
+    spades.py --meta --threads "$nThread" --only-assembler -m "$MemLimit" -o "$OutDir" -1 "$fq1p" -2 "$fq2p" $UnPairArg 
 fi
