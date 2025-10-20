@@ -16,7 +16,7 @@ function main {
 
     fastp --in1 "$in1" --in2 "$in2" --out1 "$outDir/${prefix}_1P.fq.gz" --out2 "$outDir/${prefix}_2P.fq.gz" \
         --unpaired1 "$outDir/${prefix}_1U.fq.gz" --unpaired2 "$outDir/${prefix}_2U.fq.gz" \
-        --adapter_fasta "$adapterFile" --dedup --trim_poly_g \
+        --adapter_fasta "$adapterFile" --dont_eval_duplication --trim_poly_g \
         --cut_front --cut_front_window_size 1 --cut_front_mean_quality 3 \
         --cut_tail --cut_tail_window_size 1 --cut_tail_mean_quality 3 \
         --cut_right --cut_right_window_size 4 --cut_right_mean_quality 15 \

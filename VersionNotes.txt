@@ -94,5 +94,3 @@ Version 1.11.3
         Fixed bug where R4_hybrid was passed unexpected file name leading to a failure
 Version 1.11.4
 	Expanded Memory Limit for Spades to 350 GB
-Version 1.12.4
-	Enabled string Deduplication with FastP
