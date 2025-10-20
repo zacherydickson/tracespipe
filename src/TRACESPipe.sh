@@ -1935,7 +1935,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
         #Extract the string duplication rate reported by fastp
         rm -f "$PREPROC_DIR/$ORGAN_T.duprate.txt";
         awk -v id=$ORGAN_T '
-            /Duplication rate:/ {dr=substr($NF,1,length($NF-1)/100)}
+            /Duplication rate:/ {dr=substr($NF,1,length($NF-1)-1)/100}
             END{
                 if(!(dr+0)){dr="NA"}
                 print id"\t"dr
