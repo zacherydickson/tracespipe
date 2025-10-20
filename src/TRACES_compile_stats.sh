@@ -106,7 +106,7 @@ function CompileStats {
             local pS="-";
             targetFile="../output_data/TRACES_preprocessed_reads/$sID.dedup.tab"
             if [ -f "$targetFile" ]; then
-                pS=$(awk 'printf("%0.02f",$2*100)' "$targetFile");
+                pS=$(awk 'printf("%0.02f%%",($2+0)*100)' "$targetFile");
             fi
             #Print the results line
             c1="$refLabel"
