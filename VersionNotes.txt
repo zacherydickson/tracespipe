@@ -95,8 +95,9 @@ Version 1.11.3
 Version 1.11.4
 	Expanded Memory Limit for Spades to 350 GB
 Version 1.12.0
-	Enabled string Deduplication with FastP
+	String Deduplication with fastp controlled with --remove-dup
         Added <LABEL>.duprate.tab summaries in the output_data/TRACES_preprocessed_reads directory 
         Changes to Compiled Stats Report
             Added "StringDupRate" Column
             Changed "DuplicationRate" column header to "MappedDupRate"
+        Fixed Bug where TRACES_preprocess.sh could be called with too few arguments

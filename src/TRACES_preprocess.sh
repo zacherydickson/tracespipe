@@ -13,7 +13,7 @@ function main {
     in2=$1; shift
     bDedup=$1; shift
     [ -z "$bDedup" ] && bDedup=0;
-    dedupArg=""
+    dedupArg="--dont_eval_duplication"
     [ "$bDedup" != "0" ] && dedupArg="--dedup"
 
     mkdir -p "$outDir" || return 1;
