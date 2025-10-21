@@ -1931,7 +1931,15 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
     rm -f o_fw_pr.fq o_fw_unpr.fq o_rv_pr.fq o_rv_unpr.fq;
     if [[ "$RUN_PREPROCESS" -eq 1 ]]; then
         echo -e "\e[34m[TRACESPipe]\e[32m Preprocessing reads with FastP ...\e[0m";
-        ./TRACES_preprocess.sh "$THREADS" "$PREPROC_DIR" "$ADAPTERS_FILE" "$ORGAN_T" "FW_READS.fq.gz" "RV_READS.fq.gz" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
+        ./TRACES_preprocess.sh "$THREADS" "$PREPROC_DIR" "$ADAPTERS_FILE" "$ORGAN_T" "FW_READS.fq.gz" "RV_READS.fq.gz" "$REMOVE_DUPLICATIONS" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
+        #Extract the string duplication rate reported by fastp
+        rm -f "$PREPROC_DIR/$ORGAN_T.duprate.txt";
+        awk -v id=$ORGAN_T '
+            /Duplication rate:/ {dr=substr($NF,1,length($NF-1)-1)/100}
+            END{
+                if(!(dr+0)){dr="NA"}
+                print id"\t"dr
+            }' "$PREPROC_DIR/$ORGAN_T.log" > "$PREPROC_DIR/$ORGAN_T.duprate.txt"
         echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
     fi
     #

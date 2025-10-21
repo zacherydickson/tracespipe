@@ -66,7 +66,7 @@ function CompileStats {
     local statType="$1"; shift
     local refType="$1"; shift
     local outFile="$ResultsDir/Compiled_${statType}_stats_all_samples.tsv"
-    echo -e "ReferenceType\tSample\tReferenceID\tDepth\tBreadth\tSimilarity\tMappedReads\tProportionMapped\tDedupedReads\tDuplicationRate" >| "$outFile"
+    echo -e "ReferenceType\tSample\tReferenceID\tDepth\tBreadth\tSimilarity\tMappedReads\tProportionMapped\tDedupedReads\tMappedDupRate\tStringDupRate\tEstOverallDupRate" >| "$outFile"
     #Iterate over provided reference labels
     for refLabel in "$@"; do
         if [ -z "$refLabel" ]; then
@@ -102,13 +102,25 @@ function CompileStats {
             if [ "$gid" != "-" ] && [ -f "$targetFile" ]; then
                 sim=$(grep "$gid" "$targetFile" | head -1 | cut -f3)
             fi
+            #Acquire the string dedup stats
+            local pS="-";
+            targetFile="../output_data/TRACES_preprocessed_reads/$sID.duprate.txt"
+            if [ -f "$targetFile" ]; then
+                pS=$(awk '($2 != "NA"){printf("%0.02f%%",($2+0)*100);next} {printf("-")}' "$targetFile");
+            fi
+            local pDA="-"
+            if [ "$pD" != "-" ] || [ "$pS" != "-" ]; then
+                pDA=$(awk -v pd="$pD" -v ps="$pS" 'function rmp(x){return (0+substr(x,1,length(x)-1))/100} BEGIN{ps=rmp(ps); pd=rmp(pd); printf("%0.02f%%",100*((1-ps)*pd+ps))}')
+            fi
             #Print the results line
             c1="$refLabel"
             if [ "$statType" == "specific" ]; then
                 c1="specific";
                 [ "$gid" == "-" ] && gid="$refLabel";
             fi
-            echo -e "$c1\t$sID\t$gid\t$depth\t$breadth\t$sim\t$nM\t$pM\t$nD\t$pD";
+            if [ "$gid" != "-" ]; then
+                echo -e "$c1\t$sID\t$gid\t$depth\t$breadth\t$sim\t$nM\t$pM\t$nD\t$pD\t$pS\t$pDA";
+            fi
         done < "$MetaFile"
     done >> "$outFile";
 }
