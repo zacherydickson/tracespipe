@@ -104,7 +104,7 @@ function CompileStats {
             fi
             #Acquire the string dedup stats
             local pS="-";
-            targetFile="../output_data/TRACES_preprocessed_reads/$sID.dedup.tab"
+            targetFile="../output_data/TRACES_preprocessed_reads/$sID.dedrate.tab"
             if [ -f "$targetFile" ]; then
                 pS=$(awk 'printf("%0.02f%%",($2+0)*100)' "$targetFile");
             fi
