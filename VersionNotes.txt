@@ -99,6 +99,7 @@ Version 1.12.0
         Added <LABEL>.duprate.txt summaries in the output_data/TRACES_preprocessed_reads directory 
         Changes to Compiled Stats Report
             Added "StringDupRate" Column
+            Added "EstOverallDupRate" Column
             Changed "DuplicationRate" column header to "MappedDupRate"
             No longer reports viruses which were not found
         Fixed Bug where TRACES_preprocess.sh could be called with too few arguments
