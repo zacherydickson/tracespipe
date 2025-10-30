@@ -109,7 +109,7 @@ function Align {
         -1 o_fw_pr.fq -2 o_rv_pr.fq -U o_fw_unpr.fq,o_rv_unpr.fq |
         samtools view -h -e '(flag.paired && (!flag.unmap || !flag.munmap)) || (!flag.paired && !flag.unmap)' \
         >| "$samFile" ||
-        { Log "Failure in Bowtie2 mapping or filtering out umapped molecules"; rm -f "$samFile" return 1; }
+        { Log "Failure in Bowtie2 mapping or filtering out umapped molecules"; rm -f "$samFile"; return 1; }
 
     echo "$samFile"
 }

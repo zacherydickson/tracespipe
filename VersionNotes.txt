@@ -103,3 +103,5 @@ Version 1.12.0
             Changed "DuplicationRate" column header to "MappedDupRate"
             No longer reports viruses which were not found
         Fixed Bug where TRACES_preprocess.sh could be called with too few arguments
+Version 1.12.1
+        Fixed bug where a failure in bowtie alignment or unmapped filtering would not be caught
