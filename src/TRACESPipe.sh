@@ -988,6 +988,11 @@ while [[ $# -gt 0 ]]
         echo "For help, try: ./TRACESPipe.sh -h"
         exit 1;
     ;;
+    *) #unexpected positional argument
+        echo "Unexpected positional argument ($1)!";
+        echo "TRACESPipe does not take positional arguments";
+        echo "A previous option may be missing an argument"
+        exit 1;
   esac
   done
 #
