@@ -107,3 +107,5 @@ Version 1.12.1
         Fixed bug where a failure in bowtie alignment or unmapped filtering would not be caught
 Version 1.12.2
 	Fixed a bug where skipping an argument for an option would create an infinite loop rather than an error message
+Version 1.12.3
+	Added an Error message in the stderr output for when denovo assembly fails
