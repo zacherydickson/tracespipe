@@ -107,3 +107,9 @@ Version 1.12.1
         Fixed bug where a failure in bowtie alignment or unmapped filtering would not be caught
 Version 1.12.2
 	Fixed a bug where skipping an argument for an option would create an infinite loop rather than an error message
+Version 1.12.2+bloom
+        Added digital normalization with bbnorm as a step during denovo assembly
+        Added command line options for controlling:
+            - the maximum memory during de novo alignment (--max-denovo-mem,-mdm)
+            - the memory estimate (--denovo-mem-estimate-factor,-dmef)
+        If bbnorm is not installed, and would be triggered, denovo will proceed with a warning
