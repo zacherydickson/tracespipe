@@ -43,7 +43,8 @@ fi
 if [ "$bFilter" -eq 1 ]; then
     #Attempt digital normalization
     if ! bbnorm in="$fwdPath" in2="$revPath" extra="$(JoinBy "," "$@")" \
-        out="$(ConstuctOutPath "$fwdPath")" out2="$(ConstructOutPath "$revPath")";
+        -Xmx "${maxMem}g" \
+        out="$(ConstuctOutPath "$fwdPath")" out2="$(ConstructOutPath "$revPath")"
     then
         bFilter=0;
         >&2 echo -e "\e[33mWARNING\e[0m: Digital Normalization Failed";
