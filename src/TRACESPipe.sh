@@ -343,6 +343,7 @@ CHECK_PROGRAMS () {
   PROGRAM_EXISTS "dnadiff";
   PROGRAM_EXISTS "fastp"
   PROGRAM_EXISTS "grepq"
+  PROGRAM_EXISTS "bbnorm.sh"
   }
 #
 #

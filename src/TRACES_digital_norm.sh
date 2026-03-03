@@ -42,7 +42,7 @@ fi
 
 if [ "$bFilter" -eq 1 ]; then
     #Attempt digital normalization
-    if ! bbnorm in="$fwdPath" in2="$revPath" extra="$(JoinBy "," "$@")" \
+    if ! bbnorm.sh in="$fwdPath" in2="$revPath" extra="$(JoinBy "," "$@")" \
         -Xmx "${maxMem}g" \
         out="$(ConstuctOutPath "$fwdPath")" out2="$(ConstructOutPath "$revPath")"
     then
