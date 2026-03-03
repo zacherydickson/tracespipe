@@ -135,6 +135,8 @@ RESULTS_DIR="../output_data/TRACES_results"
 COMPILE_STAT_TYPES=();
 MAX_ALIGNMENTS=10;
 ATTEMPT_DENOVO_RESTART=0;
+MAX_DENOVO_MEM=350;
+DENOVO_MEM_ESTIMATE_FACTOR=50;
 declare -A VIRAL_MIN_SIM;
 PATTERN_DEPLETE_FILE="";
 #
@@ -657,6 +659,10 @@ while [[ $# -gt 0 ]]
       SHOW_HELP=0;
       shift
     ;;
+    -dmef|--denovo-mem-estimate-factor)
+      DENOVO_MEM_ESTIMATE_FACTOR="$2";
+      shift;
+    ;;
     -dwmp|--download-mito-population)
       DOWNLOAD_MITO_POPULATION=1;
       SHOW_HELP=0;
@@ -739,6 +745,10 @@ while [[ $# -gt 0 ]]
       TSIZE="$2";
       SHOW_HELP=0;
       shift 2;
+    ;;
+    -mdm|--max-denovo-mem)
+        MAX_DENOVO_MEM="$2";
+        shift;
     ;;
     -mis|--min-similarity)
       MINIMAL_SIMILARITY_VALUE="$2";
@@ -1225,6 +1235,14 @@ if [ "$SHOW_HELP" -eq "1" ];
   echo "                              halted assembly                          "
   echo "                              Warning: If resuming initiates but later "
   echo "                              fails, assembly will restart from scratch"
+  echo "    -dmef <VALUE>,  --denovo-mem-estimate-factor <VALUE>               "
+  echo "                              A value multiplied by the file size of   "
+  echo "                              compressed raw foward reads to estimate  "
+  echo "                              the spades memory usage. Controls trigger"
+  echo "                              for bbnorm digital normalization         "
+  echo "    -mdm,   --max-denovo-mem                                           "
+  echo "                              Maximum memory in GB to allocate for     "
+  echo "                              de novo assemly.                         "
   echo "                                                                       "
   echo "    -pdep <FILE>, --pattern-depletion <FILE>                           "
   echo "                              A path to a file containing regular      "
