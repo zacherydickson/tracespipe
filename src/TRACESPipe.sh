@@ -2258,10 +2258,16 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
     # ==========================================================================
     # DE-NOVO ASSEMBLY
     #
-    if [[ "$RUN_DE_NOVO_ASSEMBLY" -eq "1" ]];
-      then
+    if [[ "$RUN_DE_NOVO_ASSEMBLY" -eq "1" ]]; then
+        #Creates DN-o_fw_pr.fq and DN-o_rv_pr.fq
+      ./TRACES_digital_normalization "$MAX_DENOVO_MEM" "$DENOVO_MEM_ESTIMATE_FACTOR" \
+          "$SPL_Forward" o_fw_pr.fq o_rv_pr.fq o_fw_unpr.fq o_rv_unpr.fq;
       echo -e "\e[34m[TRACESPipe]\e[32m Running do-novo DNA assembly with metaSPAdes ...\e[0m";
-      ./TRACES_assemble_all.sh "$ORGAN_T" "$THREADS" "$ATTEMPT_DENOVO_RESTART" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt" || >&2 echo -e "\e[41mERROR\e[49m: de novo Assembly failed for $ORGAN_T";
+      ./TRACES_assemble_all.sh "$ORGAN_T" "$THREADS" "$ATTEMPT_DENOVO_RESTART" \
+          "$MAX_DENOVO_MEM" DN-o_fw_pr.fq DN-o_rv_pr.fq o_fw_unpr.fq o_rv_unpr.fq \
+          1>> "../logs/Log-stdout-$ORGAN_T.txt" \
+          2>> "../logs/Log-stderr-$ORGAN_T.txt" ||
+          >&2 echo -e "\e[41mERROR\e[49m: de novo Assembly failed for $ORGAN_T";
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       fi
     #
@@ -2636,6 +2642,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
   # CLEAN DATA:
   rm -f FW_READS.fq.gz RV_READS.fq.gz
   rm -f o_fw_pr.fq o_fw_unpr.fq o_rv_pr.fq o_rv_unpr.fq;
+  rm -f DN-o_fw_pr.fq DN-o_fw_unpr.fq;
   rm -f NP-o_fw_pr.fq NP-o_fw_unpr.fq NP-o_rv_pr.fq NP-o_rv_unpr.fq;
   rm -f top*.csv
   rm -f out.1coords out.1delta out.mcoords out.mdelta out.qdiff \
