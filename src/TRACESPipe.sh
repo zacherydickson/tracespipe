@@ -745,9 +745,9 @@ while [[ $# -gt 0 ]]
       shift 2;
     ;;
     -lcm|--lcr-mask-vdb)
-        LCR_MASK_VDB="$2";
+        LCR_MASK_VDB=1;
         SHOW_HELP=0;
-        shift 2;
+        shift;
     ;;
     -mis|--min-similarity)
       MINIMAL_SIMILARITY_VALUE="$2";
@@ -1662,7 +1662,7 @@ if [[ "$BUILD_VDB_ALL" -eq "1" ]];
 # ==============================================================================
 #
 if [[ "$LCR_MASK_VDB" -eq "1" ]]; then
-    rm "$LCR_MASKED_VIRAL_DATABASE_FILE"
+    rm -f "$LCR_MASKED_VIRAL_DATABASE_FILE"
     ./TRACES_lcr_filter.sh "$VIRAL_DATABASE_FILE" > "$LCR_MASKED_VIRAL_DATABASE_FILE"
 fi
 #
