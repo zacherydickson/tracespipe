@@ -1882,8 +1882,12 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
             mv o_rv_unpr.fq NP-o_rv_unpr.fq;
         fi
         falconVDB="$VIRAL_DATABASE_FILE"
-        if [[ "$USE_LCR_MASKED_VDB" -eq 1 && -s "$LCR_MASKED_VIRAL_DATABASE_FILE" ]]; then
-            falconVDB="$LCR_MASKED_VIRAL_DATABASE_FILE"
+        if [[ "$USE_LCR_MASKED_VDB" -eq 1 ]]; then
+            if [[-s "$LCR_MASKED_VIRAL_DATABASE_FILE" ]]; then
+                falconVDB="$LCR_MASKED_VIRAL_DATABASE_FILE"
+            else 
+                >&2 echo "[WARNING] No LCR masked viral database has been constructed; proceeding with unmasked"
+            fi
         fi
         #
         echo -e "\e[34m[TRACESPipe]\e[32m Running viral metagenomic analysis with FALCON-meta ...\e[0m";
@@ -2026,8 +2030,12 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       #echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       #
       falconVDB="$VIRAL_DATABASE_FILE"
-      if [[ "$USE_LCR_MASKED_VDB" -eq 1 && -s "$LCR_MASKED_VIRAL_DATABASE_FILE" ]]; then
-          falconVDB="$LCR_MASKED_VIRAL_DATABASE_FILE"
+      if [[ "$USE_LCR_MASKED_VDB" -eq 1 ]]; then
+          if [[-s "$LCR_MASKED_VIRAL_DATABASE_FILE" ]]; then
+              falconVDB="$LCR_MASKED_VIRAL_DATABASE_FILE"
+          else 
+              >&2 echo "[WARNING] No LCR masked viral database has been constructed; proceeding with unmasked"
+          fi
       fi
       echo -e "\e[34m[TRACESPipe]\e[32m Running viral metagenomic analysis with FALCON-meta ...\e[0m";
       mkdir -p "$RESULTS_DIR"
