@@ -396,6 +396,21 @@ CHECK_VALUE_IN_ARRAY () {
     return 1;
 }
 #
+GET_FALCON_DB () {
+    falconVDB="$VIRAL_DATABASE_FILE"
+    if [[ "$USE_LCR_MASKED_VDB" -eq 1 ]]; then
+        if [[-s "$LCR_MASKED_VIRAL_DATABASE_FILE" ]]; then
+            falconVDB="$LCR_MASKED_VIRAL_DATABASE_FILE"
+        else 
+            >&2 echo -e "[WARNING] No LCR masked viral database has been constructed\n" \
+                        "\t($LCR_MASKED_VIRAL_DATABASE_FILE is missing);\n" \
+                        "\tproceeding with unmasked ($VIRAL_DATABASE_FILE);\n" \
+                        "\tRun TRACESPipe.sh -lcm [-avdb altDB] before -ulcm\n";
+        fi
+    fi
+    echo "$falconVDB"
+}
+#
 # ==============================================================================
 #
 ALIGN_AND_CONSENSUS () {
@@ -1881,15 +1896,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
             mv o_rv_pr.fq NP-o_rv_pr.fq;
             mv o_rv_unpr.fq NP-o_rv_unpr.fq;
         fi
-        falconVDB="$VIRAL_DATABASE_FILE"
-        if [[ "$USE_LCR_MASKED_VDB" -eq 1 ]]; then
-            if [[-s "$LCR_MASKED_VIRAL_DATABASE_FILE" ]]; then
-                falconVDB="$LCR_MASKED_VIRAL_DATABASE_FILE"
-            else 
-                >&2 echo "[WARNING] No LCR masked viral database has been constructed; proceeding with unmasked"
-            fi
-        fi
-        #
+        falconVDB="$(GET_FALCON_DB)"
         echo -e "\e[34m[TRACESPipe]\e[32m Running viral metagenomic analysis with FALCON-meta ...\e[0m";
         mkdir -p "$RESULTS_DIR"
         ./TRACES_metagenomics_viral.sh "$ORGAN_T" "$falconVDB" "$TOP_SIZE_VIR" "$THREADS" "$TSIZE" "$CACHE" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
@@ -2029,14 +2036,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       #
       #echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       #
-      falconVDB="$VIRAL_DATABASE_FILE"
-      if [[ "$USE_LCR_MASKED_VDB" -eq 1 ]]; then
-          if [[-s "$LCR_MASKED_VIRAL_DATABASE_FILE" ]]; then
-              falconVDB="$LCR_MASKED_VIRAL_DATABASE_FILE"
-          else 
-              >&2 echo "[WARNING] No LCR masked viral database has been constructed; proceeding with unmasked"
-          fi
-      fi
+      falconVDB="$(GET_FALCON_DB)"
       echo -e "\e[34m[TRACESPipe]\e[32m Running viral metagenomic analysis with FALCON-meta ...\e[0m";
       mkdir -p "$RESULTS_DIR"
       ./TRACES_metagenomics_viral.sh "$ORGAN_T" "$falconVDB" "$TOP_SIZE_VIR" "$THREADS" "$TSIZE" "$CACHE" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
