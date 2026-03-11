@@ -30,6 +30,8 @@ SAMPLE_TEST=0;
 BUILD_VDB_ALL=0;
 BUILD_VDB_REF=0;
 BUILD_UDB=0;
+LCR_MASK_VDB=0;
+USE_LCR_MASKED_VDB=0;
 #
 GEN_ADAPTERS=0;
 GET_PHIX=0;
@@ -116,6 +118,7 @@ RUN_BLAST_RECONSTRUCTED=0;
 B_ALT_VIRAL_DB=0;
 VIRAL_DATABASE_METADATA="";
 VIRAL_DATABASE_FILE="VDB.fa"
+LCR_MASKED_VIRAL_DATABASE_FILE="VDB.lcrmasked.fna"
 ADAPTERS_FILE="adapters.fa"
 #
 RUN_PREPROCESS=0;
@@ -741,6 +744,11 @@ while [[ $# -gt 0 ]]
       SHOW_HELP=0;
       shift 2;
     ;;
+    -lcm|--lcr-mask-vdb)
+        LCR_MASK_VDB="$2";
+        SHOW_HELP=0;
+        shift 2;
+    ;;
     -mis|--min-similarity)
       MINIMAL_SIMILARITY_VALUE="$2";
       SHOW_HELP=0;
@@ -950,6 +958,10 @@ while [[ $# -gt 0 ]]
       SHOW_HELP=0;
       shift
     ;;
+    -ulcm|--use-lcr-masked-vdb)
+        USE_LCR_MASKED_VDB=1;
+        shift;
+    ;;
     -up|--update)
       UPDATE=1;
       SHOW_HELP=0;
@@ -1046,6 +1058,8 @@ if [ "$SHOW_HELP" -eq "1" ];
   echo "    -vdb,   --build-viral     Build viral database (all) [Recommended], "
   echo "    -vdbr,  --build-viral-r   Build viral database (references only),  "
   echo "    -udb,   --build-unviral   Build non viral database (control),      "
+  echo "    -lcm,   --lcr-mask-vdb    Construct an LCR masked viral database   "
+  echo "                              Uses alt-vdb if specified                "
   echo "                                                                       "
   echo "    -afs <FASTA>, --add-fasta <FASTA>                                  "
   echo "                              Add a FASTA sequence to the $VIRAL_DATABASE_FILE,      "
@@ -1227,6 +1241,10 @@ if [ "$SHOW_HELP" -eq "1" ];
   echo "                              Warning: If resuming initiates but later "
   echo "                              fails, assembly will restart from scratch"
   echo "                                                                       "
+  echo "    -ulcm, --use-lcr-masked-vdb                                                                   "
+  echo "                              Use the pre-constructed lcr masked vdb   "
+  echo "                              for input to FALCON; disabled unless -lcm"
+  echo "                              has been run                             "
   echo "    -pdep <FILE>, --pattern-depletion <FILE>                           "
   echo "                              A path to a file containing regular      "
   echo "                              expressions. Matches are filtered out    "
@@ -1643,6 +1661,13 @@ if [[ "$BUILD_VDB_ALL" -eq "1" ]];
 #
 # ==============================================================================
 #
+if [[ "$LCR_MASK_VDB" -eq "1" ]]; then
+    rm "$LCR_MASKED_VIRAL_DATABASE_FILE"
+    ./TRACES_lcr_filter.sh "$VIRAL_DATABASE_FILE" > "$LCR_MASKED_VIRAL_DATABASE_FILE"
+fi
+#
+# ==============================================================================
+#
 if [[ "$BUILD_UDB" -eq "1" ]];
   then
   gto_build_dbs.sh -ba -ar -pr -fu -pl -in -mi -ps 
@@ -1856,10 +1881,14 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
             mv o_rv_pr.fq NP-o_rv_pr.fq;
             mv o_rv_unpr.fq NP-o_rv_unpr.fq;
         fi
+        falconVDB="$VIRAL_DATABASE_FILE"
+        if [[ "$USE_LCR_MASKED_VDB" -eq 1 && -s "$LCR_MASKED_VIRAL_DATABASE_FILE" ]]; then
+            falconVDB="$LCR_MASKED_VIRAL_DATABASE_FILE"
+        fi
         #
         echo -e "\e[34m[TRACESPipe]\e[32m Running viral metagenomic analysis with FALCON-meta ...\e[0m";
         mkdir -p "$RESULTS_DIR"
-        ./TRACES_metagenomics_viral.sh "$ORGAN_T" "$VIRAL_DATABASE_FILE" "$TOP_SIZE_VIR" "$THREADS" "$TSIZE" "$CACHE" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
+        ./TRACES_metagenomics_viral.sh "$ORGAN_T" "$falconVDB" "$TOP_SIZE_VIR" "$THREADS" "$TSIZE" "$CACHE" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
         cp "top-$ORGAN_T.csv" "$RESULTS_DIR/"
         echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
         #
@@ -1996,9 +2025,13 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       #
       #echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       #
+      falconVDB="$VIRAL_DATABASE_FILE"
+      if [[ "$USE_LCR_MASKED_VDB" -eq 1 && -s "$LCR_MASKED_VIRAL_DATABASE_FILE" ]]; then
+          falconVDB="$LCR_MASKED_VIRAL_DATABASE_FILE"
+      fi
       echo -e "\e[34m[TRACESPipe]\e[32m Running viral metagenomic analysis with FALCON-meta ...\e[0m";
       mkdir -p "$RESULTS_DIR"
-      ./TRACES_metagenomics_viral.sh "$ORGAN_T" "$VIRAL_DATABASE_FILE" "$TOP_SIZE_VIR" "$THREADS" "$TSIZE" "$CACHE" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
+      ./TRACES_metagenomics_viral.sh "$ORGAN_T" "$falconVDB" "$TOP_SIZE_VIR" "$THREADS" "$TSIZE" "$CACHE" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
       cp "top-$ORGAN_T.csv" "$RESULTS_DIR/"
       echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
       #
