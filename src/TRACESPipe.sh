@@ -399,7 +399,7 @@ CHECK_VALUE_IN_ARRAY () {
 GET_FALCON_DB () {
     falconVDB="$VIRAL_DATABASE_FILE"
     if [[ "$USE_LCR_MASKED_VDB" -eq 1 ]]; then
-        if [[-s "$LCR_MASKED_VIRAL_DATABASE_FILE" ]]; then
+        if [[ -s "$LCR_MASKED_VIRAL_DATABASE_FILE" ]]; then
             falconVDB="$LCR_MASKED_VIRAL_DATABASE_FILE"
         else 
             >&2 echo -e "[WARNING] No LCR masked viral database has been constructed\n" \
