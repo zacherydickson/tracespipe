@@ -109,9 +109,11 @@ Version 1.12.2
 	Fixed a bug where skipping an argument for an option would create an infinite loop rather than an error message
 Version 1.12.3
 	Added an Error message in the stderr output for when denovo assembly fails
-Version 1.12.3+bloom
+Version 1.13.0
         Added digital normalization with bbnorm as a step during denovo assembly
         Added command line options for controlling:
             - the maximum memory during de novo alignment (--max-denovo-mem,-mdm)
             - the memory estimate (--denovo-mem-estimate-factor,-dmef)
         If bbnorm is not installed, and would be triggered, denovo will proceed with a warning
+        Added Setup command to create a version of the viral database which has hardmasked the low complexity regions in the viral database
+        Added an analysis option to use the hardmasked viral database with FALCON, in effect this should filter out several false positive results

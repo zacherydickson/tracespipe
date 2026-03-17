@@ -27,10 +27,9 @@ conda update -c bioconda art --yes
 conda update -c bioconda blast --yes
 conda update -c bioconda mummer4 --yes
 conda update -c bioconda ivar --yes
-<<<<<<< HEAD
 conda update -c bioconda grepq --yes
-=======
 conda update -c bioconda fastp --yes
->>>>>>> master
+conda update -c bioconda sdust --yes
+conda update -c bioconda bbmap --yes
 #
 # ==============================================================================
