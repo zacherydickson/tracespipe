@@ -16,7 +16,6 @@ echo "samtools       : `samtools --version | head -n 1 | awk '{ print $2;}'`";
 echo "bcftools       : `bcftools --version | head -n 1 | awk '{ print $2;}'`";
 echo "Bedops         : `bedops --version | grep version | awk '{ print $2; }'`";
 echo "Bedtools       : `bedtools --version | awk '{ print $2;}'`";
-echo "fastq_pair     : [version not included]";
 echo "efetch         : `efetch -version`";
 echo "mapDamage      : `mapDamage --version`";
 echo "Tabix          : `tabix 2> VX.tmp; grep "Version:" VX.tmp | awk '{ print $2; }'`";

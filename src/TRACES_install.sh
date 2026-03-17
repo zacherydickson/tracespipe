@@ -49,7 +49,6 @@ if [[ "$INSTALL_PIPELINE" -eq "1" ]];
   conda install -c bioconda bcftools=1.21 --yes
   conda install -c bioconda bedops --yes
   conda install -c bioconda bedtools=2.31.1 --yes
-  conda install -c bioconda fastq-pair --yes
   conda install -c bioconda entrez-direct --yes
   conda install -c bioconda/label/cf201901 entrez-direct --yes
   conda install -c bioconda mapdamage2 --yes
@@ -78,7 +77,6 @@ if [[ "$INSTALL_PIPELINE" -eq "1" ]];
   Program_installed "bcftools";
   Program_installed "bedops";
   Program_installed "bedtools";
-  Program_installed "fastq_pair";
   Program_installed "efetch";
   Program_installed "mapDamage";
   Program_installed "tabix";

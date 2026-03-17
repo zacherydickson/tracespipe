@@ -335,7 +335,6 @@ CHECK_PROGRAMS () {
   PROGRAM_EXISTS "bcftools";
   PROGRAM_EXISTS "bedops";
   PROGRAM_EXISTS "bedtools";
-  PROGRAM_EXISTS "fastq_pair";
   PROGRAM_EXISTS "efetch";
   PROGRAM_EXISTS "mapDamage";
   PROGRAM_EXISTS "tabix";
@@ -2052,7 +2051,6 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       fi
       # IT IS USED ONLY FOR FALCON
       #
-      # fastq_pair test_R1.fastq test_R2.fastq: [needs adaptation]
       # IF you want to remove Phix also before assembly
       #
       #echo -e "\e[34m[TRACESPipe]\e[32m Done!\e[0m";
