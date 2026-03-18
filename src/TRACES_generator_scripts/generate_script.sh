@@ -64,6 +64,11 @@ function GenerateCode {
     esac
 }; export -f GenerateCode;
 
+#### THESE FUNCTIONS ARE WHERE THE MAGIC HAPPENS
+
+#Pulls the conda channel and package (including version ranges), and the command
+#   to call the tool to construct conda install commands,
+#   as well as Program_installed check commands
 function GenerateInstallCode {
     yq -r '.[].conda | .channel + " " + .package' "$DepFile" |
         while read -r channel package; do
@@ -77,16 +82,23 @@ function GenerateInstallCode {
 
 }; export -f GenerateInstallCode;
 
+
+#Pulls the conda channel and package (including version ranges) from YAML
+#   to construct conda update commands,
 function GenerateUpdateCode {
     :
     #TODO
 }; export -f GenerateUpdateCode;
 
+#Pulls the tool name, and Verson commands from YAML to construct commands
+# for outputing the versions for each tool
 function GenerateVersionCode {
     :
     #TODO
 }; export -f GenerateVersionCode;
 
+#Constructs a comment to go with the inserted snippet indicating when and
+# how the snippet was generated
 function GenerateMetaData {
     local stem=$1; shift;
     local depDir=$(basename "$(dirname "$DepFile")")
@@ -96,6 +108,7 @@ function GenerateMetaData {
     echo "#=================================================="
 }; export -f GenerateMetaData;
 
+#Constructs the complete section of text to insert
 function GenerateSnippet {
     local stem=$1; shift;
     echo "#=================================================="
@@ -103,6 +116,14 @@ function GenerateSnippet {
     GenerateCode "$stem";
     echo "#=================================================="
 }; export -f GenerateSnippet;
+
+#Function that tries to use awk's inplace editing to insert a code snippet
+#Note that this requires a GenerateSnippet function to exist in the environment
+#Inputs - the stem to generate
+#       - and a Target File
+#Output - None, modifies the target File in place
+#           may create a .bak file
+#           returns a failure
 
 function AttemptGeneration {
     local stem=$1; shift
