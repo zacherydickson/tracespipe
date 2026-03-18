@@ -102,7 +102,7 @@
 - name: efetch
   call: efetch
   conda:
-    channel: bioconda/label/cf201901
+    channel: bioconda
     package: entrez-direct
   versionCmd: "efetch -version"
   url: https://www.ncbi.nlm.nih.gov/books/NBK179288
