@@ -39,8 +39,8 @@ if [[ "$INSTALL_PIPELINE" -eq "1" ]];
   #
 #BEGIN AUTO-GENERATED SECTION: DO NOT MODIFY
 #==================================================
-#This code snippet generated on Wed Mar 18 13:16:32 EET 2026,
-# using src/TRACES_generator_scripts/gen_install.sh
+#This code snippet generated on Wed Mar 18 15:01:36 EET 2026,
+# using src/TRACES_generator_scripts/generate_script.sh install
 # based on information in system_files/dependencies.yml
 #==================================================
     conda install -c bioconda "adapterremoval" --yes;
