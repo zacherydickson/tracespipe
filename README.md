@@ -62,6 +62,20 @@ chmod +x TRACES*.sh
 ./TRACESPipe.sh --get-all-aux
 ```
 
+#### Development note 
+
+Install, Update, Version, and Check scripts, as well as this README have sections which are
+automatically generated based on the dependencies using:
+
+```
+make all
+```
+
+As user you should not need to run this command, but if you have yq (a CLI YAML parser), you may.
+As a developer this should be run whenever there are changes to the `system_files/dependencies.yml` file,
+the generator scripts, or the relevant files. A suggestion is to add this to a `pre_commit` git hook.
+
+
 ### 2.2 Structure ###
 
 In the tracespipe/ folder the following structure exists:
