@@ -2,3 +2,4 @@
 *.swo
 tests
 log
+.build
