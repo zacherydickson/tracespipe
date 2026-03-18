@@ -4,29 +4,39 @@
 #
 echo -e "\e[34m[TRACESPipe]\e[32m Extracting programs versions ... \e[0m";
 #
-echo "Trimmomatic    : `trimmomatic -version`";
-echo "Cryfa          : `cryfa 2> VX.tmp ; grep "Cryfa v" VX.tmp | awk '{ print $2;}'`";
-echo "MAGNET         : `MAGNET --version 2> VX.tmp | grep MAGNET VX.tmp | awk '{ print $3;}'`";
-echo "FALCON         : `FALCON -V 2> VX.tmp | grep VERSION VX.tmp | awk '{ print $2;}'`";
-echo "GTO            : `gto 2> VX.tmp | grep "GTO v" VX.tmp | awk '{ print $2;}'`";
-echo "SPAdes         : `spades.py --version | awk '{ print $2;}'`";
-echo "IGV            : [Graphical version]";
-echo "Bowtie2        : `bowtie2 --version | head -n 1 | grep version | awk '{ print $3; }'`";
-echo "samtools       : `samtools --version | head -n 1 | awk '{ print $2;}'`";
-echo "bcftools       : `bcftools --version | head -n 1 | awk '{ print $2;}'`";
-echo "Bedops         : `bedops --version | grep version | awk '{ print $2; }'`";
-echo "Bedtools       : `bedtools --version | awk '{ print $2;}'`";
-echo "efetch         : `efetch -version`";
-echo "mapDamage      : `mapDamage --version`";
-echo "Tabix          : `tabix 2> VX.tmp; grep "Version:" VX.tmp | awk '{ print $2; }'`";
-echo "AdapterRemoval : `AdapterRemoval --version 2> VX.tmp; cat VX.tmp | awk '{ print $3;}'`";
-echo "bwa            : `bwa 2> VX.tmp; grep Version VX.tmp | awk '{ print $2;}'`";
-echo "art_illumina   : `art_illumina | grep Version | awk '{ print $3;}'`";
-echo "blastn         : `blastn -version | head -n 1 | awk '{print $2;}'`";
-echo "dnadiff        : `dnadiff --version 2> VX.tmp; grep version VX.tmp | awk '{ print $3; }'`";
-echo "fastp          : `fastp --version`";
-#
-rm -f VX.tmp;
+#BEGIN AUTO-GENERATED SECTION: DO NOT MODIFY
+#==================================================
+#This code snippet generated on Wed Mar 18 15:19:57 EET 2026,
+# using src/TRACES_generator_scripts/generate_script.sh get_program_versions
+# based on information in system_files/dependencies.yml
+#==================================================
+printf "%-15s: %s\n" AdapterRemoval $(AdapterRemoval --version 2>&1 | awk '{ print $3 }')
+printf "%-15s: %s\n" ART_illumina $(art_illumina | awk '/Version/ { print $3 }')
+printf "%-15s: %s\n" BBNorm $(bbnorm.sh --version 2>&1 | awk '/BBTools version/ { print $3 }')
+printf "%-15s: %s\n" BFCtools $(bcftools --version | awk '(FNR == 1) { print $2 }')
+printf "%-15s: %s\n" BEDOPS $(bedops --version | grep version | awk '{ print $2 }')
+printf "%-15s: %s\n" BEDTools $(bedtools --version | awk '{ print $2 }')
+printf "%-15s: %s\n" BLASTn $(blastn -version | awk '(FNR == 1) { print $2 }')
+printf "%-15s: %s\n" Bowtie2 $(bowtie2 --version | awk '(FNR==1) { print $3 }')
+printf "%-15s: %s\n" BWA $(bwa 2>&1 | awk '/Version/ { print $2 }')
+printf "%-15s: %s\n" Cryfa $(cryfa 2>&1 | awk '/Cryfa v/ { print $2 }')
+printf "%-15s: %s\n" dnadiff $(dnadiff --version 2>&1 | awk '/version/ { print $3 }')
+printf "%-15s: %s\n" efetch $(efetch -version)
+printf "%-15s: %s\n" FALCON $(FALCON -V 2>&1 | awk '/VERSION/ { print $2 }')
+printf "%-15s: %s\n" fastp $(fastp --version 2>&1 | awk '{ print $2 }')
+printf "%-15s: %s\n" grepq $(grepq --version | awk '{ print $2 }')
+printf "%-15s: %s\n" GTO $(gto 2>&1 | awk '/GTO v/ { print substr($2,1,length($2)-1) }')
+printf "%-15s: %s\n" IGV $(conda list | awk '/^#/ {next} /igv/ {print $3}')
+printf "%-15s: %s\n" iVar $(ivar version | awk '(FNR == 1) { print $3 }')
+printf "%-15s: %s\n" MAGNET $(MAGNET --version 2>&1 | awk '/MAGNET/ { print $3 }')
+printf "%-15s: %s\n" mapDamage2 $(mapDamage --version)
+printf "%-15s: %s\n" SAMtools $(samtools --version | awk '(FNR == 1) { print $2 }')
+printf "%-15s: %s\n" Sdust $(conda list | awk '/^#/ {next} /sdust/ { print $2 }')
+printf "%-15s: %s\n" SPAdes $(spades.py --version | awk '{ print substr($4,2) }')
+printf "%-15s: %s\n" Tabix $(2>&1 tabix | awk '/Version:/ { print $2 }')
+printf "%-15s: %s\n" Trimmomatic $(trimmomatic -version)
+#==================================================
+#END AUTO-GENERATED SECTION: DO NOT MODIFY
 #
 echo -e "\e[34m[TRACESPipe]\e[32m Done! \e[0m";
 #

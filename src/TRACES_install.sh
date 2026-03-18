@@ -39,7 +39,7 @@ if [[ "$INSTALL_PIPELINE" -eq "1" ]];
   #
 #BEGIN AUTO-GENERATED SECTION: DO NOT MODIFY
 #==================================================
-#This code snippet generated on Wed Mar 18 15:01:36 EET 2026,
+#This code snippet generated on Wed Mar 18 15:19:56 EET 2026,
 # using src/TRACES_generator_scripts/generate_script.sh install
 # based on information in system_files/dependencies.yml
 #==================================================
@@ -52,22 +52,22 @@ if [[ "$INSTALL_PIPELINE" -eq "1" ]];
     conda install -c bioconda "blast" --yes;
     conda install -c bioconda "bowtie2" --yes;
     conda install -c bioconda "bwa" --yes;
-    conda install -c seyedmorteza "cryfa" --yes;
-    conda install -c bioconda "mummer4" --yes;
     conda install -c bioconda "entrez-direct" --yes;
-    conda install -c cobilab "falcon" --yes;
     conda install -c bioconda "fastp" --yes;
     conda install -c bioconda "grepq" --yes;
-    conda install -c cobilab "gto" --yes;
     conda install -c bioconda "igv" --yes;
     conda install -c bioconda "ivar" --yes;
-    conda install -c cobilab "magnet" --yes;
     conda install -c bioconda "mapdamage2" --yes;
+    conda install -c bioconda "mummer4" --yes;
     conda install -c bioconda "samtools>=1.21" --yes;
     conda install -c bioconda "sdust" --yes;
     conda install -c bioconda "spades" --yes;
     conda install -c bioconda "tabix" --yes;
     conda install -c bioconda "trimmomatic" --yes;
+    conda install -c cobilab "falcon" --yes;
+    conda install -c cobilab "gto" --yes;
+    conda install -c cobilab "magnet" --yes;
+    conda install -c seyedmorteza "cryfa" --yes;
 
     Program_installed "AdapterRemoval";
     Program_installed "art_illumina";

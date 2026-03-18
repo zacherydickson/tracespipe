@@ -71,6 +71,7 @@ function GenerateCode {
 #   as well as Program_installed check commands
 function GenerateInstallCode {
     yq -r '.[].conda | .channel + " " + .package' "$DepFile" |
+        sort -u | #If multiple tools come from the same package this prevents redundancy
         while read -r channel package; do
             echo "    conda install -c $channel \"$package\" --yes;"
         done
@@ -86,15 +87,20 @@ function GenerateInstallCode {
 #Pulls the conda channel and package (including version ranges) from YAML
 #   to construct conda update commands,
 function GenerateUpdateCode {
-    :
-    #TODO
+    yq -r '.[].conda | .channel + " " + .package' "$DepFile" |
+        sort -u | #If multiple tools come from the same package this prevents redundancy
+        while read -r channel package; do
+            echo "    conda update -c $channel \"$package\" --yes;"
+        done
 }; export -f GenerateUpdateCode;
 
 #Pulls the tool name, and Verson commands from YAML to construct commands
 # for outputing the versions for each tool
 function GenerateVersionCode {
-    :
-    #TODO
+    yq -r '.[] | .name + " " + .versionCmd' system_files/dependencies.yml |
+        while read -r name cmd; do
+            echo printf \"%-15s: %s\\n\" "$name" "\$($cmd)";
+        done
 }; export -f GenerateVersionCode;
 
 #Constructs a comment to go with the inserted snippet indicating when and
