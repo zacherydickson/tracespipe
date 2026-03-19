@@ -42,4 +42,4 @@ function GenerateSnippet {
 #   GenerateTarget (and its dependencies)
 source "$ExecDir/generate_common.sh"
 
-GenerateTarget "$TargetFile" "$SectionLabel"
+GenerateTarget "$TargetFile" "$SectionLabel" GenerateSnippet

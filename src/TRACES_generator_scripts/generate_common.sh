@@ -14,6 +14,8 @@
 function AttemptGeneration {
     local targetFile=$1; shift
     local sectionLabel=$1; shift
+    local generationFunction=$1; shift
+    local maxInsert=$1; shift
     if ! [ -s "$targetFile" ]; then
         >&2 echo "Empty/Non-existent TargetFile ($targetFile) for AttemptGeneration"
         return 1;
@@ -22,9 +24,11 @@ function AttemptGeneration {
         >&2 echo "Missing sectionLabel for AttemptGeneration"
         return 1;
     fi
-    local maxInsert=$1; shift
+    if ! [[ $(type -t "$generationFunction") == "function" ]]; then
+        >&2 echo "Provided snippet generating function ($generationFunction) is not a function"
+        return 1;
+    fi
     [ -z "$maxInsert" ] && maxInsert=1;
-    [[ $(type -t GenerateSnippet) == "function" ]] || return 1;
     awk -i inplace -v inplace::suffix=.bak -v tgtLabel="$sectionLabel" -v maxInsert="$maxInsert" '
         BEGIN{
             inSnippet = 0;
@@ -61,13 +65,15 @@ function AttemptGeneration {
                 print "WARNING - Did not find a section to replace! Check Section header in target" > "/dev/stderr"
             }
         }
-    ' inplace::enable=0 <(GenerateSnippet) inplace::enable=1 "$targetFile"
+    ' inplace::enable=0 <("$generationFunction") inplace::enable=1 "$targetFile"
 }
 
 function GenerateTarget {
     local targetFile=$1; shift
     local sectionLabel=$1; shift
-    if AttemptGeneration "$targetFile" "$sectionLabel"; then
+    local generationFunction=$1; shift
+    local maxInsert=$1; shift
+    if AttemptGeneration "$targetFile" "$sectionLabel" "$generationFunction" "$maxInsert"; then
         rm -f "$targetFile.bak"
     else
         mv "$targetFile.bak" "$targetFile"
