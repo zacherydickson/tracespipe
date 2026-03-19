@@ -10,6 +10,8 @@ export ExecDir=$(dirname "$(readlink -f $0)")
 export Stem="readme"
 export DepFile=$(readlink -f "$ExecDir/../../system_files/dependencies.yml")
 export TargetFile=$(readlink -f "$ExecDir/../../README.md")
+export VersionFile=$(readlink -f "$ExecDir/../../Version.txt")
+
 
 function GenerateTable {
     articleIcon="![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)"
@@ -63,7 +65,16 @@ function GenerateHelpSnippet {
     echo "<!-- ================================================== -->"
 }; export -f GenerateHelpSnippet;
 
+function GenerateVersionSnippet {
+    echo "<!-- ================================================== -->"
+    GenerateMetaData
+    version=$(head -1 "$VersionFile");
+    echo "[![Version](https://img.shields.io/static/v1.svg?label=Release&message=v${version}&color=orange)](#)"
+    echo "<!-- ================================================== -->"
+}
+
 source "$ExecDir/generate_common.sh"
 
+GenerateTarget "$TargetFile" "VersionShield" GenerateVersionSnippet
 GenerateTarget "$TargetFile" "TracesHelp" GenerateHelpSnippet
 GenerateTarget "$TargetFile" "DepInfoTable" GenerateTableSnippet

@@ -3,7 +3,15 @@
   
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE)
 [![Speed](https://img.shields.io/static/v1.svg?label=Speed&message=Ultra-fast&color=green)](#)
-[![Release](https://img.shields.io/static/v1.svg?label=Release&message=v1.1.1&color=orange)](#)
+<!-- BEGIN AUTO-GENERATED SECTION - VersionShield : DO NOT MODIFY-->
+<!-- ================================================== -->
+<!-- This snippet generated on Thu Mar 19 14:22:55 EET 2026, -->
+<!-- using src/TRACES_generator_scripts/gen_readme.sh -->
+<!-- based on information in system_files/dependencies.yml -->
+<!-- ================================================== -->
+[![Version](https://img.shields.io/static/v1.svg?label=Release&message=v1.13.0+dependencies&color=orange)](#)
+<!-- ================================================== -->
+<!-- END AUTO-GENERATED SECTION : DO NOT MODIFY-->
 [![TinyURL](https://img.shields.io/static/v1.svg?label=TinyURL&message=traces-pipe&color=yellow)](https://tinyurl.com/traces-pipe)
 [![DOI](https://zenodo.org/badge/175676601.svg)](https://zenodo.org/badge/latestdoi/175676601)
 
@@ -196,7 +204,7 @@ See the next section for more information about the usage.
 
 <!-- BEGIN AUTO-GENERATED SECTION - TracesHelp : DO NOT MODIFY -->
 <!-- ================================================== -->
-<!-- This snippet generated on Thu Mar 19 14:01:29 EET 2026, -->
+<!-- This snippet generated on Thu Mar 19 14:22:55 EET 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
@@ -701,7 +709,7 @@ TRACES Pipeline uses a combination of the following tools:
 
 <!-- BEGIN AUTO-GENERATED SECTION - DepInfoTable : DO NOT MODIFY -->
 <!-- ================================================== -->
-<!-- This snippet generated on Thu Mar 19 14:01:29 EET 2026, -->
+<!-- This snippet generated on Thu Mar 19 14:22:55 EET 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
