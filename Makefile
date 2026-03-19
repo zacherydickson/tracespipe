@@ -23,7 +23,7 @@ $(TIMESTAMP_DIR)/%.timestamp: $(GENERATED_SCRIPT_DIR)/TRACES_%.sh $(DEPEND_YAML)
 	@$(GENERATOR_SCRIPT_DIR)/gen_$*.sh
 	@touch $@
 
-$(TIMESTAMP_DIR)/readme.timestamp: README.md $(DEPEND_YAML) $(GENERATOR_SCRIPT_DIR)/gen_readme.sh $(GENLIB) $(PIPELINE_SCRIPT) $(Version)
+$(TIMESTAMP_DIR)/readme.timestamp: README.md $(DEPEND_YAML) $(GENERATOR_SCRIPT_DIR)/gen_readme.sh $(GENLIB) $(PIPELINE_SCRIPT) $(VERSION_FILE)
 	@mkdir -p $(TIMESTAMP_DIR)
 	@echo Generating $<
 	@$(GENERATOR_SCRIPT_DIR)/gen_readme.sh
