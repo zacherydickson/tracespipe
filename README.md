@@ -692,6 +692,15 @@ The output is provided to the stdout.
 
 TRACES Pipeline uses a combination of the following tools:
 
+#BEGIN AUTO-GENERATED SECTION : DO NOT MODIFY
+#==================================================
+#This snippet generated on Thu Mar 19 11:51:01 EET 2026,
+# using src/TRACES_generator_scripts/gen_readme.sh
+# based on information in system_files/dependencies.yml
+#==================================================
+#==================================================
+#END AUTO-GENERATED SECTION : DO NOT MODIFY
+
 | Tool | URL | Article |
 | --- | --- | --- |
 | &#x1F49A;&nbsp; Cryfa | [[https://github.com/cobilab/cryfa]](https://github.com/cobilab/cryfa) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1093/bioinformatics/bty645) |
