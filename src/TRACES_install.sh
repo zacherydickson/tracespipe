@@ -37,9 +37,9 @@ if [[ "$INSTALL_PIPELINE" -eq "1" ]];
   conda config --add channels bioconda
   conda config --add channels defaults
   #
-#BEGIN AUTO-GENERATED SECTION: DO NOT MODIFY
+#BEGIN AUTO-GENERATED SECTION - InstallCmds : DO NOT MODIFY
 #==================================================
-#This code snippet generated on Thu Mar 19 11:44:08 EET 2026,
+#This code snippet generated on Thu Mar 19 12:27:42 EET 2026,
 # using src/TRACES_generator_scripts/gen_install.sh
 # based on information in system_files/dependencies.yml
 #==================================================

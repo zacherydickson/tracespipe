@@ -32,4 +32,4 @@ function GenerateSnippet {
 
 source "$ExecDir/generate_common.sh"
 
-GenerateTarget "$TargetFile"
+GenerateTarget "$TargetFile" "DepInfoTable"

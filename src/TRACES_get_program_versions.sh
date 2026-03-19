@@ -4,9 +4,9 @@
 #
 echo -e "\e[34m[TRACESPipe]\e[32m Extracting programs versions ... \e[0m";
 #
-#BEGIN AUTO-GENERATED SECTION: DO NOT MODIFY
+#BEGIN AUTO-GENERATED SECTION - VersionCmds : DO NOT MODIFY
 #==================================================
-#This code snippet generated on Thu Mar 19 11:40:46 EET 2026,
+#This code snippet generated on Thu Mar 19 12:27:42 EET 2026,
 # using src/TRACES_generator_scripts/gen_get_program_versions.sh
 # based on information in system_files/dependencies.yml
 #==================================================

@@ -11,6 +11,7 @@ export ExecDir=$(dirname "$(readlink -f $0)")
 export Stem="update"
 export DepFile=$(readlink -f "$ExecDir/../../system_files/dependencies.yml")
 export TargetFile=$(readlink -f "$ExecDir/../TRACES_${Stem}.sh")
+export SectionLabel="UpdateCmds"
 
 function GenerateCode {
     yq -r '.[].conda | .channel + " " + .package' "$DepFile" |
@@ -41,4 +42,4 @@ function GenerateSnippet {
 #   GenerateTarget (and its dependencies)
 source "$ExecDir/generate_common.sh"
 
-GenerateTarget "$TargetFile"
+GenerateTarget "$TargetFile" "$SectionLabel"

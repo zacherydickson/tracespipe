@@ -3,9 +3,9 @@
 # ==============================================================================
 # ============================ UPDATE PIPELINE TOOLS ===========================
 #
-#BEGIN AUTO-GENERATED SECTION: DO NOT MODIFY
+#BEGIN AUTO-GENERATED SECTION - UpdateCmds : DO NOT MODIFY
 #==================================================
-#This code snippet generated on Thu Mar 19 11:40:46 EET 2026,
+#This code snippet generated on Thu Mar 19 12:27:42 EET 2026,
 # using src/TRACES_generator_scripts/gen_update.sh
 # based on information in system_files/dependencies.yml
 #==================================================

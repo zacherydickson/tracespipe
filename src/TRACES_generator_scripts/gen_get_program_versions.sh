@@ -10,6 +10,7 @@ export ExecDir=$(dirname "$(readlink -f $0)")
 export Stem="get_program_versions"
 export DepFile=$(readlink -f "$ExecDir/../../system_files/dependencies.yml")
 export TargetFile=$(readlink -f "$ExecDir/../TRACES_${Stem}.sh")
+export SectionLabel="VersionCmds"
 
 function GenerateCode {
     yq -r '.[] | .name + " " + .versionCmd' system_files/dependencies.yml |
@@ -39,4 +40,4 @@ export -f GenerateSnippet;
 
 source "$ExecDir/generate_common.sh"
 
-GenerateTarget "$TargetFile"
+GenerateTarget "$TargetFile" "$SectionLabel"
