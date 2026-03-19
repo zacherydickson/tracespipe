@@ -13,7 +13,8 @@
   conda:
     channel: bioconda
     package: art
-  versionCmd: "art_illumina | awk '/Version/ { print $3 }'"
+  versionCmd: "echo 2016.06.05"
+  #versionCmd: "art_illumina | awk '/Version/ { print $3 }'"
   url: https://www.niehs.nih.gov/research/resources/software/biostatistics/art
   doi: 10.1093/bioinformatics/btr708
 
@@ -149,7 +150,8 @@
   conda:
     channel: bioconda
     package: igv
-  versionCmd: "conda list | awk '/^#/ {next} /igv/ {print $3}'"
+  versionCmd: "echo 2.19.3"
+  #versionCmd: "conda list | awk '/^#/ {next} /igv/ {print $3}'"
   url: https://software.broadinstitute.org/software/igv
   doi: 10.1038/nbt.1754
 
@@ -195,7 +197,8 @@
   conda:
     channel: bioconda
     package: sdust
-  versionCmd: "conda list | awk '/^#/ {next} /sdust/ { print $2 }'"
+  versionCmd: "echo 0.1"
+  #versionCmd: "conda list | awk '/^#/ {next} /sdust/ { print $2 }'"
   url: https://github.com/lh3/sdust
   doi: 10.1089/cmb.2006.13.1028
 

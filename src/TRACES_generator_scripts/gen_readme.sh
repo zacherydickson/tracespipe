@@ -18,12 +18,14 @@ function GenerateTable {
     echo "| Tool | TestedVersion | URL | Article |"
     echo "| --- | --- | --- | --- |";
     #Parse dependency yaml
-    yq -r '.[] | .name + " " + .url + " " + .doi + " \"" + .versionCmd + "\""' "$DepFile" |
+    yq -r '.[] | .name + " " + .url + " " + .doi + " " + .versionCmd' "$DepFile" |
         while read -r tool url doi versionCmd; do
             #Get the installed version
             version="$(eval "$versionCmd" 2> "/dev/null")"
             [ -z "$version" ] && version="NA";
             [ "$doi" != "NA" ] && doi="[$articleIcon($doiBaseURL/$doi)]";
+            #Handle underscores which are interpreted by markdown
+            tool=${tool/_/\\_}
             tool="&#x1F49A;&nbsp; $tool"
             url="[$url]($url)"
             echo "| $tool | $version | $url | $doi |"
@@ -32,7 +34,11 @@ function GenerateTable {
 }; export -f GenerateTable;
 
 function GenerateHelp {
-    :
+    echo -e " \`\`\`"
+    cd "$ExecDir/.."
+    #Call the help for TRACESPipe and strip out colour escape sequences
+    ./TRACESPipe.sh --help | sed -e 's/\[[0-9;]*m//g'
+    echo -e " \`\`\`"
 }; export -f GenerateHelp;
 
 function GenerateMetaData {

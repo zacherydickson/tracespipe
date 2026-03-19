@@ -194,323 +194,322 @@ See the next section for more information about the usage.
 ./TRACESPipe.sh -h
 ```
 
-```      
-<!--BEGIN AUTO-GENERATED SECTION - TracesHelp : DO NOT MODIFY -->
+<!-- BEGIN AUTO-GENERATED SECTION - TracesHelp : DO NOT MODIFY -->
 <!-- ================================================== -->
-<!-- This snippet generated on Thu Mar 19 13:25:18 EET 2026, -->
+<!-- This snippet generated on Thu Mar 19 14:01:29 EET 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
-<!-- ================================================== -->
-<!--END AUTO-GENERATED SECTION : DO NOT MODIFY -->
-
-
-         ████████╗ ██████╗   █████╗   ██████╗ ███████╗ ███████╗
-         ╚══██╔══╝ ██╔══██╗ ██╔══██╗ ██╔════╝ ██╔════╝ ██╔════╝
-            ██║    ██████╔╝ ███████║ ██║      █████╗   ███████╗
-            ██║    ██╔══██╗ ██╔══██║ ██║      ██╔══╝   ╚════██║
-            ██║    ██║  ██║ ██║  ██║ ╚██████╗ ███████╗ ███████║
-            ╚═╝    ╚═╝  ╚═╝ ╚═╝  ╚═╝  ╚═════╝ ╚══════╝ ╚══════╝
-
-                             P I P E L I N E
-
-          |  A hybrid pipeline for reconstruction & analysis  |
-          |  of viral and host genomes at multi-organ level.  |
-
-    Usage: ./TRACESPipe.sh [options]
-
+ ```
+                                                                       
+                                                              
+         ████████╗ ██████╗   █████╗   ██████╗ ███████╗ ███████╗        
+         ╚══██╔══╝ ██╔══██╗ ██╔══██╗ ██╔════╝ ██╔════╝ ██╔════╝        
+            ██║    ██████╔╝ ███████║ ██║      █████╗   ███████╗        
+            ██║    ██╔══██╗ ██╔══██║ ██║      ██╔══╝   ╚════██║        
+            ██║    ██║  ██║ ██║  ██║ ╚██████╗ ███████╗ ███████║        
+            ╚═╝    ╚═╝  ╚═╝ ╚═╝  ╚═╝  ╚═════╝ ╚══════╝ ╚══════╝        
+                                                                       
+                             P I P E L I N E                           
+                                                                       
+          |  A hybrid pipeline for reconstruction & analysis  | 
+          |  of viral and host genomes at multi-organ level.  | 
+                                                                
+    Usage: ./TRACESPipe.sh [options]                     
+                                                                       
  ===========            GENERAL OPTIONS              ==========
-
-    -h,     --help            Show this help message and exit,
-    -v,     --version         Show the version and some information,
-    -flog,  --flush-logs      Flush logs (delete logs),
-    -fout,  --flush-output    Flush output data (delete all output_data),
-    -t <THREADS>, --threads <THREADS> Number of threads to use,
-
+                                                                       
+    -h,     --help            Show this help message and exit,         
+    -v,     --version         Show the version and some information,   
+    -flog,  --flush-logs      Flush logs (delete logs),                
+    -fout,  --flush-output    Flush output data (delete all output_data), 
+    -t <THREADS>, --threads <THREADS> Number of threads to use,        
+                                                                       
  ===========            SETUP COMMANDS               ==========
-
-    -i,     --install         Installation of all the tools,
-    -up,    --update          Update all the tools in TRACESPipe,
-    -spv,   --show-prog-ver   Show included programs versions,
-
-    -st,    --sample          Creates human ref. VDB and sample organ,
-
+                                                                       
+    -i,     --install         Installation of all the tools,           
+    -up,    --update          Update all the tools in TRACESPipe,      
+    -spv,   --show-prog-ver   Show included programs versions,         
+                                                                       
+    -st,    --sample          Creates human ref. VDB and sample organ, 
+                                                                       
     -gmt,   --get-max-threads Get the number of maximum machine threads,
-
-    -dec,   --decrypt         Decrypt (all files in ../encrypted_data),
+                                                                       
+    -dec,   --decrypt         Decrypt (all files in ../encrypted_data), 
     -enc,   --encrypt         Encrypt (all files in ../to_encrypt_data),
-
-    -vdb,   --build-viral     Build viral database (all) [Recommended],
-    -vdbr,  --build-viral-r   Build viral database (references only),
-    -udb,   --build-unviral   Build non viral database (control),
-    -lcm,   --lcr-mask-vdb    Construct an LCR masked viral database
-                              Uses alt-vdb if specified
-
-    -afs <FASTA>, --add-fasta <FASTA>
-                              Add a FASTA sequence to the VDB.fa,
-    -aes <ID>, --add-extra-seq <ID>
-                              Add extra sequence to the VDB.fa,
-    -gx,    --get-extra-vir   Downloads/appends (VDB) extra viral seq,
-
-    -gad,   --gen-adapters    Generate FASTA file with adapters,
-    -gp,    --get-phix        Extracts PhiX genomes (Needs viral DB),
-    -gm,    --get-mito        Downloads human Mitochondrial genome,
-
-    -dwms,  --download-mito-species
-                              Downloads the complete NCBI mitogenomes
+                                                                       
+    -vdb,   --build-viral     Build viral database (all) [Recommended], 
+    -vdbr,  --build-viral-r   Build viral database (references only),  
+    -udb,   --build-unviral   Build non viral database (control),      
+    -lcm,   --lcr-mask-vdb    Construct an LCR masked viral database   
+                              Uses alt-vdb if specified                
+                                                                       
+    -afs <FASTA>, --add-fasta <FASTA>                                  
+                              Add a FASTA sequence to the VDB.fa,      
+    -aes <ID>, --add-extra-seq <ID>                                    
+                              Add extra sequence to the VDB.fa,        
+    -gx,    --get-extra-vir   Downloads/appends (VDB) extra viral seq, 
+                                                                       
+    -gad,   --gen-adapters    Generate FASTA file with adapters,       
+    -gp,    --get-phix        Extracts PhiX genomes (Needs viral DB),  
+    -gm,    --get-mito        Downloads human Mitochondrial genome,    
+                                                                       
+    -dwms,  --download-mito-species                                    
+                              Downloads the complete NCBI mitogenomes  
                               database containing the existing species,
-
-    -dwmp,  --download-mito-population
-                              Downloads two complete mitogenome databases
-                              with healthy and pathogenic sequences,
-
-    -aums,  --auth-mito-species
-                              Autheticate the mitogenome species,
-
-    -aump,  --auth-mito-population
-                              Authenticate closest population,
-
-    -cmt <ID>, --change-mito <ID>
-                              Set any Mitochondrial genome by ID,
-
-    -gy,    --get-y-chromo    Downloads human Y-chromosome,
-    -gax,   --get-all-aux     Runs -gad -gp -gm -gy,
-
-    -cbn,   --create-blast-db It creates a nucleotide blast database,
-    -ubn,   --update-blast-db It updates a nucleotide blast database,
-
+                                                                       
+    -dwmp,  --download-mito-population                                 
+                              Downloads two complete mitogenome databases 
+                              with healthy and pathogenic sequences,   
+                                                                       
+    -aums,  --auth-mito-species                                        
+                              Autheticate the mitogenome species,      
+                                                                       
+    -aump,  --auth-mito-population                                     
+                              Authenticate closest population,         
+                                                                       
+    -cmt <ID>, --change-mito <ID>                                      
+                              Set any Mitochondrial genome by ID,      
+                                                                       
+    -gy,    --get-y-chromo    Downloads human Y-chromosome,            
+    -gax,   --get-all-aux     Runs -gad -gp -gm -gy,                   
+                                                                       
+    -cbn,   --create-blast-db It creates a nucleotide blast database,  
+    -ubn,   --update-blast-db It updates a nucleotide blast database,  
+                                                                       
  ===========           ANALYSIS COMMANDS             ==========
-
-    --- Some commands can only be run with or after others.
-        At the bottom of this section is a dependency tree
-
-    -ra,    --run-analysis    Run data analysis (core),
-    -all,   --run-all         Run all the options (excluding the specific).
-    -proc,  --run-preprocess  Run adapter removal, quality trimming,
-                              length filtering, base correction,
-                              and poly-g tail removal with fastp
-
-    -sfs <FASTA>, --search-blast-db <FASTA>
-                              It blasts the nucleotide (nt) blast DB,
-    -sfrs <FASTA>, --search-blast-remote-db <FASTA>
-                              It blasts remotly thenucleotide (nt) blast
-                              database (it requires internet connection),
-
-    -gbb,   --best-of-bests   Identifies the best of bests references
-                              between multiple organs [similar reference],
-
-    -rm,    --run-meta        Run viral metagenomic identification,
+                                                                       
+    --- Some commands can only be run with or after others.            
+        At the bottom of this section is a dependency tree             
+                                                                       
+    -ra,    --run-analysis    Run data analysis (core),                      
+    -all,   --run-all         Run all the options (excluding the specific).  
+    -proc,  --run-preprocess  Run adapter removal, quality trimming,   
+                              length filtering, base correction,       
+                              and poly-g tail removal with fastp       
+                                                                       
+    -sfs <FASTA>, --search-blast-db <FASTA>                            
+                              It blasts the nucleotide (nt) blast DB,  
+    -sfrs <FASTA>, --search-blast-remote-db <FASTA>                    
+                              It blasts remotly thenucleotide (nt) blast 
+                              database (it requires internet connection), 
+                                                                       
+    -gbb,   --best-of-bests   Identifies the best of bests references  
+                              between multiple organs [similar reference], 
+                                                                       
+    -rm,    --run-meta        Run viral metagenomic identification,    
     -ro,    --run-meta-nv     Run NON-viral metagenomic identification,
-    -rpro,  --run-profiles    Run complexity and relative profiles (control),
-
-    -rpgi <ID>,  --run-gid-complexity-profile <ID>
-                              Run complexity profiles by GID,
-
-    -rava,  --run-all-v-alig  Run all viral align/sort/consensus seqs
-                              from a specific list,
-
-    -rsr <ID>, --run-specific <ID/PATTERN>
-                              Run specific reference align/consensus,
-
-    -rsx <ID>, --run-extreme <ID/PATTERN>
-                              Run specific reference align/consensus
-                              using extreme sensitivity;
-                              Retained for backwards compatibility;
-                              Now an alias for -vhs -rsr <ID/PATTERN>,
-
-    -rmt,   --run-mito        Run Mito align and consensus seq,
-    -rmtd,  --run-mito-dam    Run Mito damage only,
-
-    -rgid <ID>, --run-gid-damage <ID>
-                              Run damage pattern analysis by GID,
-
-    -rya,   --run-cy-align    Run CY align and consensus seq,
-    -ryq,   --run-cy-quant    Estimate the quantity of CY DNA,
-
-    -rda,   --run-de-novo     Run de-novo assembly,
-
-    -rhyb,  --run-hybrid      Run hybrid assembly (align/de-novo),
-    -rsd <ID>, --run-de-novo-specific <ID/PATTERN>
-                              Run specific alignments of the de-novo
-                              to the reference genome,
-
-    -cast,  --compile-aln-stats <TYPE>
-                              Combine breadth, depth, similarity,
-                              and selected mapping statistics into a
-                              report. Valid types are: viral, mtdna
-                              cy, specific, and all. Auto-enabled
-                              with any alignment command.
-    -rmhc,  --run-multiorgan-consensus
-                              Run alignments/consensus between all the
-                              reconstructed organ sequences,
-
-    -vis,   --visual-align    Run Visualization tool for alignments,
-    -covl,  --coverage-latex  Run coverage table in Latex format,
-    -covc,  --coverage-csv    Run coverage table in CSV format,
-
-    -covp <NAME>,  --coverage-profile <BED_NAME_FILE>
-                              Run coverage profile for specific BED file,
-
-    -diff,  --run-diff        Run diff -> reference and hybrid (ident/SNPs),
-
-    -sdiff <V_NAME> <ID/PATTERN>, --run-specific-diff <V_NAME> <ID/PATTERN>
-                              Run specific diff of reconstructed to a virus
-                              pattern of ID. Example: -sdiff B19 AY386330.1,
-
-    -brec,  --blast-reconstructed
-                              Run local blast over reconstructed genomes,
-
-
-    --- Dependency Tree ---
-
-    run-preprocess
-    ├───run-meta
-    │   ├───run-profiles
-    │   └───run-all-v-alig
-    │       ├───compile-aln-stats viral
-    │       ├───coverage-latex
-    │       ├───coverage-csv
-    │       └───run-diff
-    ├───run-specific
-    │   └───compile-aln-stats specific
-    ├───run-mito
-    │   └───compile-aln-stats mtdna
-    ├───run-cy-align
-    │   └───compile-aln-stats cy
-    ├───run-cy-quant
-    └───run-de-novo
-        ├───run-hybrid
-        │   ├───run-multiorgan-consensus
-        │   ├───run-diff
-        │   ├───run-specific-diff
-        │   └───blast-reconstructed
-        └───run-de-novo-specific
-    search-blast-db
-    search-blast-remote-db
-    best-of-bests
-    run-gid-complexity-profile
-    run-mito-dam
-    run-gid-damage
-    visual-align
-    coverage-profile
-
+    -rpro,  --run-profiles    Run complexity and relative profiles (control), 
+                                                                       
+    -rpgi <ID>,  --run-gid-complexity-profile <ID>                     
+                              Run complexity profiles by GID,          
+                                                                       
+    -rava,  --run-all-v-alig  Run all viral align/sort/consensus seqs  
+                              from a specific list,                    
+                                                                       
+    -rsr <ID>, --run-specific <ID/PATTERN>                             
+                              Run specific reference align/consensus,  
+                                                                       
+    -rsx <ID>, --run-extreme <ID/PATTERN>                              
+                              Run specific reference align/consensus   
+                              using extreme sensitivity;               
+                              Retained for backwards compatibility;    
+                              Now an alias for -vhs -rsr <ID/PATTERN>, 
+                                                                       
+    -rmt,   --run-mito        Run Mito align and consensus seq,        
+    -rmtd,  --run-mito-dam    Run Mito damage only,                    
+                                                                       
+    -rgid <ID>, --run-gid-damage <ID>                                  
+                              Run damage pattern analysis by GID,      
+                                                                       
+    -rya,   --run-cy-align    Run CY align and consensus seq,          
+    -ryq,   --run-cy-quant    Estimate the quantity of CY DNA,         
+                                                                       
+    -rda,   --run-de-novo     Run de-novo assembly,                    
+                                                                       
+    -rhyb,  --run-hybrid      Run hybrid assembly (align/de-novo),     
+    -rsd <ID>, --run-de-novo-specific <ID/PATTERN>                     
+                              Run specific alignments of the de-novo   
+                              to the reference genome,                 
+                                                                       
+    -cast,  --compile-aln-stats <TYPE>                                 
+                              Combine breadth, depth, similarity,      
+                              and selected mapping statistics into a   
+                              report. Valid types are: viral, mtdna    
+                              cy, specific, and all. Auto-enabled      
+                              with any alignment command.              
+    -rmhc,  --run-multiorgan-consensus                                 
+                              Run alignments/consensus between all the 
+                              reconstructed organ sequences,           
+                                                                       
+    -vis,   --visual-align    Run Visualization tool for alignments,   
+    -covl,  --coverage-latex  Run coverage table in Latex format,      
+    -covc,  --coverage-csv    Run coverage table in CSV format,        
+                                                                       
+    -covp <NAME>,  --coverage-profile <BED_NAME_FILE>                   
+                              Run coverage profile for specific BED file, 
+                                                                       
+    -diff,  --run-diff        Run diff -> reference and hybrid (ident/SNPs), 
+                                                                       
+    -sdiff <V_NAME> <ID/PATTERN>, --run-specific-diff <V_NAME> <ID/PATTERN>  
+                              Run specific diff of reconstructed to a virus  
+                              pattern of ID. Example: -sdiff B19 AY386330.1, 
+                                                                       
+    -brec,  --blast-reconstructed                                      
+                              Run local blast over reconstructed genomes, 
+                                                                             
+                                                                       
+    --- Dependency Tree ---                                            
+                                                                       
+    run-preprocess                                                     
+    ├───run-meta                                                       
+    │   ├───run-profiles                                               
+    │   └───run-all-v-alig                                             
+    │       ├───compile-aln-stats viral                                
+    │       ├───coverage-latex                                         
+    │       ├───coverage-csv                                           
+    │       └───run-diff                                               
+    ├───run-specific                                                   
+    │   └───compile-aln-stats specific                                 
+    ├───run-mito                                                       
+    │   └───compile-aln-stats mtdna                                    
+    ├───run-cy-align                                                   
+    │   └───compile-aln-stats cy                                       
+    ├───run-cy-quant                                                   
+    └───run-de-novo                                                    
+        ├───run-hybrid                                                 
+        │   ├───run-multiorgan-consensus                               
+        │   ├───run-diff                                               
+        │   ├───run-specific-diff                                      
+        │   └───blast-reconstructed                                    
+        └───run-de-novo-specific                                       
+    search-blast-db                                                    
+    search-blast-remote-db                                             
+    best-of-bests                                                      
+    run-gid-complexity-profile                                         
+    run-mito-dam                                                       
+    run-gid-damage                                                     
+    visual-align                                                       
+    coverage-profile                                                   
+                                                                       
  ===========           ANALYSIS OPTIONS              ==========
-
-    -avdb <FASTA>, --alt-viral-db <FASTA>
-                              Specify a path to fasta file containing
-                               viral sequences
+                                                                       
+    -avdb <FASTA>, --alt-viral-db <FASTA>                              
+                              Specify a path to fasta file containing  
+                               viral sequences                         
                               Sequence names must include the accession
                                as the first field, either whitespace or
-                               underscore (_) delimited (NC_ handled)
-    -vdbm <PATH>, --viral-db-metadata <PATH>
-                              Specify a path to a tab del file which
+                               underscore (_) delimited (NC_ handled)  
+    -vdbm <PATH>, --viral-db-metadata <PATH>                           
+                              Specify a path to a tab del file which   
                                has sequence GID/ACC in the first column
-                               and a Name representing a virus label
-                               in the second
+                               and a Name representing a virus label   
+                               in the second                           
                               This changes the meta-analysis behaviour:
-                               rather than using internal virus names
+                               rather than using internal virus names  
                                and inclusion criteria, the relationships
-                               defined in the provided file are used.
-                              This allows the user to define groupings
-                               of interest in the default, or user
-                               provided viral database.
-
-    -rdup,  --remove-dup      Remove duplications (e.g. PCR dup),
-    -vhs,   --very-sensitive  Aligns with very high sensitivity (slower),
-
-    -adr,   --attempt-denovo-restart
-                              TRACESPipe will attempt to run previous
-                              de-novo assemblies from their last
-                              checkpoint, useful if an external fault
-                              halted assembly
-                              Warning: If resuming initiates but later
+                               defined in the provided file are used.  
+                              This allows the user to define groupings 
+                               of interest in the default, or user     
+                               provided viral database.                
+                                                                       
+    -rdup,  --remove-dup      Remove duplications (e.g. PCR dup),      
+    -vhs,   --very-sensitive  Aligns with very high sensitivity (slower),  
+                                                                       
+    -adr,   --attempt-denovo-restart                                   
+                              TRACESPipe will attempt to run previous  
+                              de-novo assemblies from their last       
+                              checkpoint, useful if an external fault  
+                              halted assembly                          
+                              Warning: If resuming initiates but later 
                               fails, assembly will restart from scratch
     -dmef <VALUE>,  --denovo-mem-estimate-factor <VALUE>     Default:50
-                              A value multiplied by the file size of
-                              compressed raw foward reads to estimate
+                              A value multiplied by the file size of   
+                              compressed raw foward reads to estimate  
                               the spades memory usage. Controls trigger
-                              for bbnorm digital normalization.
-                              A value of 0 disables bbnorm.
+                              for bbnorm digital normalization.        
+                              A value of 0 disables bbnorm.            
     -mdm,   --max-denovo-mem                                Default:350
-                              Maximum memory in GB to allocate for
+                              Maximum memory in GB to allocate for     
                               de novo assemly. A value of 0 removes the
-                              limit and disables bbnorm.
-
-    -ulcm, --use-lcr-masked-vdb
-                              Use the pre-constructed lcr masked vdb
+                              limit and disables bbnorm.               
+                                                                       
+    -ulcm, --use-lcr-masked-vdb                                                                   
+                              Use the pre-constructed lcr masked vdb   
                               for input to FALCON; disabled unless -lcm
-                              has been run
-    -pdep <FILE>, --pattern-depletion <FILE>
-                              A path to a file containing regular
-                              expressions. Matches are filtered out
+                              has been run                             
+    -pdep <FILE>, --pattern-depletion <FILE>                           
+                              A path to a file containing regular      
+                              expressions. Matches are filtered out    
                               of FALCON input. Primary use is to filter
-                              patterns which exist in both a virus and
-                              background sequences (eq. telomeres)
-    -iss <SIZE>, --inter-sim-size <SIZE>
-                              Inter-genome similarity top size (control),
-
-    -cpwi <VALUE>, --complexity-profile-window <VALUE>
-                              Complexity profile window size,
-    -cple <VALUE>, --complexity-profile-level <VALUE>
-                              Complexity profile compression level [1;10],
-
-    -mis <VALUE>, --min-similarity <VALUE>
-                              Minimum similarity value to consider the
-                              sequence for alignment-consensus (filter),
-
-    -misl <VALUE>, --min-similarity-len <VALUE>
-                              Minimum product of similarity value and
-                              best hit sequence length for
-                              alignment-consensus (filter),
-    -misv <PATH>, --min-similarity-virus <PATH>
-                              Path to a tab sep file with tow columns
-                              containing the virus and min sim values
-                              Any values lower than --misl are ignored
-
-    -top <VALUE>, --view-top <VALUE>
-                              Display the top <VALUE> with the highest
-                              similarity (by descending order),
-    -amax <VALUE>, --max-alignments <VALUE>
-                              The maximum number of alignments to
-                              report for any one read; 0 = no limit,
-
-    -c <VALUE>,   --cache <VALUE>
-                              Cache to be used by FALCON-meta,
-    -tsv <VALUE>,   --top-size-virus <VALUE>
-                              Top size to be used by FALCON-meta when
-                              using TRACES_metagenomic_viral.sh;
-                              default:0 -> seq count in viral db
-    -ts <VALUE>,   --top-size <VALUE>
-                              Top size to be used by FALCON-meta when
-                              using TRACES_metagenomic.sh;
-                              default:0 -> seq count in  non-viral db
-
-    -cmax <MAX>,   --max-coverage <MAX_COVERAGE>
-                              Maximum depth coverage (depth normalization),
-    -clog <VALUE>, --coverage-log-scale <VALUE>
-                              Coverage profile logarithmic scale VALUE=Base,
-    -cwis <VALUE>, --coverage-window-size <VALUE>
-                              Coverage window size for low-pass filter,
-    -cdro <VALUE>, --coverage-drop <VALUE>
-                              Coverage drop size (sampling),
-    -covm <VALUE>, --coverage-min-x <VALUE>
-                              Coverage minimum value for x-axis
-
+                              patterns which exist in both a virus and 
+                              background sequences (eq. telomeres)     
+    -iss <SIZE>, --inter-sim-size <SIZE>                               
+                              Inter-genome similarity top size (control), 
+                                                                       
+    -cpwi <VALUE>, --complexity-profile-window <VALUE>                 
+                              Complexity profile window size,          
+    -cple <VALUE>, --complexity-profile-level <VALUE>                  
+                              Complexity profile compression level [1;10], 
+                                                                       
+    -mis <VALUE>, --min-similarity <VALUE>                             
+                              Minimum similarity value to consider the 
+                              sequence for alignment-consensus (filter), 
+                                                                       
+    -misl <VALUE>, --min-similarity-len <VALUE>                        
+                              Minimum product of similarity value and  
+                              best hit sequence length for             
+                              alignment-consensus (filter),            
+    -misv <PATH>, --min-similarity-virus <PATH>                        
+                              Path to a tab sep file with tow columns  
+                              containing the virus and min sim values  
+                              Any values lower than --misl are ignored 
+                                                                       
+    -top <VALUE>, --view-top <VALUE>                                   
+                              Display the top <VALUE> with the highest 
+                              similarity (by descending order),        
+    -amax <VALUE>, --max-alignments <VALUE>                            
+                              The maximum number of alignments to      
+                              report for any one read; 0 = no limit,   
+                                                                       
+    -c <VALUE>,   --cache <VALUE>                                      
+                              Cache to be used by FALCON-meta,         
+    -tsv <VALUE>,   --top-size-virus <VALUE>                           
+                              Top size to be used by FALCON-meta when  
+                              using TRACES_metagenomic_viral.sh;       
+                              default:0 -> seq count in viral db       
+    -ts <VALUE>,   --top-size <VALUE>                                  
+                              Top size to be used by FALCON-meta when  
+                              using TRACES_metagenomic.sh;             
+                              default:0 -> seq count in  non-viral db  
+                                                                       
+    -cmax <MAX>,   --max-coverage <MAX_COVERAGE>                       
+                              Maximum depth coverage (depth normalization), 
+    -clog <VALUE>, --coverage-log-scale <VALUE>                        
+                              Coverage profile logarithmic scale VALUE=Base, 
+    -cwis <VALUE>, --coverage-window-size <VALUE>                      
+                              Coverage window size for low-pass filter, 
+    -cdro <VALUE>, --coverage-drop <VALUE>                             
+                              Coverage drop size (sampling),           
+    -covm <VALUE>, --coverage-min-x <VALUE>                             
+                              Coverage minimum value for x-axis        
+                                                                       
  ===========                EXAMPLES                 ==========
-
-    Ex: ./TRACESPipe.sh --flush-output --flush-logs --run-preprocess
-    --run-mito --run-meta --remove-dup --run-de-novo --run-hybrid
-    --min-similarity 1 --run-diff --very-sensitive --best-of-bests
-    --run-multiorgan-consensus
-
-    Add the file meta_info.txt at ../meta_data/ folder. Example:
-    meta_info.txt -> 'organ:reads_forward.fa.gz:reads_reverse.fa.gz'
-    The reads must be GZIPed in the ../input_data/ folder.
-    The output results are at ../output_data/ folder.
-
-    Contact: tracespipe@gmail.com
-
-```
+                                                                       
+    Ex: ./TRACESPipe.sh --flush-output --flush-logs --run-mito --run-meta 
+    --remove-dup --run-de-novo --run-hybrid --min-similarity 1 --run-diff 
+    --very-sensitive --best-of-bests --run-multiorgan-consensus 
+                                                                       
+    Add the file meta_info.txt at ../meta_data/ folder. Example:       
+    meta_info.txt -> 'organ:reads_forward.fa.gz:reads_reverse.fa.gz'   
+    The reads must be GZIPed in the ../input_data/ folder.             
+    The output results are at ../output_data/ folder.                  
+                                                                       
+    Contact: tracespipe@gmail.com                        
+                                                                       
+ ```
+<!-- ================================================== -->
+<!-- END AUTO-GENERATED SECTION : DO NOT MODIFY -->
 
 ## 5. Examples ##
 
@@ -702,61 +701,39 @@ TRACES Pipeline uses a combination of the following tools:
 
 <!-- BEGIN AUTO-GENERATED SECTION - DepInfoTable : DO NOT MODIFY -->
 <!-- ================================================== -->
-<!-- This snippet generated on Thu Mar 19 13:25:18 EET 2026, -->
+<!-- This snippet generated on Thu Mar 19 14:01:29 EET 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
 | Tool | TestedVersion | URL | Article |
 | --- | --- | --- | --- |
-| &#x1F49A;&nbsp; AdapterRemoval | NA | [https://adapterremoval.readthedocs.io](https://adapterremoval.readthedocs.io) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1186/s13104-016-1900-2)] |
-| &#x1F49A;&nbsp; ART_illumina | NA | [https://www.niehs.nih.gov/research/resources/software/biostatistics/art](https://www.niehs.nih.gov/research/resources/software/biostatistics/art) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btr708)] |
-| &#x1F49A;&nbsp; BBNorm | NA | [https://bbmap.org](https://bbmap.org) | NA |
-| &#x1F49A;&nbsp; BFCtools | NA | [http://www.htslib.org/doc/bcftools.html](http://www.htslib.org/doc/bcftools.html) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/gigascience/giab008)] |
-| &#x1F49A;&nbsp; BEDOPS | NA | [https://bedops.readthedocs.io](https://bedops.readthedocs.io) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/bts277)] |
-| &#x1F49A;&nbsp; BEDTools | NA | [https://bedtools.readthedocs.io/en/latest](https://bedtools.readthedocs.io/en/latest) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1002/0471250953.bi1112s47)] |
-| &#x1F49A;&nbsp; BLASTn | NA | [https://blast.ncbi.nlm.nih.gov](https://blast.ncbi.nlm.nih.gov) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1089/10665270050081478)] |
-| &#x1F49A;&nbsp; Bowtie2 | NA | [http://bowtie-bio.sourceforge.net/bowtie2](http://bowtie-bio.sourceforge.net/bowtie2) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1038/nmeth.1923)] |
-| &#x1F49A;&nbsp; BWA | NA | [http://bio-bwa.sourceforge.net](http://bio-bwa.sourceforge.net) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btp324)] |
-| &#x1F49A;&nbsp; Cryfa | NA | [https://github.com/cobilab/cryfa](https://github.com/cobilab/cryfa) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/bty645)] |
-| &#x1F49A;&nbsp; dnadiff | NA | [https://mummer4.github.io](https://mummer4.github.io) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1371/journal.pcbi.1005944)] |
-| &#x1F49A;&nbsp; efetch | NA | [https://www.ncbi.nlm.nih.gov/books/NBK179288](https://www.ncbi.nlm.nih.gov/books/NBK179288) | NA |
-| &#x1F49A;&nbsp; FALCON | NA | [https://github.com/cobilab/falcon](https://github.com/cobilab/falcon) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.3390/genes9090445)] |
-| &#x1F49A;&nbsp; fastp | NA | [https://github.com/OpenGene/fastp](https://github.com/OpenGene/fastp) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1002/imt2.70078)] |
-| &#x1F49A;&nbsp; grepq | NA | [https://github.com/Rbfinch/grepq](https://github.com/Rbfinch/grepq) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.21105/joss.08048)] |
-| &#x1F49A;&nbsp; GTO | NA | [https://github.com/cobilab/gto](https://github.com/cobilab/gto) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1101/2020.01.07.882845)] |
-| &#x1F49A;&nbsp; IGV | NA | [https://software.broadinstitute.org/software/igv](https://software.broadinstitute.org/software/igv) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1038/nbt.1754)] |
-| &#x1F49A;&nbsp; iVar | NA | [https://andersen-lab.github.io/ivar](https://andersen-lab.github.io/ivar) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1186/s13059-018-1618-7)] |
-| &#x1F49A;&nbsp; MAGNET | NA | [https://github.com/cobilab/magnet](https://github.com/cobilab/magnet) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.23919/eusipco63174.2024.10715165)] |
-| &#x1F49A;&nbsp; mapDamage2 | NA | [https://ginolhac.github.io/mapDamage](https://ginolhac.github.io/mapDamage) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btt193)] |
-| &#x1F49A;&nbsp; SAMtools | NA | [https://www.htslib.org/](https://www.htslib.org/) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/gigascience/giab008)] |
-| &#x1F49A;&nbsp; Sdust | NA | [https://github.com/lh3/sdust](https://github.com/lh3/sdust) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1089/cmb.2006.13.1028)] |
-| &#x1F49A;&nbsp; SPAdes | NA | [http://cab.spbu.ru/software/meta-spades](http://cab.spbu.ru/software/meta-spades) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1089/cmb.2012.0021)] |
-| &#x1F49A;&nbsp; Tabix | NA | [http://htslib.org/doc/tabix.html](http://htslib.org/doc/tabix.html) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/gigascience/giab007)] |
-| &#x1F49A;&nbsp; Trimmomatic | NA | [http://www.usadellab.org/cms/?page=trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btu170)] |
+| &#x1F49A;&nbsp; AdapterRemoval | 2.3.4 | [https://adapterremoval.readthedocs.io](https://adapterremoval.readthedocs.io) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1186/s13104-016-1900-2)] |
+| &#x1F49A;&nbsp; ART\_illumina | 2016.06.05 | [https://www.niehs.nih.gov/research/resources/software/biostatistics/art](https://www.niehs.nih.gov/research/resources/software/biostatistics/art) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btr708)] |
+| &#x1F49A;&nbsp; BBNorm | 39.79 | [https://bbmap.org](https://bbmap.org) | NA |
+| &#x1F49A;&nbsp; BFCtools | 1.21 | [http://www.htslib.org/doc/bcftools.html](http://www.htslib.org/doc/bcftools.html) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/gigascience/giab008)] |
+| &#x1F49A;&nbsp; BEDOPS | 2.4.42 | [https://bedops.readthedocs.io](https://bedops.readthedocs.io) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/bts277)] |
+| &#x1F49A;&nbsp; BEDTools | v2.31.1 | [https://bedtools.readthedocs.io/en/latest](https://bedtools.readthedocs.io/en/latest) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1002/0471250953.bi1112s47)] |
+| &#x1F49A;&nbsp; BLASTn | 2.16.0+ | [https://blast.ncbi.nlm.nih.gov](https://blast.ncbi.nlm.nih.gov) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1089/10665270050081478)] |
+| &#x1F49A;&nbsp; Bowtie2 | 2.5.4 | [http://bowtie-bio.sourceforge.net/bowtie2](http://bowtie-bio.sourceforge.net/bowtie2) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1038/nmeth.1923)] |
+| &#x1F49A;&nbsp; BWA | 0.7.18-r1243-dirty | [http://bio-bwa.sourceforge.net](http://bio-bwa.sourceforge.net) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btp324)] |
+| &#x1F49A;&nbsp; Cryfa | v18.06 | [https://github.com/cobilab/cryfa](https://github.com/cobilab/cryfa) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/bty645)] |
+| &#x1F49A;&nbsp; dnadiff | 1.3 | [https://mummer4.github.io](https://mummer4.github.io) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1371/journal.pcbi.1005944)] |
+| &#x1F49A;&nbsp; efetch | 24.4 | [https://www.ncbi.nlm.nih.gov/books/NBK179288](https://www.ncbi.nlm.nih.gov/books/NBK179288) | NA |
+| &#x1F49A;&nbsp; FALCON | 2.3 | [https://github.com/cobilab/falcon](https://github.com/cobilab/falcon) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.3390/genes9090445)] |
+| &#x1F49A;&nbsp; fastp | 0.23.4 | [https://github.com/OpenGene/fastp](https://github.com/OpenGene/fastp) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1002/imt2.70078)] |
+| &#x1F49A;&nbsp; grepq | 1.5.4 | [https://github.com/Rbfinch/grepq](https://github.com/Rbfinch/grepq) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.21105/joss.08048)] |
+| &#x1F49A;&nbsp; GTO | v1.5.9 | [https://github.com/cobilab/gto](https://github.com/cobilab/gto) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1101/2020.01.07.882845)] |
+| &#x1F49A;&nbsp; IGV | 2.19.3 | [https://software.broadinstitute.org/software/igv](https://software.broadinstitute.org/software/igv) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1038/nbt.1754)] |
+| &#x1F49A;&nbsp; iVar | 1.4.4 | [https://andersen-lab.github.io/ivar](https://andersen-lab.github.io/ivar) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1186/s13059-018-1618-7)] |
+| &#x1F49A;&nbsp; MAGNET | 19.4 | [https://github.com/cobilab/magnet](https://github.com/cobilab/magnet) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.23919/eusipco63174.2024.10715165)] |
+| &#x1F49A;&nbsp; mapDamage2 | 2.2.3 | [https://ginolhac.github.io/mapDamage](https://ginolhac.github.io/mapDamage) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btt193)] |
+| &#x1F49A;&nbsp; SAMtools | 1.21 | [https://www.htslib.org/](https://www.htslib.org/) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/gigascience/giab008)] |
+| &#x1F49A;&nbsp; Sdust | 0.1 | [https://github.com/lh3/sdust](https://github.com/lh3/sdust) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1089/cmb.2006.13.1028)] |
+| &#x1F49A;&nbsp; SPAdes | 4.2.0 | [http://cab.spbu.ru/software/meta-spades](http://cab.spbu.ru/software/meta-spades) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1089/cmb.2012.0021)] |
+| &#x1F49A;&nbsp; Tabix | 1.21 | [http://htslib.org/doc/tabix.html](http://htslib.org/doc/tabix.html) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/gigascience/giab007)] |
+| &#x1F49A;&nbsp; Trimmomatic | 0.39 | [http://www.usadellab.org/cms/?page=trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btu170)] |
 <!-- ================================================== -->
 <!-- END AUTO-GENERATED SECTION : DO NOT MODIFY -->
-
-| Tool | URL | Article |
-| --- | --- | --- |
-| &#x1F49A;&nbsp; Cryfa | [[https://github.com/cobilab/cryfa]](https://github.com/cobilab/cryfa) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1093/bioinformatics/bty645) |
-| &#x1F49A;&nbsp; Entrez | [[https://www.ncbi.nlm.nih.gov/genome]](https://www.ncbi.nlm.nih.gov/genome) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://dx.doi.org/10.1093%2Fnar%2Fgks1189) |
-| &#x1F49A;&nbsp; GTO | [[https://github.com/cobilab/gto]](https://github.com/cobilab/gto) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1101/2020.01.07.882845) |
-| &#x1F49A;&nbsp; Trimmomatic | [[http://www.usadellab.org/cms/?page=trimmomatic]](http://www.usadellab.org/cms/?page=trimmomatic) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://academic.oup.com/bioinformatics/article/30/15/2114/2390096) |
-| &#x1F49A;&nbsp; MAGNET | [[https://github.com/cobilab/magnet]](https://github.com/cobilab/magnet) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://www.eurasip.org/Proceedings/Eusipco/Eusipco2018/papers/1570439333.pdf) |
-| &#x1F49A;&nbsp; FALCON-meta | [[https://github.com/cobilab/falcon]](https://github.com/cobilab/falcon) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://www.mdpi.com/2073-4425/9/9/445) |
-| &#x1F49A;&nbsp; Bowtie2 | [[http://bowtie-bio.sourceforge.net/bowtie2]](http://bowtie-bio.sourceforge.net/bowtie2) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)]( https://www.nature.com/articles/nmeth.1923) |
-| &#x1F49A;&nbsp; Bwa | [[http://bio-bwa.sourceforge.net/]](http://bio-bwa.sourceforge.net/) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://academic.oup.com/bioinformatics/article/26/5/589/211735) |
-| &#x1F49A;&nbsp; metaSPAdes | [[http://cab.spbu.ru/software/meta-spades/]](http://cab.spbu.ru/software/meta-spades/) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://www.liebertpub.com/doi/full/10.1089/cmb.2012.0021) | 
-| &#x1F49A;&nbsp; Samtools | [[http://samtools.sourceforge.net/]](http://samtools.sourceforge.net/) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://academic.oup.com/bioinformatics/article/25/16/2078/204688) | 
-| &#x1F49A;&nbsp; Bcftools | [[http://www.htslib.org/doc/bcftools.html]](http://www.htslib.org/doc/bcftools.html) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://academic.oup.com/bioinformatics/article/27/21/2987/217423) |
-| &#x1F49A;&nbsp; Tabix | [[http://htslib.org/doc/tabix.html]](http://htslib.org/doc/tabix.html) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://academic.oup.com/bioinformatics/article/27/5/718/262743) |
-| &#x1F49A;&nbsp; BEDtools | [[https://bedtools.readthedocs.io/en/latest/]](https://bedtools.readthedocs.io/en/latest/) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://currentprotocols.onlinelibrary.wiley.com/doi/abs/10.1002/0471250953.bi1112s47) |
-| &#x1F49A;&nbsp; IGV | [[https://software.broadinstitute.org/software/igv/]](https://software.broadinstitute.org/software/igv/) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://www.nature.com/articles/nbt.1754) |
-| &#x1F49A;&nbsp; mapDamage2 | [[https://ginolhac.github.io/mapDamage/]](https://ginolhac.github.io/mapDamage/) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://academic.oup.com/bioinformatics/article/29/13/1682/184965) |
-| &#x1F49A;&nbsp; Blastn | [[https://blast.ncbi.nlm.nih.gov/]](https://blast.ncbi.nlm.nih.gov) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://www.liebertpub.com/doi/abs/10.1089/10665270050081478) |
-| &#x1F49A;&nbsp; mummer4 | [[https://mummer4.github.io/]](https://mummer4.github.io/) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005944) |
-| &#x1F49A;&nbsp; ivar | [[https://andersen-lab.github.io/ivar]](https://andersen-lab.github.io/ivar) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1618-7) |
-
 
 ## 7. Citation ##
 
