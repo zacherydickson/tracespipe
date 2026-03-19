@@ -14,23 +14,22 @@ export VersionFile=$(readlink -f "$ExecDir/../../Version.txt")
 
 
 function GenerateTable {
-    articleIcon="![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)"
+    articleIcon="[![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)]"
     doiBaseURL="https://doi.org"
     #Table Header
-    echo "| Tool | TestedVersion | URL | Article |"
-    echo "| --- | --- | --- | --- |";
+    echo "| Tool | TestedVersion | Article |"
+    echo "| --- | --- | --- |";
     #Parse dependency yaml
     yq -r '.[] | .name + " " + .url + " " + .doi + " " + .versionCmd' "$DepFile" |
         while read -r tool url doi versionCmd; do
             #Get the installed version
             version="$(eval "$versionCmd" 2> "/dev/null")"
             [ -z "$version" ] && version="NA";
-            [ "$doi" != "NA" ] && doi="[$articleIcon($doiBaseURL/$doi)]";
+            [ "$doi" != "NA" ] && doi="$articleIcon($doiBaseURL/$doi)";
             #Handle underscores which are interpreted by markdown
             tool=${tool/_/\\_}
-            tool="&#x1F49A;&nbsp; $tool"
-            url="[$url]($url)"
-            echo "| $tool | $version | $url | $doi |"
+            tool="&#x1F49A;&nbsp; [$tool]($url)"
+            echo "| $tool | $version | $doi |"
         done
 
 }; export -f GenerateTable;

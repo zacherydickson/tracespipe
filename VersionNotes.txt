@@ -123,3 +123,5 @@ Version 1.14
             - generator script for install, version, update
             - generator for README, to prevent drift
             - Makefile for running generator scripts
+Version 1.14.1
+	Update to format of Dependency table in README

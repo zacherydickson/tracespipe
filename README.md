@@ -5,7 +5,7 @@
 [![Speed](https://img.shields.io/static/v1.svg?label=Speed&message=Ultra-fast&color=green)](#)
 <!-- BEGIN AUTO-GENERATED SECTION - VersionShield : DO NOT MODIFY-->
 <!-- ================================================== -->
-<!-- This snippet generated on Thu Mar 19 14:27:23 EET 2026, -->
+<!-- This snippet generated on Thu Mar 19 14:32:52 EET 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
@@ -204,7 +204,7 @@ See the next section for more information about the usage.
 
 <!-- BEGIN AUTO-GENERATED SECTION - TracesHelp : DO NOT MODIFY -->
 <!-- ================================================== -->
-<!-- This snippet generated on Thu Mar 19 14:27:23 EET 2026, -->
+<!-- This snippet generated on Thu Mar 19 14:32:52 EET 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
@@ -709,37 +709,37 @@ TRACES Pipeline uses a combination of the following tools:
 
 <!-- BEGIN AUTO-GENERATED SECTION - DepInfoTable : DO NOT MODIFY -->
 <!-- ================================================== -->
-<!-- This snippet generated on Thu Mar 19 14:27:23 EET 2026, -->
+<!-- This snippet generated on Thu Mar 19 14:32:52 EET 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
-| Tool | TestedVersion | URL | Article |
-| --- | --- | --- | --- |
-| &#x1F49A;&nbsp; AdapterRemoval | 2.3.4 | [https://adapterremoval.readthedocs.io](https://adapterremoval.readthedocs.io) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1186/s13104-016-1900-2)] |
-| &#x1F49A;&nbsp; ART\_illumina | 2016.06.05 | [https://www.niehs.nih.gov/research/resources/software/biostatistics/art](https://www.niehs.nih.gov/research/resources/software/biostatistics/art) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btr708)] |
-| &#x1F49A;&nbsp; BBNorm | 39.79 | [https://bbmap.org](https://bbmap.org) | NA |
-| &#x1F49A;&nbsp; BFCtools | 1.21 | [http://www.htslib.org/doc/bcftools.html](http://www.htslib.org/doc/bcftools.html) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/gigascience/giab008)] |
-| &#x1F49A;&nbsp; BEDOPS | 2.4.42 | [https://bedops.readthedocs.io](https://bedops.readthedocs.io) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/bts277)] |
-| &#x1F49A;&nbsp; BEDTools | v2.31.1 | [https://bedtools.readthedocs.io/en/latest](https://bedtools.readthedocs.io/en/latest) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1002/0471250953.bi1112s47)] |
-| &#x1F49A;&nbsp; BLASTn | 2.16.0+ | [https://blast.ncbi.nlm.nih.gov](https://blast.ncbi.nlm.nih.gov) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1089/10665270050081478)] |
-| &#x1F49A;&nbsp; Bowtie2 | 2.5.4 | [http://bowtie-bio.sourceforge.net/bowtie2](http://bowtie-bio.sourceforge.net/bowtie2) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1038/nmeth.1923)] |
-| &#x1F49A;&nbsp; BWA | 0.7.18-r1243-dirty | [http://bio-bwa.sourceforge.net](http://bio-bwa.sourceforge.net) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btp324)] |
-| &#x1F49A;&nbsp; Cryfa | v18.06 | [https://github.com/cobilab/cryfa](https://github.com/cobilab/cryfa) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/bty645)] |
-| &#x1F49A;&nbsp; dnadiff | 1.3 | [https://mummer4.github.io](https://mummer4.github.io) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1371/journal.pcbi.1005944)] |
-| &#x1F49A;&nbsp; efetch | 24.4 | [https://www.ncbi.nlm.nih.gov/books/NBK179288](https://www.ncbi.nlm.nih.gov/books/NBK179288) | NA |
-| &#x1F49A;&nbsp; FALCON | 2.3 | [https://github.com/cobilab/falcon](https://github.com/cobilab/falcon) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.3390/genes9090445)] |
-| &#x1F49A;&nbsp; fastp | 0.23.4 | [https://github.com/OpenGene/fastp](https://github.com/OpenGene/fastp) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1002/imt2.70078)] |
-| &#x1F49A;&nbsp; grepq | 1.5.4 | [https://github.com/Rbfinch/grepq](https://github.com/Rbfinch/grepq) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.21105/joss.08048)] |
-| &#x1F49A;&nbsp; GTO | v1.5.9 | [https://github.com/cobilab/gto](https://github.com/cobilab/gto) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1101/2020.01.07.882845)] |
-| &#x1F49A;&nbsp; IGV | 2.19.3 | [https://software.broadinstitute.org/software/igv](https://software.broadinstitute.org/software/igv) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1038/nbt.1754)] |
-| &#x1F49A;&nbsp; iVar | 1.4.4 | [https://andersen-lab.github.io/ivar](https://andersen-lab.github.io/ivar) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1186/s13059-018-1618-7)] |
-| &#x1F49A;&nbsp; MAGNET | 19.4 | [https://github.com/cobilab/magnet](https://github.com/cobilab/magnet) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.23919/eusipco63174.2024.10715165)] |
-| &#x1F49A;&nbsp; mapDamage2 | 2.2.3 | [https://ginolhac.github.io/mapDamage](https://ginolhac.github.io/mapDamage) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btt193)] |
-| &#x1F49A;&nbsp; SAMtools | 1.21 | [https://www.htslib.org/](https://www.htslib.org/) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/gigascience/giab008)] |
-| &#x1F49A;&nbsp; Sdust | 0.1 | [https://github.com/lh3/sdust](https://github.com/lh3/sdust) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1089/cmb.2006.13.1028)] |
-| &#x1F49A;&nbsp; SPAdes | 4.2.0 | [http://cab.spbu.ru/software/meta-spades](http://cab.spbu.ru/software/meta-spades) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1089/cmb.2012.0021)] |
-| &#x1F49A;&nbsp; Tabix | 1.21 | [http://htslib.org/doc/tabix.html](http://htslib.org/doc/tabix.html) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/gigascience/giab007)] |
-| &#x1F49A;&nbsp; Trimmomatic | 0.39 | [http://www.usadellab.org/cms/?page=trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btu170)] |
+| Tool | TestedVersion | Article |
+| --- | --- | --- |
+| &#x1F49A;&nbsp; [AdapterRemoval](https://adapterremoval.readthedocs.io) | 2.3.4 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1186/s13104-016-1900-2) |
+| &#x1F49A;&nbsp; [ART\_illumina](https://www.niehs.nih.gov/research/resources/software/biostatistics/art) | 2016.06.05 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1093/bioinformatics/btr708) |
+| &#x1F49A;&nbsp; [BBNorm](https://bbmap.org) | 39.79 | NA |
+| &#x1F49A;&nbsp; [BFCtools](http://www.htslib.org/doc/bcftools.html) | 1.21 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1093/gigascience/giab008) |
+| &#x1F49A;&nbsp; [BEDOPS](https://bedops.readthedocs.io) | 2.4.42 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1093/bioinformatics/bts277) |
+| &#x1F49A;&nbsp; [BEDTools](https://bedtools.readthedocs.io/en/latest) | v2.31.1 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1002/0471250953.bi1112s47) |
+| &#x1F49A;&nbsp; [BLASTn](https://blast.ncbi.nlm.nih.gov) | 2.16.0+ | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1089/10665270050081478) |
+| &#x1F49A;&nbsp; [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2) | 2.5.4 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1038/nmeth.1923) |
+| &#x1F49A;&nbsp; [BWA](http://bio-bwa.sourceforge.net) | 0.7.18-r1243-dirty | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1093/bioinformatics/btp324) |
+| &#x1F49A;&nbsp; [Cryfa](https://github.com/cobilab/cryfa) | v18.06 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1093/bioinformatics/bty645) |
+| &#x1F49A;&nbsp; [dnadiff](https://mummer4.github.io) | 1.3 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1371/journal.pcbi.1005944) |
+| &#x1F49A;&nbsp; [efetch](https://www.ncbi.nlm.nih.gov/books/NBK179288) | 24.4 | NA |
+| &#x1F49A;&nbsp; [FALCON](https://github.com/cobilab/falcon) | 2.3 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.3390/genes9090445) |
+| &#x1F49A;&nbsp; [fastp](https://github.com/OpenGene/fastp) | 0.23.4 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1002/imt2.70078) |
+| &#x1F49A;&nbsp; [grepq](https://github.com/Rbfinch/grepq) | 1.5.4 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.21105/joss.08048) |
+| &#x1F49A;&nbsp; [GTO](https://github.com/cobilab/gto) | v1.5.9 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1101/2020.01.07.882845) |
+| &#x1F49A;&nbsp; [IGV](https://software.broadinstitute.org/software/igv) | 2.19.3 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1038/nbt.1754) |
+| &#x1F49A;&nbsp; [iVar](https://andersen-lab.github.io/ivar) | 1.4.4 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1186/s13059-018-1618-7) |
+| &#x1F49A;&nbsp; [MAGNET](https://github.com/cobilab/magnet) | 19.4 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.23919/eusipco63174.2024.10715165) |
+| &#x1F49A;&nbsp; [mapDamage2](https://ginolhac.github.io/mapDamage) | 2.2.3 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1093/bioinformatics/btt193) |
+| &#x1F49A;&nbsp; [SAMtools](https://www.htslib.org/) | 1.21 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1093/gigascience/giab008) |
+| &#x1F49A;&nbsp; [Sdust](https://github.com/lh3/sdust) | 0.1 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1089/cmb.2006.13.1028) |
+| &#x1F49A;&nbsp; [SPAdes](http://cab.spbu.ru/software/meta-spades) | 4.2.0 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1089/cmb.2012.0021) |
+| &#x1F49A;&nbsp; [Tabix](http://htslib.org/doc/tabix.html) | 1.21 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1093/gigascience/giab007) |
+| &#x1F49A;&nbsp; [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) | 0.39 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1093/bioinformatics/btu170) |
 <!-- ================================================== -->
 <!-- END AUTO-GENERATED SECTION : DO NOT MODIFY -->
 
