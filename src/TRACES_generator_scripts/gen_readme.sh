@@ -11,9 +11,13 @@ export Stem="readme"
 export DepFile=$(readlink -f "$ExecDir/../../system_files/dependencies.yml")
 export TargetFile=$(readlink -f "$ExecDir/../../README.md")
 
-function GenerateCode {
-    :
-}; export -f GenerateCode;
+function GenerateTable {
+    :#TODO
+}; export -f GenerateTable;
+
+function GenerateHelp {
+    :#TODO
+}; export -f GenerateHelp;
 
 function GenerateMetaData {
     local depDir=$(basename "$(dirname "$DepFile")")
@@ -23,13 +27,21 @@ function GenerateMetaData {
     echo "#=================================================="
 }; export -f GenerateMetaData;
 
-function GenerateSnippet {
+function GenerateTableSnippet {
     echo "#=================================================="
     GenerateMetaData
-    GenerateCode
+    GenerateTable
     echo "#=================================================="
-}; export -f GenerateSnippet;
+}; export -f GenerateTableSnippet;
+
+function GenerateHelpSnippet {
+    echo "#=================================================="
+    GenerateMetaData
+    GenerateHelp
+    echo "#=================================================="
+}; export -f GenerateHelpSnippet;
 
 source "$ExecDir/generate_common.sh"
 
-GenerateTarget "$TargetFile" "DepInfoTable" GenerateSnippet
+GenerateTarget "$TargetFile" "TracesHelp" GenerateHelpSnippet
+GenerateTarget "$TargetFile" "DepInfoTable" GenerateTableSnippet

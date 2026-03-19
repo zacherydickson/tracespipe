@@ -196,6 +196,12 @@ See the next section for more information about the usage.
 
 ```      
 #BEGIN AUTO-GENERATED SECTION - TracesHelp : DO NOT MODIFY
+#==================================================
+#This snippet generated on Thu Mar 19 12:47:49 EET 2026,
+# using src/TRACES_generator_scripts/gen_readme.sh
+# based on information in system_files/dependencies.yml
+#==================================================
+#==================================================
 #END AUTO-GENERATED SECTION : DO NOT MODIFY
 
 
@@ -696,7 +702,7 @@ TRACES Pipeline uses a combination of the following tools:
 
 #BEGIN AUTO-GENERATED SECTION - DepInfoTable : DO NOT MODIFY
 #==================================================
-#This snippet generated on Thu Mar 19 12:42:11 EET 2026,
+#This snippet generated on Thu Mar 19 12:47:49 EET 2026,
 # using src/TRACES_generator_scripts/gen_readme.sh
 # based on information in system_files/dependencies.yml
 #==================================================
