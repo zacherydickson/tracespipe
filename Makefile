@@ -13,7 +13,7 @@ TIMESTAMP_DIR = .build
 TIMESTAMPS = $(addprefix $(TIMESTAMP_DIR)/, $(addsuffix .timestamp, $(SCRIPT_STEMS) readme))
 
 PIPELINE_HELP_SCRIPT = src/TRACES_help.sh
-VERSION_FILE = Version.txt
+VERSION_FILE = VersionNotes.txt
 
 all: $(TIMESTAMPS)
 
