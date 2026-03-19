@@ -13,3 +13,119 @@ Version 1.2.1
         Bug Fix - Run Extreme when specified alone now performs alignments
 Version 1.3.0
         Added Minimum Similarity Length threshold	
+Version 1.3.1
+	Calling --install can no longer be thwarted by dependencies not being installed
+Version 1.4.0
+        Major changes to Alignments
+            Output bam files now only contain entries for molecules which had at least one mapped read
+            Deduplication now removes supplementary and secondary alignments for duplicates
+            New Statistics report to show the composition of the QC'd library made up by a reference
+                and the duplication rate
+            Refactoring code to reduce redundancy
+Version 1.4.1
+	Minor code reorganization for maintainability
+Version 1.4.2
+	Removed un-necessary copy of input data step
+Version 1.4.3
+	Added cleanup for trimmed copies of input data
+Version 1.4.4
+	Minor code maintainability changes
+Version 1.4.5
+	Removed unnecessary copy step
+Version 1.5.0
+        Major Changes to Read Preprocessing
+            Switch to FastP as the preprocessor
+            PolyG tail removal is now a default part of the pipeline
+            Preprocessed Reads are now retained in an output directory TRACES_preprocessed_reads
+Version 1.5.1
+	Updates to help for clarity
+Version 1.5.2
+	Fix Bug where specific alignments were not moved correctly
+Version 1.6.0
+	Added compilation of alignment stats into a report which can be run after the fact if required --compile-aln-stats
+Version 1.6.1
+	Fixed Bug where TRACES_compile_stats.sh all did nothing
+Version 1.6.2
+	Fixed bug where mito and cy stats compiling missed some files
+Version 1.6.3
+	Bug fix for calculating depths on specific alignments
+Version 1.6.4
+	Fixed bug leading to extraneous error message
+Version 1.6.5
+	Disabled error correction for spades, to save on time and memory usage
+Version 1.6.6
+	Refactor for coding standards and brevity
+Version 1.7.0
+        Refactor of get best scripts to allow running run-all-v-alig without meta if meta was run previously
+Version 1.7.1
+        Cleanup and storage of vcf index files after consensus calling
+Version 1.8.0
+        New option to specify the maximum number of alignments to report for any read
+         The goal is to reduce file size and memory consumption for viruses with high abundance repeats
+         Specifically HHV-7 and its telomeric repeats
+        Default value set to 10 alignments
+Version 1.9.0
+        New flag, --attempt-resume-denovo, which signals that a partial denovo assembly run may be present
+         TRACESPipe will have meta-spades attempt to resume from a checkpoint, and if this fails
+         meta-spades will restart from scratch
+Version 1.9.1
+	Fixed Bug where top files in the results were checked before being made present
+Version 1.10.0
+	New Analysis Option min-sim-viral allows user to provide a tab delim file with virus specific minimum similarity thresholds
+Version 1.10.1
+	Included FastP in TRACESPipe Update
+Version 1.11.0
+        New analysis option --pattern-depletion which takes a list file of regular expressions.
+         Reads matching any of these patterns are depleted from the input of FALCON
+         this can help prevent similarity due to viral similarity to background sequences
+Version 1.11.1
+	Bug Fix - Misalignment of REPORT_META_ALL_SAMPLES due to added ref length in other meta reports
+Version 1.11.2
+	Added Check and logging for existence of input files before checking if they are gzipped
+Version 1.11.3
+        Improved Cleanup of temporary files in the src folder
+	Fixed bug (due to typo) which prevented hybrid consensus sequences from being generated
+	Fixed bug during run-diff relating to testing floating point inequalities
+        Fixed bug in selecting best hybrid leading to only the lengths of the hybrids from the first virus tested being compared
+        Fixed bug where run-hybrid without run-meta would fail even if run-meta had been run in a previous call
+        Fixed bug in run-hybrid where alignment based consensus was copied with an unexpected file name leading to failure
+        Fixed bug in run-diff  mitochondrial sequences were copied with unexpected file name leading to failure
+        Fixed bug where R2 reference was copied with an unexpected file name leading to a failure
+        Fixed bug where R4_hybrid was passed unexpected file name leading to a failure
+Version 1.11.4
+	Expanded Memory Limit for Spades to 350 GB
+Version 1.12.0
+	String Deduplication with fastp controlled with --remove-dup
+        Added <LABEL>.duprate.txt summaries in the output_data/TRACES_preprocessed_reads directory 
+        Changes to Compiled Stats Report
+            Added "StringDupRate" Column
+            Added "EstOverallDupRate" Column
+            Changed "DuplicationRate" column header to "MappedDupRate"
+            No longer reports viruses which were not found
+        Fixed Bug where TRACES_preprocess.sh could be called with too few arguments
+Version 1.12.1
+        Fixed bug where a failure in bowtie alignment or unmapped filtering would not be caught
+Version 1.12.2
+	Fixed a bug where skipping an argument for an option would create an infinite loop rather than an error message
+Version 1.12.3
+	Added an Error message in the stderr output for when denovo assembly fails
+Version 1.13.0
+        Added digital normalization with bbnorm as a step during denovo assembly
+        Added command line options for controlling:
+            - the maximum memory during de novo alignment (--max-denovo-mem,-mdm)
+            - the memory estimate (--denovo-mem-estimate-factor,-dmef)
+        If bbnorm is not installed, and would be triggered, denovo will proceed with a warning
+        Added Setup command to create a version of the viral database which has hardmasked the low complexity regions in the viral database
+        Added an analysis option to use the hardmasked viral database with FALCON, in effect this should filter out several false positive results
+Version 1.14
+        Overhaul to handling of dependencies
+            - centralized system_files/dependencies.yaml
+            - generator script for install, version, update
+            - generator for README, to prevent drift
+            - Makefile for running generator scripts
+Version 1.14.1
+	Update to format of Dependency table in README
+Version 1.14.2
+	Split TRACES_help.sh out to prevent unnecessary README regenerations
+Version 1.14.3
+	Checking for existence of dependencies spun out and auto-generated

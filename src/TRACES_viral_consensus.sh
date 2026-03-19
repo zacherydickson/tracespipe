@@ -52,6 +52,6 @@ cat $Label-$Organ-TMP_FILE.xki >> $Label-consensus-$Organ.fa
 rm -f $Label-$Organ-TMP_FILE.xki;
 #
 #
-rm -f "$rawCalls" "$rawCalls.csi" $Label-$Organ-calls.norm.bcf $Label-$Organ-calls.norm.vcf.gz $Label-$Organ-calls.norm.flt-indels.bcf $Label-$Organ-calls.norm.flt-indels.vcf.gz "$finalVCL.csi";
+rm -f "$rawCalls" "$rawCalls.csi" "$rawCalls.tbi" $Label-$Organ-calls.norm.bcf $Label-$Organ-calls.norm.vcf.gz $Label-$Organ-calls.norm.flt-indels.bcf $Label-$Organ-calls.norm.flt-indels.vcf.gz "$finalVCL.csi" "$finalVCL.tbi";
 #
 #

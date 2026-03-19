@@ -48,7 +48,7 @@ case $REFTYPE in
         AlnBamPrefix="viral" 
         ;;
     specific)
-        AlnBamPrefix="viral" 
+        AlnBamPrefix="specific" 
         ;;
     cy)
         AlnBamSuffix=""

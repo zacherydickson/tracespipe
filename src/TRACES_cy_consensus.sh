@@ -44,6 +44,6 @@ cat CY_TMP_FILE_$Organ.xki >> cy-consensus-$Organ.fa
 rm -f CY_TMP_FILE_$Organ.xki;
 #
 #
-rm -f "$rawCalls" "$rawCalls.csi" calls-cy-$Organ.norm.bcf calls-cy-$Organ.norm.flt-indels.bcf calls-cy-$Organ.norm.flt-indels.vcf.gz calls-cy-$Organ.norm.vcf.gz "$finalVCF" ${finalVCF/.vcf.gz/.bcf}; "$finalVCF.tbi"
+rm -f "$rawCalls" "$rawCalls.csi" calls-cy-$Organ.norm.bcf calls-cy-$Organ.norm.flt-indels.bcf calls-cy-$Organ.norm.flt-indels.vcf.gz calls-cy-$Organ.norm.vcf.gz "$finalVCF" ${finalVCF/.vcf.gz/.bcf} "$finalVCF.tbi";
 #
 #

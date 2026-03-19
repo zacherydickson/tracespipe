@@ -1,0 +1,231 @@
+--- # Dependencies
+- name: AdapterRemoval
+  call: AdapterRemoval
+  conda:
+    channel: bioconda
+    package: adapterremoval
+  versionCmd: "AdapterRemoval --version 2>&1 | awk '{ print $3 }'"
+  url: https://adapterremoval.readthedocs.io
+  doi: 10.1186/s13104-016-1900-2
+
+- name: ART_illumina
+  call: art_illumina
+  conda:
+    channel: bioconda
+    package: art
+  versionCmd: "echo 2016.06.05"
+  #versionCmd: "art_illumina | awk '/Version/ { print $3 }'"
+  url: https://www.niehs.nih.gov/research/resources/software/biostatistics/art
+  doi: 10.1093/bioinformatics/btr708
+
+- name: BBNorm
+  call: bbnorm.sh
+  conda:
+    channel: bioconda
+    package: bbmap
+  versionCmd: "bbnorm.sh --version 2>&1 | awk '/BBTools version/ { print $3 }'"
+  url: https://bbmap.org
+  doi: NA
+
+
+- name: BFCtools
+  call: bcftools
+  conda:
+    channel: bioconda
+    package: "bcftools>=1.21"
+  versionCmd: "bcftools --version | awk '(FNR == 1) { print $2 }'"
+  url: http://www.htslib.org/doc/bcftools.html
+  doi: 10.1093/gigascience/giab008
+
+- name: BEDOPS 
+  call: bedops
+  conda:
+    channel: bioconda
+    package: bedops
+  versionCmd: "bedops --version | grep version | awk '{ print $2 }'"
+  url: https://bedops.readthedocs.io
+  doi: 10.1093/bioinformatics/bts277
+
+- name: BEDTools
+  call: bedtools
+  conda:
+    channel: bioconda
+    package: "bedtools>=2.31.1"
+  versionCmd: "bedtools --version | awk '{ print $2 }'"
+  url: https://bedtools.readthedocs.io/en/latest
+  doi: 10.1002/0471250953.bi1112s47
+
+- name: BLASTn
+  call: blastn
+  conda:
+    channel: bioconda
+    package: blast
+  versionCmd: "blastn -version | awk '(FNR == 1) { print $2 }'"
+  url: https://blast.ncbi.nlm.nih.gov
+  doi: 10.1089/10665270050081478
+
+- name: Bowtie2
+  call: bowtie2
+  conda:
+    channel: bioconda
+    package: bowtie2
+  versionCmd: "bowtie2 --version | awk '(FNR==1) { print $3 }'"
+  url: http://bowtie-bio.sourceforge.net/bowtie2
+  doi: 10.1038/nmeth.1923
+
+- name: BWA
+  call: bwa
+  conda:
+    channel: bioconda
+    package: bwa
+  versionCmd: "bwa 2>&1 | awk '/Version/ { print $2 }'"
+  url: http://bio-bwa.sourceforge.net
+  doi: 10.1093/bioinformatics/btp324 
+
+- name: Cryfa
+  call: cryfa
+  conda:
+    channel: seyedmorteza
+    package: cryfa
+  versionCmd: "cryfa 2>&1 | awk '/Cryfa v/ { print $2 }'"
+  url: https://github.com/cobilab/cryfa
+  doi: 10.1093/bioinformatics/bty645
+
+- name: dnadiff
+  call: dnadiff
+  conda:
+    channel: bioconda
+    package: mummer4
+  versionCmd: "dnadiff --version 2>&1 | awk '/version/ { print $3 }'"
+  url: https://mummer4.github.io
+  doi: 10.1371/journal.pcbi.1005944
+
+- name: efetch
+  call: efetch
+  conda:
+    channel: bioconda
+    package: entrez-direct
+  versionCmd: "efetch -version"
+  url: https://www.ncbi.nlm.nih.gov/books/NBK179288
+  doi: NA
+
+- name: FALCON
+  call: FALCON
+  conda:
+    channel: cobilab
+    package: falcon
+  versionCmd: "FALCON -V 2>&1 | awk '/VERSION/ { print $2 }'"
+  url: https://github.com/cobilab/falcon
+  doi: 10.3390/genes9090445 
+
+- name: fastp
+  call: fastp
+  conda:
+    channel: bioconda
+    package: fastp
+  versionCmd: "fastp --version 2>&1 | awk '{ print $2 }'"
+  url: https://github.com/OpenGene/fastp
+  doi: 10.1002/imt2.70078
+
+- name: grepq
+  call: grepq
+  conda:
+    channel: bioconda
+    package: grepq
+  versionCmd: "grepq --version | awk '{ print $2 }'"
+  url: https://github.com/Rbfinch/grepq
+  doi: 10.21105/joss.08048
+
+- name: GTO 
+  call: gto
+  conda:
+    channel: cobilab
+    package: gto
+  versionCmd: "gto 2>&1 | awk '/GTO v/ { print substr($2,1,length($2)-1) }'"
+  url: https://github.com/cobilab/gto
+  doi: 10.1101/2020.01.07.882845
+
+- name: IGV 
+  call: igv
+  conda:
+    channel: bioconda
+    package: igv
+  versionCmd: "echo 2.19.3"
+  #versionCmd: "conda list | awk '/^#/ {next} /igv/ {print $3}'"
+  url: https://software.broadinstitute.org/software/igv
+  doi: 10.1038/nbt.1754
+
+- name: iVar
+  call: ivar
+  conda:
+    channel: bioconda
+    package: ivar
+  versionCmd: "ivar version | awk '(FNR == 1) { print $3 }'"
+  url: https://andersen-lab.github.io/ivar
+  doi: 10.1186/s13059-018-1618-7
+
+- name: MAGNET
+  call: MAGNET
+  conda:
+    channel: cobilab
+    package: magnet
+  versionCmd: "MAGNET --version 2>&1 | awk '/MAGNET/ { print $3 }'"
+  url: https://github.com/cobilab/magnet
+  doi: 10.23919/eusipco63174.2024.10715165
+
+- name: mapDamage2
+  call: mapDamage
+  conda: 
+    channel: bioconda
+    package: mapdamage2
+  versionCmd: "mapDamage --version"
+  url: https://ginolhac.github.io/mapDamage
+  doi: 10.1093/bioinformatics/btt193
+
+
+- name: SAMtools
+  call: samtools
+  conda:
+    channel: bioconda
+    package: "samtools>=1.21"
+  versionCmd: "samtools --version | awk '(FNR == 1) { print $2 }'"
+  url: https://www.htslib.org/
+  doi: 10.1093/gigascience/giab008
+
+- name: Sdust
+  call: sdust
+  conda:
+    channel: bioconda
+    package: sdust
+  versionCmd: "echo 0.1"
+  #versionCmd: "conda list | awk '/^#/ {next} /sdust/ { print $2 }'"
+  url: https://github.com/lh3/sdust
+  doi: 10.1089/cmb.2006.13.1028
+
+- name: SPAdes
+  call: spades.py
+  conda:
+    channel: bioconda
+    package: spades
+  versionCmd: "spades.py --version | awk '{ print substr($4,2) }'"
+  url: http://cab.spbu.ru/software/meta-spades
+  doi: 10.1089/cmb.2012.0021
+
+- name: Tabix
+  call: tabix
+  conda:
+    channel: bioconda
+    package: tabix
+  versionCmd: "2>&1 tabix | awk '/Version:/ { print $2 }'"
+  url: http://htslib.org/doc/tabix.html
+  doi: 10.1093/gigascience/giab007
+
+- name: Trimmomatic
+  call: trimmomatic
+  conda:
+    channel: bioconda
+    package: trimmomatic
+  versionCmd: "trimmomatic -version"
+  url: http://www.usadellab.org/cms/?page=trimmomatic
+  doi: 10.1093/bioinformatics/btu170
+

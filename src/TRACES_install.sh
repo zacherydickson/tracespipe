@@ -37,53 +37,65 @@ if [[ "$INSTALL_PIPELINE" -eq "1" ]];
   conda config --add channels bioconda
   conda config --add channels defaults
   #
-  conda install -c bioconda trimmomatic --yes
-  conda install -c seyedmorteza cryfa --yes
-  conda install -c cobilab magnet --yes
-  conda install -c cobilab falcon --yes
-  conda install -c cobilab gto --yes
-  conda install -c bioconda spades --yes
-  conda install -c bioconda igv --yes
-  conda install -c bioconda bowtie2 --yes
-  conda install -c bioconda samtools=1.21 --yes
-  conda install -c bioconda bcftools=1.21 --yes
-  conda install -c bioconda bedops --yes
-  conda install -c bioconda bedtools=2.31.1 --yes
-  conda install -c bioconda fastq-pair --yes
-  conda install -c bioconda entrez-direct --yes
-  conda install -c bioconda/label/cf201901 entrez-direct --yes
-  conda install -c bioconda mapdamage2 --yes
- # conda install -c bioconda mapdamage2=2.1.1=pyr36_1
-  conda install -c bioconda tabix --yes
-  conda install -c bioconda adapterremoval --yes
-  conda install -c bioconda bwa --yes
-  conda install -c bioconda art --yes
-  conda install -c bioconda blast --yes
-  conda install -c bioconda mummer4 --yes
-#  conda install -c bioconda ivar --yes
-  #
-  Program_installed "trimmomatic";
-  Program_installed "cryfa";
-  Program_installed "MAGNET";
-  Program_installed "FALCON";
-  Program_installed "gto";
-  Program_installed "spades.py";
-  Program_installed "igv";
-  Program_installed "bowtie2";
-  Program_installed "samtools";
-  Program_installed "bcftools";
-  Program_installed "bedops";
-  Program_installed "bedtools";
-  Program_installed "fastq_pair";
-  Program_installed "efetch";
-  Program_installed "mapDamage";
-  Program_installed "tabix";
-  Program_installed "AdapterRemoval";
-  Program_installed "bwa";
-  Program_installed "art_illumina";
-  Program_installed "blastn";
-  Program_installed "dnadiff";
-#  Program_installed "ivar";
+#BEGIN AUTO-GENERATED SECTION - InstallCmds : DO NOT MODIFY
+#==================================================
+#This code snippet generated on Thu Mar 19 14:27:22 EET 2026,
+# using src/TRACES_generator_scripts/gen_install.sh
+# based on information in system_files/dependencies.yml
+#==================================================
+    conda install -c bioconda "adapterremoval" --yes;
+    conda install -c bioconda "art" --yes;
+    conda install -c bioconda "bbmap" --yes;
+    conda install -c bioconda "bcftools>=1.21" --yes;
+    conda install -c bioconda "bedops" --yes;
+    conda install -c bioconda "bedtools>=2.31.1" --yes;
+    conda install -c bioconda "blast" --yes;
+    conda install -c bioconda "bowtie2" --yes;
+    conda install -c bioconda "bwa" --yes;
+    conda install -c bioconda "entrez-direct" --yes;
+    conda install -c bioconda "fastp" --yes;
+    conda install -c bioconda "grepq" --yes;
+    conda install -c bioconda "igv" --yes;
+    conda install -c bioconda "ivar" --yes;
+    conda install -c bioconda "mapdamage2" --yes;
+    conda install -c bioconda "mummer4" --yes;
+    conda install -c bioconda "samtools>=1.21" --yes;
+    conda install -c bioconda "sdust" --yes;
+    conda install -c bioconda "spades" --yes;
+    conda install -c bioconda "tabix" --yes;
+    conda install -c bioconda "trimmomatic" --yes;
+    conda install -c cobilab "falcon" --yes;
+    conda install -c cobilab "gto" --yes;
+    conda install -c cobilab "magnet" --yes;
+    conda install -c seyedmorteza "cryfa" --yes;
+
+    Program_installed "AdapterRemoval";
+    Program_installed "art_illumina";
+    Program_installed "bbnorm.sh";
+    Program_installed "bcftools";
+    Program_installed "bedops";
+    Program_installed "bedtools";
+    Program_installed "blastn";
+    Program_installed "bowtie2";
+    Program_installed "bwa";
+    Program_installed "cryfa";
+    Program_installed "dnadiff";
+    Program_installed "efetch";
+    Program_installed "FALCON";
+    Program_installed "fastp";
+    Program_installed "grepq";
+    Program_installed "gto";
+    Program_installed "igv";
+    Program_installed "ivar";
+    Program_installed "MAGNET";
+    Program_installed "mapDamage";
+    Program_installed "samtools";
+    Program_installed "sdust";
+    Program_installed "spades.py";
+    Program_installed "tabix";
+    Program_installed "trimmomatic";
+#==================================================
+#END AUTO-GENERATED SECTION: DO NOT MODIFY
   fi
 #
 # ==============================================================================

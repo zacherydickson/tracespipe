@@ -62,4 +62,6 @@ if [[ "$TSIZE" > "1" ]];
   #rsvg-convert -f pdf -o $ORGAN-HEAT.pdf $ORGAN-HEAT.svg
   fi
 #
+## Cleanup
+rm -f $ORGAN.com $ORGAN.pos $ORGAN.t.pos
 # ==============================================================================

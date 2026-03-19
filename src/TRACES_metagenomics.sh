@@ -55,6 +55,8 @@ if [[ "$THREADS" > "$MAX_VALUES" ]]
 #
 ## CONVERT SVG OUTPUT TO PDF
 # rsvg-convert -f pdf -o NV-$ORGAN-HEAT.pdf NV-$ORGAN-HEAT.svg
+## Cleanup
+rm -f $ORGAN.com $ORGAN.pos
 #
 # ==============================================================================
 
