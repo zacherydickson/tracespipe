@@ -127,3 +127,5 @@ Version 1.14.1
 	Update to format of Dependency table in README
 Version 1.14.2
 	Split TRACES_help.sh out to prevent unecessary README regenerations
+Version 1.14.3
+	Checking for existence of depenedencies spun out and auto-generated

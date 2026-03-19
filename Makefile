@@ -1,6 +1,6 @@
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 DEPEND_YAML = system_files/dependencies.yml
-SCRIPT_STEMS = install update get_program_versions
+SCRIPT_STEMS = install check_dependencies get_program_versions update 
 
 GENERATOR_SCRIPT_DIR = src/TRACES_generator_scripts
 GENERATOR_SCRIPTS = $(addprefix $(GENERATOR_SCRIPT_DIR)/gen_, $(addsuffix .sh, $(SCRIPT_STEMS)))
