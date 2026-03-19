@@ -18,7 +18,7 @@ install=$1; shift
 [ "$install" -eq "1" ] && exit 0;
 #BEGIN AUTO-GENERATED SECTION - CheckDepends : DO NOT MODIFY
 #==================================================
-#This code snippet generated on Thu Mar 19 15:29:55 EET 2026,
+#This code snippet generated on Thu Mar 19 15:31:31 EET 2026,
 # using src/TRACES_generator_scripts/gen_check_dependencies.sh
 # based on information in system_files/dependencies.yml
 #==================================================
