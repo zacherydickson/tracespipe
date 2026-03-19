@@ -12,7 +12,7 @@ GENERATED_SCRIPTS = $(addprefix $(GENERATED_SCRIPT_DIR)/TRACES_, $(addsuffix .sh
 TIMESTAMP_DIR = .build
 TIMESTAMPS = $(addprefix $(TIMESTAMP_DIR)/, $(addsuffix .timestamp, $(SCRIPT_STEMS) readme))
 
-PIPELINE_SCRIPT = src/TRACESPipe.sh
+PIPELINE_HELP_SCRIPT = src/TRACES_help.sh
 VERSION_FILE = Version.txt
 
 all: $(TIMESTAMPS)
@@ -23,7 +23,7 @@ $(TIMESTAMP_DIR)/%.timestamp: $(GENERATED_SCRIPT_DIR)/TRACES_%.sh $(DEPEND_YAML)
 	@$(GENERATOR_SCRIPT_DIR)/gen_$*.sh
 	@touch $@
 
-$(TIMESTAMP_DIR)/readme.timestamp: README.md $(DEPEND_YAML) $(GENERATOR_SCRIPT_DIR)/gen_readme.sh $(GENLIB) $(PIPELINE_SCRIPT) $(VERSION_FILE)
+$(TIMESTAMP_DIR)/readme.timestamp: README.md $(DEPEND_YAML) $(GENERATOR_SCRIPT_DIR)/gen_readme.sh $(GENLIB) $(PIPELINE_HELP_SCRIPT) $(VERSION_FILE)
 	@mkdir -p $(TIMESTAMP_DIR)
 	@echo Generating $<
 	@$(GENERATOR_SCRIPT_DIR)/gen_readme.sh

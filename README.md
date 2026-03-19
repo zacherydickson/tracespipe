@@ -5,11 +5,11 @@
 [![Speed](https://img.shields.io/static/v1.svg?label=Speed&message=Ultra-fast&color=green)](#)
 <!-- BEGIN AUTO-GENERATED SECTION - VersionShield : DO NOT MODIFY-->
 <!-- ================================================== -->
-<!-- This snippet generated on Thu Mar 19 14:38:55 EET 2026, -->
+<!-- This snippet generated on Thu Mar 19 15:09:31 EET 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
-[![Version](https://img.shields.io/static/v1.svg?label=Release&message=v1.14.1&color=orange)](#)
+[![Version](https://img.shields.io/static/v1.svg?label=Release&message=v1.14.2&color=orange)](#)
 <!-- ================================================== -->
 <!-- END AUTO-GENERATED SECTION : DO NOT MODIFY-->
 [![TinyURL](https://img.shields.io/static/v1.svg?label=TinyURL&message=traces-pipe&color=yellow)](https://tinyurl.com/traces-pipe)
@@ -204,7 +204,7 @@ See the next section for more information about the usage.
 
 <!-- BEGIN AUTO-GENERATED SECTION - TracesHelp : DO NOT MODIFY -->
 <!-- ================================================== -->
-<!-- This snippet generated on Thu Mar 19 14:38:55 EET 2026, -->
+<!-- This snippet generated on Thu Mar 19 15:09:31 EET 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
@@ -253,9 +253,9 @@ See the next section for more information about the usage.
                               Uses alt-vdb if specified                
                                                                        
     -afs <FASTA>, --add-fasta <FASTA>                                  
-                              Add a FASTA sequence to the VDB.fa,      
+                              Add a FASTA sequence to the viral database,
     -aes <ID>, --add-extra-seq <ID>                                    
-                              Add extra sequence to the VDB.fa,        
+                              Add extra sequence to the viral database,
     -gx,    --get-extra-vir   Downloads/appends (VDB) extra viral seq, 
                                                                        
     -gad,   --gen-adapters    Generate FASTA file with adapters,       
@@ -267,7 +267,7 @@ See the next section for more information about the usage.
                               database containing the existing species,
                                                                        
     -dwmp,  --download-mito-population                                 
-                              Downloads two complete mitogenome databases 
+                              Downloads two complete mitogenome databases
                               with healthy and pathogenic sequences,   
                                                                        
     -aums,  --auth-mito-species                                        
@@ -709,7 +709,7 @@ TRACES Pipeline uses a combination of the following tools:
 
 <!-- BEGIN AUTO-GENERATED SECTION - DepInfoTable : DO NOT MODIFY -->
 <!-- ================================================== -->
-<!-- This snippet generated on Thu Mar 19 14:38:55 EET 2026, -->
+<!-- This snippet generated on Thu Mar 19 15:09:31 EET 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
