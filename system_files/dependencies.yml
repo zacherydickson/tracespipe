@@ -24,7 +24,7 @@
     package: bbmap
   versionCmd: "bbnorm.sh --version 2>&1 | awk '/BBTools version/ { print $3 }'"
   url: https://bbmap.org
-  doi: 
+  doi: NA
 
 
 - name: BFCtools
@@ -106,7 +106,7 @@
     package: entrez-direct
   versionCmd: "efetch -version"
   url: https://www.ncbi.nlm.nih.gov/books/NBK179288
-  doi: 
+  doi: NA
 
 - name: FALCON
   call: FALCON
