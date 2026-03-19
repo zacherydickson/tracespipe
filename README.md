@@ -195,14 +195,14 @@ See the next section for more information about the usage.
 ```
 
 ```      
-#BEGIN AUTO-GENERATED SECTION - TracesHelp : DO NOT MODIFY
-#==================================================
-#This snippet generated on Thu Mar 19 13:12:42 EET 2026,
-# using src/TRACES_generator_scripts/gen_readme.sh
-# based on information in system_files/dependencies.yml
-#==================================================
-#==================================================
-#END AUTO-GENERATED SECTION : DO NOT MODIFY
+<!--BEGIN AUTO-GENERATED SECTION - TracesHelp : DO NOT MODIFY -->
+<!-- ================================================== -->
+<!-- This snippet generated on Thu Mar 19 13:25:18 EET 2026, -->
+<!-- using src/TRACES_generator_scripts/gen_readme.sh -->
+<!-- based on information in system_files/dependencies.yml -->
+<!-- ================================================== -->
+<!-- ================================================== -->
+<!--END AUTO-GENERATED SECTION : DO NOT MODIFY -->
 
 
          ████████╗ ██████╗   █████╗   ██████╗ ███████╗ ███████╗
@@ -700,12 +700,12 @@ The output is provided to the stdout.
 
 TRACES Pipeline uses a combination of the following tools:
 
-#BEGIN AUTO-GENERATED SECTION - DepInfoTable : DO NOT MODIFY
-#==================================================
-#This snippet generated on Thu Mar 19 13:12:42 EET 2026,
-# using src/TRACES_generator_scripts/gen_readme.sh
-# based on information in system_files/dependencies.yml
-#==================================================
+<!-- BEGIN AUTO-GENERATED SECTION - DepInfoTable : DO NOT MODIFY -->
+<!-- ================================================== -->
+<!-- This snippet generated on Thu Mar 19 13:25:18 EET 2026, -->
+<!-- using src/TRACES_generator_scripts/gen_readme.sh -->
+<!-- based on information in system_files/dependencies.yml -->
+<!-- ================================================== -->
 | Tool | TestedVersion | URL | Article |
 | --- | --- | --- | --- |
 | &#x1F49A;&nbsp; AdapterRemoval | NA | [https://adapterremoval.readthedocs.io](https://adapterremoval.readthedocs.io) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1186/s13104-016-1900-2)] |
@@ -733,8 +733,8 @@ TRACES Pipeline uses a combination of the following tools:
 | &#x1F49A;&nbsp; SPAdes | NA | [http://cab.spbu.ru/software/meta-spades](http://cab.spbu.ru/software/meta-spades) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1089/cmb.2012.0021)] |
 | &#x1F49A;&nbsp; Tabix | NA | [http://htslib.org/doc/tabix.html](http://htslib.org/doc/tabix.html) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/gigascience/giab007)] |
 | &#x1F49A;&nbsp; Trimmomatic | NA | [http://www.usadellab.org/cms/?page=trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)(https://doi.org/10.1093/bioinformatics/btu170)] |
-#==================================================
-#END AUTO-GENERATED SECTION : DO NOT MODIFY
+<!-- ================================================== -->
+<!-- END AUTO-GENERATED SECTION : DO NOT MODIFY -->
 
 | Tool | URL | Article |
 | --- | --- | --- |

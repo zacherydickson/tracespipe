@@ -38,15 +38,17 @@ function AttemptGeneration {
             snippet[++nLine] = $0;
             next;
         }
-        /^#BEGIN AUTO-GENERATED SECTION/ {
+        /BEGIN AUTO-GENERATED SECTION/ {
             print;
-            label = $5
+            match($0,"BEGIN AUTO-GENERATED SECTION");
+            split(substr($0,RSTART),a," ");
+            label = a[5]
             if(label == tgtLabel){
                 inSnippet=1;
                 insertCount++;
             }
         next}
-        /^#END AUTO-GENERATED SECTION/ {
+        /END AUTO-GENERATED SECTION/ {
             if(inSnippet){
                 if(maxInsert--){
                     for(i=1;i<=nLine;i++){

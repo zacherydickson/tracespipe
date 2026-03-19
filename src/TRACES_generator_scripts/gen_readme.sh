@@ -37,24 +37,24 @@ function GenerateHelp {
 
 function GenerateMetaData {
     local depDir=$(basename "$(dirname "$DepFile")")
-    echo "#This snippet generated on $(date),"
-    echo "# using src/$(basename "$ExecDir")/$(basename "$0")"
-    echo "# based on information in $depDir/$(basename $DepFile)"
-    echo "#=================================================="
+    echo "<!-- This snippet generated on $(date), -->"
+    echo "<!-- using src/$(basename "$ExecDir")/$(basename "$0") -->"
+    echo "<!-- based on information in $depDir/$(basename $DepFile) -->"
+    echo "<!-- ================================================== -->"
 }; export -f GenerateMetaData;
 
 function GenerateTableSnippet {
-    echo "#=================================================="
+    echo "<!-- ================================================== -->"
     GenerateMetaData
     GenerateTable
-    echo "#=================================================="
+    echo "<!-- ================================================== -->"
 }; export -f GenerateTableSnippet;
 
 function GenerateHelpSnippet {
-    echo "#=================================================="
+    echo "<!-- ================================================== -->"
     GenerateMetaData
     GenerateHelp
-    echo "#=================================================="
+    echo "<!-- ================================================== -->"
 }; export -f GenerateHelpSnippet;
 
 source "$ExecDir/generate_common.sh"
