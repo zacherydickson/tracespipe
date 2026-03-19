@@ -5,8 +5,8 @@
 #
 #BEGIN AUTO-GENERATED SECTION: DO NOT MODIFY
 #==================================================
-#This code snippet generated on Wed Mar 18 15:19:57 EET 2026,
-# using src/TRACES_generator_scripts/generate_script.sh update
+#This code snippet generated on Thu Mar 19 11:40:46 EET 2026,
+# using src/TRACES_generator_scripts/gen_update.sh
 # based on information in system_files/dependencies.yml
 #==================================================
     conda update -c bioconda "adapterremoval" --yes;

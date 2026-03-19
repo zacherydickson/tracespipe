@@ -1,0 +1,61 @@
+#!/bin/bash
+
+#Function that tries to use awk's inplace editing to insert a code snippet
+#Note that this requires a GenerateSnippet function to exist in the environment
+#Inputs - a Target File
+#       - an option number of max insertions, defaulting to 1
+#           if there are multiple AUTO-sections to have the same code inserted this could be used
+#Output - None, modifies the target File in place
+#       - silently returns an exit code if:
+#           the target file is empty
+#           the GenerateSnippet Function doesn't exist
+#           something else goes wrong
+function AttemptGeneration {
+    local targetFile=$1; shift
+    if ! [ -s "$targetFile" ]; then
+        >&2 echo "Empty/Non-existent TargetFile ($targetFile) for AttemptGeneration"
+        return 1;
+    fi
+    local maxInsert=$1; shift
+    [ -z "$maxInsert" ] && maxInsert=1;
+    [[ $(type -t GenerateSnippet) == "function" ]] || return 1;
+    awk -i inplace -v inplace::suffix=.bak -v maxInsert="$maxInsert" '
+        BEGIN{
+            inSnippet = 0;
+        }
+        (ARGIND == 2){
+            snippet[++nLine] = $0;
+            next;
+        }
+        /^#BEGIN AUTO-GENERATED SECTION/ {print; inSnippet=1; next}
+        /^#END AUTO-GENERATED SECTION/ {
+            if(maxInsert--){
+                for(i=1;i<=nLine;i++){
+                    print snippet[i]
+                }
+            }
+            inSnippet=0;
+            print;
+            next;
+        }
+        (inSnippet){next}
+        1
+    ' inplace::enable=0 <(GenerateSnippet) inplace::enable=1 "$targetFile"
+}
+
+function GenerateTarget {
+    local targetFile=$1; shift
+    if AttemptGeneration "$targetFile"; then
+        rm -f "$targetFile.bak"
+    else
+        mv "$targetFile.bak" "$targetFile"
+        >&2 echo "[ERROR] Failure to generate $targetFile"
+        return 1;
+    fi
+}
+
+if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
+    >&2 echo "This script is not intended to be run directly, it is\n" \
+                " to be sourced as a library by the other generator scripts\n"
+fi
+
