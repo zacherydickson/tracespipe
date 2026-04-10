@@ -5,7 +5,7 @@
 [![Speed](https://img.shields.io/static/v1.svg?label=Speed&message=Ultra-fast&color=green)](#)
 <!-- BEGIN AUTO-GENERATED SECTION - VersionShield : DO NOT MODIFY-->
 <!-- ================================================== -->
-<!-- This snippet generated on Fri Apr 10 16:44:56 EEST 2026, -->
+<!-- This snippet generated on Fri Apr 10 16:54:57 EEST 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
@@ -13,7 +13,7 @@
 <!-- ================================================== -->
 <!-- END AUTO-GENERATED SECTION : DO NOT MODIFY-->
 [![TinyURL](https://img.shields.io/static/v1.svg?label=TinyURL&message=traces-pipe&color=yellow)](https://tinyurl.com/traces-pipe)
-[![DOI](https://zenodo.org/badge/175676601.svg)](https://zenodo.org/badge/latestdoi/175676601)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7646368.svg)](https://zenodo.org/badge/latestdoi/175676601)
 
 </div>
 <br>
@@ -204,7 +204,7 @@ See the next section for more information about the usage.
 
 <!-- BEGIN AUTO-GENERATED SECTION - TracesHelp : DO NOT MODIFY -->
 <!-- ================================================== -->
-<!-- This snippet generated on Fri Apr 10 16:44:56 EEST 2026, -->
+<!-- This snippet generated on Fri Apr 10 16:54:57 EEST 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
@@ -709,7 +709,7 @@ TRACES Pipeline uses a combination of the following tools:
 
 <!-- BEGIN AUTO-GENERATED SECTION - DepInfoTable : DO NOT MODIFY -->
 <!-- ================================================== -->
-<!-- This snippet generated on Fri Apr 10 16:44:57 EEST 2026, -->
+<!-- This snippet generated on Fri Apr 10 16:54:57 EEST 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
