@@ -1647,9 +1647,9 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
     # ========================================================================
     # PRE-PROCESS READS WITH FASTP
     #
-    CHECK_ADAPTERS;
     rm -f o_fw_pr.fq o_fw_unpr.fq o_rv_pr.fq o_rv_unpr.fq;
     if [[ "$RUN_PREPROCESS" -eq 1 ]]; then
+        CHECK_ADAPTERS;
         echo -e "\e[34m[TRACESPipe]\e[32m Preprocessing reads with FastP ...\e[0m";
         ./TRACES_preprocess.sh "$THREADS" "$PREPROC_DIR" "$ADAPTERS_FILE" "$ORGAN_T" "FW_READS.fq.gz" "RV_READS.fq.gz" "$REMOVE_DUPLICATIONS" 1>> "../logs/Log-stdout-$ORGAN_T.txt" 2>> "../logs/Log-stderr-$ORGAN_T.txt";
         #Extract the string duplication rate reported by fastp
