@@ -1552,7 +1552,7 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
       if [[ "$RUN_META_ON" -eq "1" ]];
         then
         CHECK_VDB;
-        CHECK_PHIX;
+        #CHECK_PHIX;
         [ "$TOP_SIZE_VIR" -eq 0 ] && TOP_SIZE_VIR=$(grep -c '^>' "$VIRAL_DATABASE_FILE");
         #
         if [ -n "$PATTERN_DEPLETE_FILE" ]; then
@@ -1677,10 +1677,10 @@ if [[ "$RUN_ANALYSIS" -eq "1" ]]; then
     if [[ "$RUN_META_ON" -eq "1" && "$RUN_BEST_OF_BESTS" -ne "1" ]];
       then
       CHECK_VDB;
-      CHECK_PHIX;
       [ "$TOP_SIZE_VIR" -eq 0 ] && TOP_SIZE_VIR=$(grep -c '^>' "$VIRAL_DATABASE_FILE");
       #
       #echo -e "\e[34m[TRACESPipe]\e[32m Removing PhiX from the samples with MAGNET ...\e[0m";
+      #CHECK_PHIX;
       #./TRACES_remove_phix.sh $THREADS 
       # XXX: REMOVE FROM THE DB PHIX OR CHANGE MAGNET FOR PAIRED-END READS 
       # XXX: ALTERNATIVE - USE BWA OR OTHER ALIGNER TO EXTRACT THOSE READS 
