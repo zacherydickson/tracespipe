@@ -5,11 +5,11 @@
 [![Speed](https://img.shields.io/static/v1.svg?label=Speed&message=Ultra-fast&color=green)](#)
 <!-- BEGIN AUTO-GENERATED SECTION - VersionShield : DO NOT MODIFY-->
 <!-- ================================================== -->
-<!-- This snippet generated on Tue Jul  7 12:05:57 EEST 2026, -->
+<!-- This snippet generated on Fri Aug 28 17:46:45 EEST 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
-[![Version](https://img.shields.io/static/v1.svg?label=Release&message=v1.14.5&color=orange)](#)
+[![Version](https://img.shields.io/static/v1.svg?label=Release&message=v1.14.6&color=orange)](#)
 <!-- ================================================== -->
 <!-- END AUTO-GENERATED SECTION : DO NOT MODIFY-->
 [![TinyURL](https://img.shields.io/static/v1.svg?label=TinyURL&message=traces-pipe&color=yellow)](https://tinyurl.com/traces-pipe)
@@ -205,7 +205,7 @@ See the next section for more information about the usage.
 
 <!-- BEGIN AUTO-GENERATED SECTION - TracesHelp : DO NOT MODIFY -->
 <!-- ================================================== -->
-<!-- This snippet generated on Tue Jul  7 12:05:57 EEST 2026, -->
+<!-- This snippet generated on Fri Aug 28 17:46:45 EEST 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
@@ -710,7 +710,7 @@ TRACES Pipeline uses a combination of the following tools:
 
 <!-- BEGIN AUTO-GENERATED SECTION - DepInfoTable : DO NOT MODIFY -->
 <!-- ================================================== -->
-<!-- This snippet generated on Tue Jul  7 12:05:57 EEST 2026, -->
+<!-- This snippet generated on Fri Aug 28 17:46:45 EEST 2026, -->
 <!-- using src/TRACES_generator_scripts/gen_readme.sh -->
 <!-- based on information in system_files/dependencies.yml -->
 <!-- ================================================== -->
@@ -729,7 +729,7 @@ TRACES Pipeline uses a combination of the following tools:
 | &#x1F49A;&nbsp; [dnadiff](https://mummer4.github.io) | 1.3 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1371/journal.pcbi.1005944) |
 | &#x1F49A;&nbsp; [efetch](https://www.ncbi.nlm.nih.gov/books/NBK179288) | 24.4 | NA |
 | &#x1F49A;&nbsp; [FALCON](https://github.com/cobilab/falcon) | 2.3 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.3390/genes9090445) |
-| &#x1F49A;&nbsp; [fastp](https://github.com/OpenGene/fastp) | 1.3.5 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1002/imt2.70078) |
+| &#x1F49A;&nbsp; [fastp](https://github.com/OpenGene/fastp) | 1.3.6 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1002/imt2.70078) |
 | &#x1F49A;&nbsp; [grepq](https://github.com/Rbfinch/grepq) | 1.5.4 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.21105/joss.08048) |
 | &#x1F49A;&nbsp; [GTO](https://github.com/cobilab/gto) | v1.5.9 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1101/2020.01.07.882845) |
 | &#x1F49A;&nbsp; [IGV](https://software.broadinstitute.org/software/igv) | 2.19.3 | [![Article](https://img.shields.io/static/v1.svg?label=View&message=Article&color=green)](https://doi.org/10.1038/nbt.1754) |
