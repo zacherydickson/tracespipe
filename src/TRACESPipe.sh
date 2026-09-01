@@ -742,13 +742,13 @@ while [[ $# -gt 0 ]]
     ;;
     -misl|--min-similarity-len)
         MINIMAL_SIMILARITY_LENGTH="$2";
-        [ -z "$MINIMUM_SIMILARITY_VALUE" ] && MINIMUM_SIMILARITY_VALUE=0.0;
+        [ -z "$MINIMAL_SIMILARITY_VALUE" ] && MINIMAL_SIMILARITY_VALUE=0.0;
         SHOW_HELP=0;
         shift 2
     ;;
     -misv|--min-similarity-virus)
         PARSE_VIRAL_MIN_SIM "$2";
-        [ -z "$MINIMUM_SIMILARITY_VALUE" ] && MINIMUM_SIMILARITY_VALUE=0.0;
+        [ -z "$MINIMAL_SIMILARITY_VALUE" ] && MINIMAL_SIMILARITY_VALUE=0.0;
         SHOW_HELP=0;
         shift 2;
     ;;
@@ -997,7 +997,7 @@ while [[ $# -gt 0 ]]
   esac
   done
 #
-[ -z "$MINIMUM_SIMILARITY_VALUE" ] && MINIMUM_SIMILARITY_VALUE="$DEFAULT_SIMILARITY_VALUE"
+[ -z "$MINIMAL_SIMILARITY_VALUE" ] && MINIMAL_SIMILARITY_VALUE="$DEFAULT_SIMILARITY_VALUE"
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 #
